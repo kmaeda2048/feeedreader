@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: feeedreader_production
-  username: <%= ENV['FEEEDREADER_DATABASE_USERNAME'] %>
-  password: <%= ENV['FEEEDREADER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
