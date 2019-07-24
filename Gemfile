@@ -40,6 +40,7 @@ gem 'slim-rails', '~> 3.2.0'
 gem 'html2slim', '~> 0.2.0'
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails', '~> 4.3.5'
 
 gem 'rspec-rails', '~> 3.7'
 gem 'factory_bot_rails', '~> 4.11'
