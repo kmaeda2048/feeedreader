@@ -1,2 +1,16 @@
 h1 Feeds#index
 p Find me in app/views/feeds/index.html.slim
+
+= link_to '新しいフィードの登録', new_feed_path
+
+table
+  tr
+    th url
+    th title
+    th description
+  - @feeds.each do |feed|
+    tr
+      td
+        = link_to feed.url, feed.url
+      td= feed.title
+      td= feed.description
