@@ -2,10 +2,33 @@ doctype html
 html
   head
     title
-      | Feeedreader
+      | FeeedReader
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+      = link_to 'FeeedReader', root_path, class: 'navbar-brand'
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            = link_to 'Welcome', root_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Home', root_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'feed', root_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'article', root_path, class: 'nav-link'
+    
+    - if notice
+      p.notice
+        = notice
+    - if alert
+      p.alert
+        = alert
+        
     = yield
