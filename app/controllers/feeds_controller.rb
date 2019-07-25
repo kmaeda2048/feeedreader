@@ -6,7 +6,7 @@ class FeedsController < ApplicationController
     # xml = HTTParty.get(url).body
     # @feed = Feedjira.parse(xml)
 
-    # title, url, summary, published, content, サムネイルをどうやって取得するか？
+    # title, url, summary, published, content
   end
 
   def show
