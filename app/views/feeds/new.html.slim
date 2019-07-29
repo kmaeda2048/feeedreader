@@ -1,14 +1,4 @@
 h1 Feeds#new
 p Find me in app/views/feeds/new.html.slim
 
-= form_with model: @feed, local: true do |f|
-  .form-group
-    = f.label :url
-    = f.text_field :url, class: 'form-control', id: 'feed_url'
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control', id: 'feed_title'
-  .form-group
-    = f.label :description
-    = f.text_area :description, row: 5, class: 'form-control', id: 'feed_description'
-  = f.submit "登録する", class: 'btn btn-primary'
+= render partial: 'form', locals: { feed: @feed }

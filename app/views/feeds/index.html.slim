@@ -1,7 +1,7 @@
 h1 Feeds#index
 p Find me in app/views/feeds/index.html.slim
 
-= link_to '新しいフィードの登録', new_feed_path
+= link_to '新しいフィードの登録', new_feed_path, class: 'btn btn-primary mr-3'
 
 table
   tr
@@ -12,5 +12,9 @@ table
     tr
       td
         = link_to feed.url, feed.url
-      td= feed.title
+      td
+        = link_to feed.title, feed
       td= feed.description
+      td
+        = link_to "編集", edit_feed_path(feed), class: 'btn btn-primary mr-3'
+        = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.title}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'

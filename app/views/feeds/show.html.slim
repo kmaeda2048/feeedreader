@@ -1,2 +1,15 @@
 h1 Feeds#show
 p Find me in app/views/feeds/show.html.slim
+
+table
+  tr
+    th url
+    td
+      = link_to @feed.url, @feed.url
+  tr
+    th title
+    td= @feed.title
+  tr
+    th description
+    td= @feed.description
+    
