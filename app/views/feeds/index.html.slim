@@ -5,6 +5,7 @@ p Find me in app/views/feeds/index.html.slim
 
 table
   tr
+    th id
     th url
     th title
     th description
@@ -12,6 +13,7 @@ table
     th updated_at
   - @feeds.each do |feed|
     tr
+      td= feed.id
       td
         = link_to feed.url, feed.url
       td
