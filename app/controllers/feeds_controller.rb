@@ -33,8 +33,11 @@ class FeedsController < ApplicationController
 
   def update
     @feed = Feed.find(params[:id])
-    @feed.update!(feed_params)
-    redirect_to feed_path, notice: "「#{@feed.title}」を更新しました。"
+    if @feed.update(feed_params)
+      redirect_to @feed, notice: "「#{@feed.title}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
