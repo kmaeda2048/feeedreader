@@ -11,7 +11,7 @@ class Feed < ApplicationRecord
     entry = Feedjira.parse(xml).entries
 
     entry.each do |e|
-      article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content)
+      article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id)
 
       if article.save
       else
