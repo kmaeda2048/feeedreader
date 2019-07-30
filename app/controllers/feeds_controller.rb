@@ -11,6 +11,7 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.find(params[:id])
+    @articles = Article.where(feed_id: @feed.id)
   end
 
   def new
