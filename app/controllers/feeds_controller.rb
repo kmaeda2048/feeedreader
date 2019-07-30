@@ -1,12 +1,6 @@
 class FeedsController < ApplicationController
   def index
     @feeds = Feed.all
-
-    # url = "http://b.hatena.ne.jp/hotentry/it.rss"
-    # xml = HTTParty.get(url).body
-    # @feed = Feedjira.parse(xml)
-
-    # title, url, summary, published, content
   end
 
   def show
