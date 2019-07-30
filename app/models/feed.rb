@@ -1,5 +1,5 @@
 class Feed < ApplicationRecord
-  after_save :create_articles, on: :create
+  after_create :create_articles, on: :create
 
   validates :url, presence: true
   validates :title, presence: true
