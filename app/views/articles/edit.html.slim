@@ -1,2 +1,13 @@
 h1 Articles#edit
 p Find me in app/views/articles/edit.html.slim
+
+- if @article.errors.present?
+  ul#error_explanation
+    - @article.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: @article, local: true do |f|
+  .form-group
+    = f.label :memo
+    = f.text_area :memo, row: 5, class: 'form-control', id: 'article_memo'
+  = f.submit nil, class: 'btn btn-primary'
