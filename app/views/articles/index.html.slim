@@ -4,8 +4,7 @@ p Find me in app/views/articles/index.html.slim
 table
   tr
     th id
-    th url
-    th title
+    th title(url)
     th published
     th created_at
     th updated_at
@@ -13,11 +12,9 @@ table
     tr
       td= article.id
       td
-        = link_to article.url, article.url
-      td
-        = link_to article.title, article
+        = link_to article.title, article.url
       td= article.published
       td= article.created_at
       td= article.updated_at
       td
-        = link_to "編集", edit_article_path(article), class: 'btn btn-primary mr-3'
+        = link_to "メモ", article_path(article), class: 'btn btn-primary mr-3'
