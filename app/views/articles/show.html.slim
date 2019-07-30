@@ -1,2 +1,20 @@
 h1 Articles#show
 p Find me in app/views/articles/show.html.slim
+
+table
+  tr
+    th url
+    td
+      = link_to @article.url, @article.url
+  tr
+    th title
+    td= @article.title
+  tr
+    th published
+    td= @article.published
+  / tr
+  /   th updated
+  /   td= @article.updated
+  tr
+    th content
+    td= @article.content
