@@ -1,6 +1,6 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = Feed.all
+    @feeds = Feed.all.page(params[:page])
   end
 
   def show
