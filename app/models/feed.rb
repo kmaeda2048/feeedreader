@@ -1,4 +1,6 @@
 class Feed < ApplicationRecord
+  has_many :article
+  
   after_create :create_articles, on: :create
 
   validates :url, presence: true
