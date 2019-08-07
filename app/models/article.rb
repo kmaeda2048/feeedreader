@@ -1,3 +1,3 @@
 class Article < ApplicationRecord
-  belogs_to :feed
+  belongs_to :feed
 end
