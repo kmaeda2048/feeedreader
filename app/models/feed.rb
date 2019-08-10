@@ -3,7 +3,7 @@ class Feed < ApplicationRecord
   
   after_create :create_articles, on: :create
 
-  validates :url, presence: true
+  validates :url, presence: true, uniqueness: true
   validates :title, presence: true
 
   private
