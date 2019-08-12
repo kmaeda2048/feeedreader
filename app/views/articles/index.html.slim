@@ -7,18 +7,28 @@ p Find me in app/views/articles/index.html.slim
 - @articles.each do |article|
   .card.mb-1
     .row.no-gutters
-      .col-md-1.bg-info
-        svg.bd-placeholder-img width="75px" height="75px" viewBox="" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"
-          title Placeholder
-          rect width="100%" height="100%" fill="#868e96"
-      .col-md-11
-        .card-body
-          h5.card-title
-            = link_to article.title, article.url
-          .row
-            .col-md-8
-              small.text-muted= 'feed: ' + article.feed.title
-            .col-md-3
-              small.text-muted= 'published: ' + article.published.to_s
-            .col-md-1
-              = link_to 'メモ', article_path(article), class: 'btn btn-primary'
+      / .col-sm-1.bg-info
+      /   svg.bd-placeholder-img width="75px" height="75px" viewBox="" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"
+      /     title Placeholder
+      /     rect width="100%" height="100%" fill="#868e96"
+      / .col-sm-11
+      /   .card-body
+      /     h5.card-title
+      /       = link_to article.title, article.url
+      /     .row
+      /       .col-md-8
+      /         small.text-muted= 'feed: ' + article.feed.title
+      /       .col-md-3
+      /         small.text-muted= 'published: ' + article.published.to_s
+      /       .col-md-1
+      /         = link_to 'メモ', article_path(article), class: 'btn btn-primary'
+      .card-body
+        h5.card-title
+          = link_to article.title, article.url
+        .row
+          .col-md-8
+            small.text-muted= 'feed: ' + article.feed.title
+          .col-md-3
+            small.text-muted= 'published: ' + article.published.to_s
+          .col-md-1
+            = link_to 'メモ', article_path(article), class: 'btn btn-primary'
