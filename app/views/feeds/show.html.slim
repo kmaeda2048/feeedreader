@@ -3,14 +3,14 @@ p Find me in app/views/feeds/show.html.slim
 
 table
   tr
-    th url
+    th= t('activerecord.attributes.feed.url')
     td
       = link_to @feed.url, @feed.url
   tr
-    th title
+    th= t('activerecord.attributes.feed.title')
     td= @feed.title
   tr
-    th description
+    th= t('activerecord.attributes.feed.description')
     td= @feed.description
     
 - @articles.each do |article|

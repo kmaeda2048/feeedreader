@@ -1,6 +1,21 @@
 ---
 ja:
   activerecord:
+    attributes:
+      feed:
+        id: ID
+        url: URL
+        title: タイトル
+        description: 説明
+        created_at: 登録日時
+        updated_at: 更新日時
+      article:
+        title: タイトル
+        url: URL
+        summary: 概要
+        published: 公開日
+        content: 内容
+        memo: メモ
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
