@@ -8,12 +8,12 @@ p Find me in app/views/feeds/index.html.slim
 
 table
   tr
-    th id
-    th url
-    th title
-    th description
-    th created_at
-    th updated_at
+    th= t('activerecord.attributes.feed.id')
+    th= t('activerecord.attributes.feed.url')
+    th= t('activerecord.attributes.feed.title')
+    th= t('activerecord.attributes.feed.description')
+    th= t('activerecord.attributes.feed.created_at')
+    th= t('activerecord.attributes.feed.updated_at')
   - @feeds.each do |feed|
     tr
       td= feed.id
