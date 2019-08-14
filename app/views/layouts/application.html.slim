@@ -7,7 +7,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
     nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
       = link_to 'FeeedReader', articles_path, class: 'navbar-brand'
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
