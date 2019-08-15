@@ -21,6 +21,10 @@ class ArticlesController < ApplicationController
   end
 
   def starred
+    @starred = Article.where(starred: true).page(params[:page])
+  end
+
+  def star
   end
 
   private
