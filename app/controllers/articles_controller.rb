@@ -20,6 +20,9 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def starred
+  end
+
   private
 
   def article_params
