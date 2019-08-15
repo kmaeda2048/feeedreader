@@ -23,6 +23,8 @@ html
             = link_to 'feed', feeds_path, class: 'nav-link'
           li.nav-item
             = link_to 'article', articles_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'starred', starred_articles_path, class: 'nav-link'
     
     - if notice
       p.notice
