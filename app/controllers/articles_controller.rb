@@ -3,10 +3,16 @@ class ArticlesController < ApplicationController
     @articles = Article.all.page(params[:page])
   end
 
-  def starred
-    @starred = Article.where(starred: true).page(params[:page])
+  def update
+    article = Article.find(params[:id])
+    if article.starred
+      article.update(starred: false)
+    else
+      article.update(starred: true)
+    end
   end
 
-  def star
+  def starred
+    @starred = Article.where(starred: true).page(params[:page])
   end
 end

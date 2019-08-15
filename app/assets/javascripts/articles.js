@@ -49,12 +49,37 @@ function shortcut(event) {
     }
 }
 
+function star_style(event) {
+    const clicked = event.target.className;
+    console.log(clicked);
+
+    if (clicked == 'star') {
+        if (event.target.style.backgroundColor == "") {
+            event.target.style.backgroundColor = "yellow";
+        } else {
+            event.target.style.backgroundColor = "";
+        }
+    }
+}
+
 document.addEventListener('turbolinks:load', function () {
     const controller = document.querySelector('body').dataset.controller;
     const action = document.querySelector('body').dataset.action;
-    if (controller == "articles" && action == "index") {
-        document.addEventListener('keydown', shortcut, false);
+
+    if (controller == "articles" && (action == "index" || action == "starred")) {
+        document.addEventListener('keydown', shortcut);
+        document.addEventListener('click', star_style);
+        // document.getElementsByClassName('star').addEventListener('click', star_style);
+
+        // for (let i = 0; i < 2; i++) {
+        //     elmA[i].addEventListener('click', () => {
+        //         elmB[i].classList.add('is-active');
+        //     });
+        // }
+
+
     } else {
-        document.removeEventListener('keydown', shortcut, false);
+        document.removeEventListener('keydown', shortcut);
+        // document.getElementsByClassName('star').removeEventListener('click', star_style);
     }
 });
