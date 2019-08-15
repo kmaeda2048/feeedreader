@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_021043) do
+ActiveRecord::Schema.define(version: 2019_08_15_042253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2019_08_15_021043) do
     t.text "summary"
     t.datetime "published"
     t.text "content"
-    t.text "memo", default: "メモはありません"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "feed_id"
