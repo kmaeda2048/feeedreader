@@ -1,5 +1,3 @@
-h1 Articles#starred
-
 = paginate @starred
 = page_entries_info @starred
 
@@ -16,3 +14,5 @@ h1 Articles#starred
             small.text-muted= 'published: ' + s.published.to_s
           .col-md-1
             = link_to 'メモ', articles_path(s), class: 'btn btn-primary'
+
+= paginate @starred
