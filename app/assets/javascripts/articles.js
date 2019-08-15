@@ -4,63 +4,58 @@ document.addEventListener('turbolinks:load', function () {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
-                if (document.activeElement.className !== 'focus') {
-                    const first_card = document.querySelector('.card');
-                    first_card.setAttribute('id', 'target');
-                    first_card.querySelector('.focus').focus();
-                    first_card.querySelector('.focus').style.outline = 'none';
-                    first_card.style.backgroundColor = 'lightcyan';
+                if (document.activeElement.className !== 'card-link') {
+                    const firstCard = document.querySelector('.card');
+                    firstCard.querySelector('.card-link').focus();
+                    firstCard.setAttribute('id', 'focused-card');
+                    firstCard.querySelector('.card-link').style.outline = 'none';
+                    firstCard.style.backgroundColor = 'lightcyan';
                 } else {
-                    const previous_card = document.getElementById('target');
-                    const target_card = previous_card.nextElementSibling;
-                    previous_card.style.backgroundColor = '';
-                    previous_card.removeAttribute('id');
-                    target_card.setAttribute('id', 'target');
-                    target_card.querySelector('.focus').focus();
-                    target_card.querySelector('.focus').style.outline = 'none';
-                    target_card.style.backgroundColor = 'lightcyan';
+                    const previousCard = document.getElementById('focused-card');
+                    const targetCard = previousCard.nextElementSibling;
+                    previousCard.style.backgroundColor = '';
+                    previousCard.removeAttribute('id');
+                    targetCard.querySelector('.card-link').focus();
+                    targetCard.setAttribute('id', 'focused-card');
+                    targetCard.querySelector('.card-link').style.outline = 'none';
+                    targetCard.style.backgroundColor = 'lightcyan';
                 }
                 break;
             case 'k':
-                if (document.activeElement.className === 'focus') {
-                    const next_card = document.getElementById('target');
-                    const target_card = next_card.previousElementSibling;
-                    next_card.style.backgroundColor = '';
-                    next_card.removeAttribute('id');
-                    target_card.setAttribute('id', 'target');
-                    target_card.querySelector('.focus').focus();
-                    target_card.querySelector('.focus').style.outline = 'none';
-                    target_card.style.backgroundColor = 'lightcyan';
+                if (document.activeElement.className === 'card-link') {
+                    const nextCard = document.getElementById('focused-card');
+                    const targetCard = nextCard.previousElementSibling;
+                    nextCard.style.backgroundColor = '';
+                    nextCard.removeAttribute('id');
+                    targetCard.querySelector('.card-link').focus();
+                    targetCard.setAttribute('id', 'focused-card');
+                    targetCard.querySelector('.card-link').style.outline = 'none';
+                    targetCard.style.backgroundColor = 'lightcyan';
                 }
                 break;
             case 'o':
-                if (document.activeElement.className === 'focus') {
-                    const target_link = document.getElementById('target').querySelector('.focus');
-                    window.location.href = target_link;
+                if (document.activeElement.className === 'card-link') {
+                    const targetLink = document.getElementById('focused-card').querySelector('.card-link');
+                    window.location.href = targetLink;
                 }
                 break;
             case 'g':
-                if (document.activeElement.className === 'focus') {
-                    const target_link = document.getElementById('target').querySelector('.focus');
-                    window.open(target_link, '_blank');
+                if (document.activeElement.className === 'card-link') {
+                    const targetLink = document.getElementById('focused-card').querySelector('.card-link');
+                    window.open(targetLink, '_blank');
                 }
                 break;
             case 's':
-                console.log('スターのトグル');
+                if (document.activeElement.className === 'card-link') {
+                    const targetStar = document.getElementById('focused-card').querySelector('.star');
+                    targetStar.click();
+                    if (targetStar.style.backgroundColor === '') {
+                        targetStar.style.backgroundColor = 'yellow';
+                    } else {
+                        targetStar.style.backgroundColor = '';
+                    }
+                }
                 break;
-        }
-    }
-
-    function star_style(e) {
-        const clicked = e.target.className;
-        console.log(clicked);
-
-        if (clicked === 'star') {
-            if (e.target.style.backgroundColor === '') {
-                e.target.style.backgroundColor = 'yellow';
-            } else {
-                e.target.style.backgroundColor = '';
-            }
         }
     }
 
@@ -69,9 +64,9 @@ document.addEventListener('turbolinks:load', function () {
 
     if (controller === 'articles' && (action === 'index' || action === 'starred')) {
         document.addEventListener('keydown', shortcut);
-        document.addEventListener('click', star_style);
-    } else {
-        document.removeEventListener('keydown', shortcut);
-        document.removeEventListener('click', star_style);
     }
+
+    document.addEventListener('turbolinks:load', function () {
+        document.removeEventListener('keydown', shortcut);
+    });
 });

@@ -21,7 +21,7 @@
       /         = link_to 'メモ', article_path(article), class: 'btn btn-primary'
       .card-body
         h5.card-title
-          = link_to article.title, article.url, class: 'focus', rel: 'noopener'
+          = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
         .row
           .col-md-1
             = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
