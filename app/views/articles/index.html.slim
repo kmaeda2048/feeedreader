@@ -25,7 +25,10 @@
             = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
           .row
             .col-md-1
-              = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
+              - if article.starred
+                = button_to 'star', article_path(article), method: :put, remort: true, class: "star starred"
+              - else
+                = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
             .col-md-8
               small.text-muted= 'feed: ' + article.feed.title
             .col-md-3

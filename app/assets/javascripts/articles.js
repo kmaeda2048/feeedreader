@@ -7,24 +7,20 @@ document.addEventListener('turbolinks:load', function () {
                 if (document.getElementById('focused-card') !== document.querySelector('.cards').lastElementChild) {
                     const previousCard = document.getElementById('focused-card');
                     const targetCard = previousCard.nextElementSibling;
-                    previousCard.style.backgroundColor = '';
                     previousCard.removeAttribute('id');
-                    targetCard.querySelector('.card-link').focus();
                     targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').style.outline = 'none';
-                    targetCard.style.backgroundColor = 'lightcyan';
+                    targetCard.querySelector('.card-link').setAttribute('id', 'focused-link');
+                    targetCard.querySelector('#focused-link').focus();
                 }
                 break;
             case 'k':
                 if (document.getElementById('focused-card') !== document.querySelector('.cards').firstElementChild) {
                     const nextCard = document.getElementById('focused-card');
                     const targetCard = nextCard.previousElementSibling;
-                    nextCard.style.backgroundColor = '';
                     nextCard.removeAttribute('id');
-                    targetCard.querySelector('.card-link').focus();
                     targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').style.outline = 'none';
-                    targetCard.style.backgroundColor = 'lightcyan';
+                    targetCard.querySelector('.card-link').setAttribute('id', 'focused-link');
+                    targetCard.querySelector('#focused-link').focus();
                 }
                 break;
             case 'g':
@@ -38,11 +34,7 @@ document.addEventListener('turbolinks:load', function () {
             case 's':
                 const targetStar = document.getElementById('focused-card').querySelector('.star');
                 targetStar.click();
-                if (targetStar.style.backgroundColor === '') {
-                    targetStar.style.backgroundColor = 'yellow';
-                } else {
-                    targetStar.style.backgroundColor = '';
-                }
+                targetStar.classList.toggle('starred');
                 break;
             case 'a':
                 window.location.href = document.getElementById('articles-link');
@@ -57,10 +49,9 @@ document.addEventListener('turbolinks:load', function () {
 
     if (document.querySelector('.card')) {
         const firstCard = document.querySelector('.card');
-        firstCard.querySelector('.card-link').focus();
         firstCard.setAttribute('id', 'focused-card');
-        firstCard.querySelector('.card-link').style.outline = 'none';
-        firstCard.style.backgroundColor = 'lightcyan';
+        firstCard.querySelector('.card-link').setAttribute('id', 'focused-link');
+        firstCard.querySelector('#focused-link').focus();
     }
 
     document.addEventListener('keydown', shortcut);
