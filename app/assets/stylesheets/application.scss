@@ -3,3 +3,15 @@
 .card-link {
   color: #333;
 }
+
+#focused-card {
+  background-color: lightcyan;
+}
+
+#focused-link {
+  outline: none;
+}
+
+.starred {
+  background-color: yellow;
+}
