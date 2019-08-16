@@ -33,13 +33,13 @@ document.addEventListener('turbolinks:load', function () {
                     targetCard.style.backgroundColor = 'lightcyan';
                 }
                 break;
-            case 'o':
+            case 'g':
                 if (document.activeElement.className === 'card-link') {
                     const targetLink = document.getElementById('focused-card').querySelector('.card-link');
                     window.location.href = targetLink;
                 }
                 break;
-            case 'g':
+            case 't':
                 if (document.activeElement.className === 'card-link') {
                     const targetLink = document.getElementById('focused-card').querySelector('.card-link');
                     window.open(targetLink, '_blank');
@@ -55,6 +55,12 @@ document.addEventListener('turbolinks:load', function () {
                         targetStar.style.backgroundColor = '';
                     }
                 }
+                break;
+            case 'a':
+                window.location.href = document.getElementById('articles-link');
+                break;
+            case 'q':
+                window.location.href = document.getElementById('starred-articles-link');
                 break;
         }
     }
