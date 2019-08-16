@@ -4,13 +4,8 @@ document.addEventListener('turbolinks:load', function () {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
-                if (document.activeElement.className !== 'card-link') {
-                    const firstCard = document.querySelector('.card');
-                    firstCard.querySelector('.card-link').focus();
-                    firstCard.setAttribute('id', 'focused-card');
-                    firstCard.querySelector('.card-link').style.outline = 'none';
-                    firstCard.style.backgroundColor = 'lightcyan';
-                } else {
+                // フォーカスされているカードがあって、そのカードが一番下のカードでないとき
+                if (document.getElementById('focused-card') && (document.getElementById('focused-card') !== document.querySelector('.cards').lastElementChild)) {
                     const previousCard = document.getElementById('focused-card');
                     const targetCard = previousCard.nextElementSibling;
                     previousCard.style.backgroundColor = '';
@@ -19,10 +14,17 @@ document.addEventListener('turbolinks:load', function () {
                     targetCard.setAttribute('id', 'focused-card');
                     targetCard.querySelector('.card-link').style.outline = 'none';
                     targetCard.style.backgroundColor = 'lightcyan';
+                } else if (document.querySelector('.card') && !(document.getElementById('focused-card'))) { // カードが存在するページで、フォーカスされているカードがないとき
+                    const firstCard = document.querySelector('.card');
+                    firstCard.querySelector('.card-link').focus();
+                    firstCard.setAttribute('id', 'focused-card');
+                    firstCard.querySelector('.card-link').style.outline = 'none';
+                    firstCard.style.backgroundColor = 'lightcyan';
                 }
                 break;
             case 'k':
-                if (document.activeElement.className === 'card-link') {
+                // フォーカスされているカードがあって、そのカードが一番上のカードでないとき
+                if (document.getElementById('focused-card') && (document.getElementById('focused-card') !== document.querySelector('.cards').firstElementChild)) {
                     const nextCard = document.getElementById('focused-card');
                     const targetCard = nextCard.previousElementSibling;
                     nextCard.style.backgroundColor = '';
@@ -34,19 +36,19 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'g':
-                if (document.activeElement.className === 'card-link') {
+                if (document.getElementById('focused-card')) {
                     const targetLink = document.getElementById('focused-card').querySelector('.card-link');
                     window.location.href = targetLink;
                 }
                 break;
             case 't':
-                if (document.activeElement.className === 'card-link') {
+                if (document.getElementById('focused-card')) {
                     const targetLink = document.getElementById('focused-card').querySelector('.card-link');
                     window.open(targetLink, '_blank');
                 }
                 break;
             case 's':
-                if (document.activeElement.className === 'card-link') {
+                if (document.getElementById('focused-card')) {
                     const targetStar = document.getElementById('focused-card').querySelector('.star');
                     targetStar.click();
                     if (targetStar.style.backgroundColor === '') {
@@ -65,12 +67,7 @@ document.addEventListener('turbolinks:load', function () {
         }
     }
 
-    const controller = document.querySelector('body').dataset.controller;
-    const action = document.querySelector('body').dataset.action;
-
-    if (controller === 'articles' && (action === 'index' || action === 'starred')) {
-        document.addEventListener('keydown', shortcut);
-    }
+    document.addEventListener('keydown', shortcut);
 
     document.addEventListener('turbolinks:load', function () {
         document.removeEventListener('keydown', shortcut);
