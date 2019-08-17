@@ -41,26 +41,16 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'a':
-                window.location.href = document.querySelector('[data-link="articles"]');
+                // window.location.href = document.querySelector('[data-link="articles"]');
                 break;
             case 'q':
-                window.location.href = document.querySelector('[data-link="starred-articles"]');
+                // window.location.href = document.querySelector('[data-link="starred-articles"]');
                 break;
         }
     }
 
-    const controller = document.body.dataset.controller;
-    const action = document.body.dataset.action;
-    if (document.getElementById('active-page')) {
-        document.getElementById('active-page').removeAttribute('id');
-    }
-    if (controller === 'feeds' && action === 'index') {
-        document.querySelector('[data-link="feeds"]').setAttribute('id', 'active-page');
-    } else if (controller === 'articles' && action === 'index') {
-        document.querySelector('[data-link="articles"]').setAttribute('id', 'active-page');
-    } else if (controller === 'articles' && action === 'starred') {
-        document.querySelector('[data-link="starred-articles"]').setAttribute('id', 'active-page');
-    }
+    // const controller = document.body.dataset.controller;
+    // const action = document.body.dataset.action;
 
     if (document.querySelector('.card')) {
         const firstCard = document.querySelector('.card');
