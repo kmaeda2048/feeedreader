@@ -9,8 +9,7 @@ document.addEventListener('turbolinks:load', function () {
                     const targetCard = previousCard.nextElementSibling;
                     previousCard.removeAttribute('id');
                     targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').setAttribute('id', 'focused-link');
-                    targetCard.querySelector('#focused-link').focus();
+                    targetCard.querySelector('.card-link').focus();
                 }
                 break;
             case 'k':
@@ -19,8 +18,7 @@ document.addEventListener('turbolinks:load', function () {
                     const targetCard = nextCard.previousElementSibling;
                     nextCard.removeAttribute('id');
                     targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').setAttribute('id', 'focused-link');
-                    targetCard.querySelector('#focused-link').focus();
+                    targetCard.querySelector('.card-link').focus();
                 }
                 break;
             case 'g':
@@ -43,19 +41,31 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'a':
-                window.location.href = document.getElementById('articles-link');
+                window.location.href = document.querySelector('[data-link="articles"]');
                 break;
             case 'q':
-                window.location.href = document.getElementById('starred-articles-link');
+                window.location.href = document.querySelector('[data-link="starred-articles"]');
                 break;
         }
+    }
+
+    const controller = document.body.dataset.controller;
+    const action = document.body.dataset.action;
+    if (document.getElementById('active-page')) {
+        document.getElementById('active-page').removeAttribute('id');
+    }
+    if (controller === 'feeds' && action === 'index') {
+        document.querySelector('[data-link="feeds"]').setAttribute('id', 'active-page');
+    } else if (controller === 'articles' && action === 'index') {
+        document.querySelector('[data-link="articles"]').setAttribute('id', 'active-page');
+    } else if (controller === 'articles' && action === 'starred') {
+        document.querySelector('[data-link="starred-articles"]').setAttribute('id', 'active-page');
     }
 
     if (document.querySelector('.card')) {
         const firstCard = document.querySelector('.card');
         firstCard.setAttribute('id', 'focused-card');
-        firstCard.querySelector('.card-link').setAttribute('id', 'focused-link');
-        firstCard.querySelector('#focused-link').focus();
+        firstCard.querySelector('.card-link').focus();
     }
 
     document.addEventListener('keydown', shortcut);
