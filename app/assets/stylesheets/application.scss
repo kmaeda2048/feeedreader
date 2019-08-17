@@ -1,11 +1,29 @@
 @import "bootstrap";
 
-body {
-  margin-top: 56px;
+header {
+  height: 56px;
+  padding: 16px;
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  // sticky...
 }
 
-#active-page {
-  background-color: red;
+#hamburger-menu {
+}
+
+#brand {
+  font-size: 1.25rem;
+  color: white;
+}
+
+#now-page {
+  margin-left: auto;
+  color: white;
+}
+
+body {
+  margin-top: 56px;
 }
 
 .card-link {

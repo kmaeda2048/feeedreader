@@ -6,6 +6,7 @@ class FeedsController < ApplicationController
   def show
     @feed = Feed.find(params[:id])
     @articles = Article.where(feed_id: @feed.id)
+    @now_page = @feed.title
   end
 
   def new

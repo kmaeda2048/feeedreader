@@ -8,6 +8,11 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
+
+
+
+
+
     nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
       .navbar-brand FeeedReader
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
@@ -15,15 +20,30 @@ html
 
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
+          / li.nav-item
+          /   = link_to 'Welcome', root_path, class: 'nav-link'
           li.nav-item
-            = link_to 'Welcome', root_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'feeds', feeds_path, class: 'nav-link', data: { link: 'feeds' }
-          li.nav-item
-            = link_to 'articles', articles_path, class: 'nav-link', data: { link: 'articles' }
-          li.nav-item
-            = link_to 'starred', starred_articles_path, class: 'nav-link', data: { link: 'starred-articles' }
+            span= @now_page
+          / li.nav-item
+          /   = link_to 'feeds', feeds_path, class: 'nav-link', data: { link: 'feeds' }
+          / li.nav-item
+          /   = link_to 'articles', articles_path, class: 'nav-link', data: { link: 'articles' }
+          / li.nav-item
+          /   = link_to 'starred', starred_articles_path, class: 'nav-link', data: { link: 'starred-articles' }
     
+    header
+      #hamburger-menu メニュー
+      #brand FeeedReader
+      #now-page= @now_page
+
+
+
+
+
+
+
+
+
     - if notice
       p.notice
         = notice

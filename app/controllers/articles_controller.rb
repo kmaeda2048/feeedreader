@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all.page(params[:page])
+    @now_page = '全記事'
   end
 
   def update
