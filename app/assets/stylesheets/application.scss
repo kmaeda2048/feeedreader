@@ -6,10 +6,8 @@ header {
   background-color: #007bff;
   display: flex;
   align-items: center;
-  // sticky...
-}
-
-#hamburger-menu {
+  position: sticky;
+  top: 0px;
 }
 
 #brand {

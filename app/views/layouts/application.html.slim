@@ -9,10 +9,11 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"    
     header
-      #hamburger-menu メニュー
       #brand FeeedReader
       #now-page= @now_page
-      / スマホ対応、固定、ハンバーガーメニューのトグル
+      / スマホ対応、固定
+    #sidebar
+      / >> << トグル
     - if notice
       p.notice
         = notice
