@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', function () {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
-                if (document.getElementById('focused-card') !== document.querySelector('.cards').lastElementChild) {
+                if (document.getElementById('focused-card') !== document.querySelector('.mycards').lastElementChild) {
                     const previousCard = document.getElementById('focused-card');
                     const targetCard = previousCard.nextElementSibling;
                     previousCard.removeAttribute('id');
@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'k':
-                if (document.getElementById('focused-card') !== document.querySelector('.cards').firstElementChild) {
+                if (document.getElementById('focused-card') !== document.querySelector('.mycards').firstElementChild) {
                     const nextCard = document.getElementById('focused-card');
                     const targetCard = nextCard.previousElementSibling;
                     nextCard.removeAttribute('id');
@@ -52,8 +52,8 @@ document.addEventListener('turbolinks:load', function () {
     // const controller = document.body.dataset.controller;
     // const action = document.body.dataset.action;
 
-    if (document.querySelector('.card')) {
-        const firstCard = document.querySelector('.card');
+    if (document.querySelector('.mycard')) {
+        const firstCard = document.querySelector('.mycard');
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }

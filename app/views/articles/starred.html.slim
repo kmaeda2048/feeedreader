@@ -1,19 +1,17 @@
 = paginate @starred
 = page_entries_info @starred
 
-.cards
-  - @starred.each do |s|
-    .card.mb-1
-      .row.no-gutters
-        .card-body
-          h5.card-title
-            = link_to s.title, s.url, class: 'card-link', rel: 'noopener'
-          .row
-            .col-md-1
-              = button_to 'star', article_path(s), method: :put, remort: true, class: "star starred"
-            .col-md-8
-              small.text-muted= 'feed: ' + s.feed.title
-            .col-md-3
-              small.text-muted= 'published: ' + s.published.to_s
+.mycards
+  -@starred.each do |s|
+    .mycard
+      h5
+        = link_to s.title, s.url, class: 'card-link', rel: 'noopener'
+      .flex
+        .star-col
+          = button_to 'star', article_path(s), method: :put, remort: true, class: "star starred"
+        .feed-col
+          small.text-muted= 'feed: ' + s.feed.title
+        .pub-col
+          small.text-muted= 'published: ' + s.published.to_s
 
 = paginate @starred
