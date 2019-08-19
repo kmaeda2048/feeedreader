@@ -36,3 +36,30 @@ header {
 .starred {
   background-color: yellow;
 }
+
+.mycards {
+  margin: 0 3px;
+}
+
+.mycard {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 3px;
+  padding: 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.star-col {
+  margin-right: 50px;
+}
+
+.feed-col {
+  margin-right: 50px;
+}
+
+.pub-col {
+  margin-left: auto;
+}
