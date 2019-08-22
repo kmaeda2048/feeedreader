@@ -1,5 +1,5 @@
-= paginate @starred
-= page_entries_info @starred
+/ = paginate @starred
+/ = page_entries_info @starred
 
 .mycards
   -@starred.each do |s|
@@ -14,4 +14,4 @@
         .pub-col
           small.text-muted= 'published: ' + s.published.to_s
 
-= paginate @starred
+/ = paginate @starred

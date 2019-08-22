@@ -4,40 +4,63 @@ document.addEventListener('turbolinks:load', function () {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
-                if (document.getElementById('focused-card') !== document.querySelector('.mycards').lastElementChild) {
-                    const previousCard = document.getElementById('focused-card');
-                    const targetCard = previousCard.nextElementSibling;
-                    previousCard.removeAttribute('id');
-                    targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').focus();
+                if (focusedCard !== document.querySelector('.mycards').lastElementChild) {
+                    focusedCard.removeAttribute('id');
+                    nextCard.setAttribute('id', 'focused-card');
+                    if (nextFlag === 1) {
+                        scrollBy(0, 107 * cardPerPage);
+                    }
+                    nextCard.querySelector('.card-link').focus();
+
+                    nextCardObserver.unobserve(nextCard);
+                    if (previousCard) {
+                        previousCardObserver.unobserve(previousCard);
+                    }
+                    previousCard = focusedCard;
+                    focusedCard = nextCard;
+                    nextCard = focusedCard.nextElementSibling;
+                    if (nextCard) {
+                        nextCardObserver.observe(nextCard);
+                    }
+                    previousCardObserver.observe(previousCard);
                 }
                 break;
             case 'k':
-                if (document.getElementById('focused-card') !== document.querySelector('.mycards').firstElementChild) {
-                    const nextCard = document.getElementById('focused-card');
-                    const targetCard = nextCard.previousElementSibling;
-                    nextCard.removeAttribute('id');
-                    targetCard.setAttribute('id', 'focused-card');
-                    targetCard.querySelector('.card-link').focus();
+                if (focusedCard !== document.querySelector('.mycards').firstElementChild) {
+                    focusedCard.removeAttribute('id');
+                    previousCard.setAttribute('id', 'focused-card');
+                    if (previousFlag === 1) {
+                        scrollBy(0, -107 * cardPerPage);
+                    }
+                    previousCard.querySelector('.card-link').focus();
+
+                    if (nextCard) {
+                        nextCardObserver.unobserve(nextCard);
+                    }
+                    previousCardObserver.unobserve(previousCard);
+                    nextCard = focusedCard;
+                    focusedCard = previousCard;
+                    previousCard = focusedCard.previousElementSibling;
+                    nextCardObserver.observe(nextCard);
+                    if (previousCard) {
+                        previousCardObserver.observe(previousCard);
+                    }
                 }
                 break;
             case 'g':
                 {
-                    const targetLink = document.getElementById('focused-card').querySelector('.card-link');
-                    window.location.href = targetLink;
+                    window.location.href = focusedCard.querySelector('.card-link');
                     break;
                 }
             case 't':
                 {
-                    const targetLink = document.getElementById('focused-card').querySelector('.card-link');
-                    window.open(targetLink, '_blank');
+                    window.open(focusedCard.querySelector('.card-link'), '_blank');
                     break;
                 }
             case 's':
                 {
-                    const targetStar = document.getElementById('focused-card').querySelector('.star');
-                    targetStar.click();
-                    targetStar.classList.toggle('starred');
+                    focusedCard.querySelector('.star').click();
+                    focusedCard.querySelector('.star').classList.toggle('starred');
                 }
                 break;
             case 'a':
@@ -57,6 +80,28 @@ document.addEventListener('turbolinks:load', function () {
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }
+
+    let focusedCard = document.getElementById('focused-card');
+    let nextCard = focusedCard.nextElementSibling;
+    let previousCard = focusedCard.previousElementSibling;
+    let nextFlag = 0;
+    let previousFlag = 0;
+    const cardPerPage = Math.floor((window.innerHeight - 56) / (focusedCard.offsetHeight + 3));
+
+    const nextCardObserver = new IntersectionObserver((entries, observer) => {
+        if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
+            nextFlag = 1;
+        } else {
+            nextFlag = 0;
+        }
+    }, { threshold: 1.0 });
+    const previousCardObserver = new IntersectionObserver((entries, observer) => {
+        if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
+            previousFlag = 1;
+        } else {
+            previousFlag = 0;
+        }
+    }, { rootMargin: "-56px 0px 0px 0px", threshold: 1.0 });
 
     document.addEventListener('keydown', shortcut);
 
