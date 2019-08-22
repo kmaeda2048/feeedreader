@@ -1,5 +1,5 @@
-= paginate @articles
-= page_entries_info @articles
+/ = paginate @articles
+/ = page_entries_info @articles
 
 .mycards
   -@articles.each do |article|
@@ -17,4 +17,4 @@
         .pub-col
           small.text-muted= 'published: ' + article.published.to_s
 
-= paginate @articles
+/ = paginate @articles
