@@ -1,5 +1,4 @@
 @import "bootstrap";
-// firstcardのmargin-top
 
 header {
   height: 56px;
@@ -7,12 +6,6 @@ header {
   background-color: #007bff;
   display: flex;
   align-items: center;
-}
-
-.mycards {
-  overflow: auto;
-  height: calc(100vh - 56px);
-  margin: 0 3px;
 }
 
 #brand {
@@ -25,23 +18,29 @@ header {
   color: white;
 }
 
-.card-link {
-  color: #333;
-  outline: none;
+.mycards {
+  overflow: auto;
+  height: calc(100vh - 56px);
+  margin: 0 3px;
 }
 
-#focused-card {
-  background-color: lightcyan;
-}
-
-.starred {
-  background-color: yellow;
+.mycard:first-child {
+  margin-top: 3px;
 }
 
 .mycard {
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 3px;
   padding: 20px;
+}
+
+#focused-card {
+  background-color: lightcyan;
+}
+
+.card-link {
+  color: #333;
+  outline: none;
 }
 
 .flex {
@@ -51,6 +50,10 @@ header {
 
 .star-col {
   margin-right: 50px;
+}
+
+.starred {
+  background-color: yellow;
 }
 
 .feed-col {
