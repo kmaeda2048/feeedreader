@@ -4,21 +4,26 @@ document.addEventListener('turbolinks:load', function () {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
-                if (focusedCard !== document.querySelector('.mycards').lastElementChild) {
+                if (focusedCard !== cards.lastElementChild) {
                     focusedCard.removeAttribute('id');
                     nextCard.setAttribute('id', 'focused-card');
                     if (nextFlag === 1) {
-                        scrollBy(0, 107 * cardPerPage);
+                        cards.scrollTop = cards.scrollTop + (107 * cardPerPage);
                     }
                     nextCard.querySelector('.card-link').focus();
 
+                    // 監視終了
                     nextCardObserver.unobserve(nextCard);
                     if (previousCard) {
                         previousCardObserver.unobserve(previousCard);
                     }
+
+                    // 変数更新
                     previousCard = focusedCard;
                     focusedCard = nextCard;
                     nextCard = focusedCard.nextElementSibling;
+
+                    // 監視開始
                     if (nextCard) {
                         nextCardObserver.observe(nextCard);
                     }
@@ -26,21 +31,26 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'k':
-                if (focusedCard !== document.querySelector('.mycards').firstElementChild) {
+                if (focusedCard !== cards.firstElementChild) {
                     focusedCard.removeAttribute('id');
                     previousCard.setAttribute('id', 'focused-card');
                     if (previousFlag === 1) {
-                        scrollBy(0, -107 * cardPerPage);
+                        cards.scrollTop = cards.scrollTop - (107 * cardPerPage);
                     }
                     previousCard.querySelector('.card-link').focus();
 
+                    // 監視終了
                     if (nextCard) {
                         nextCardObserver.unobserve(nextCard);
                     }
                     previousCardObserver.unobserve(previousCard);
+
+                    // 変数更新
                     nextCard = focusedCard;
                     focusedCard = previousCard;
                     previousCard = focusedCard.previousElementSibling;
+
+                    // 監視開始
                     nextCardObserver.observe(nextCard);
                     if (previousCard) {
                         previousCardObserver.observe(previousCard);
@@ -86,6 +96,7 @@ document.addEventListener('turbolinks:load', function () {
     let previousCard = focusedCard.previousElementSibling;
     let nextFlag = 0;
     let previousFlag = 0;
+    const cards = document.querySelector('.mycards');
     const cardPerPage = Math.floor((window.innerHeight - 56) / (focusedCard.offsetHeight + 3));
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
@@ -94,14 +105,14 @@ document.addEventListener('turbolinks:load', function () {
         } else {
             nextFlag = 0;
         }
-    }, { threshold: 1.0 });
+    }, { root: cards, threshold: 1.0 });
     const previousCardObserver = new IntersectionObserver((entries, observer) => {
         if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
             previousFlag = 1;
         } else {
             previousFlag = 0;
         }
-    }, { rootMargin: "-56px 0px 0px 0px", threshold: 1.0 });
+    }, { root: cards, threshold: 1.0 });
 
     document.addEventListener('keydown', shortcut);
 
