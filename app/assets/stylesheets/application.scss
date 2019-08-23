@@ -6,8 +6,6 @@ header {
   background-color: #007bff;
   display: flex;
   align-items: center;
-  position: sticky;
-  top: 0px;
 }
 
 #brand {
@@ -20,31 +18,29 @@ header {
   color: white;
 }
 
-// body {
-//   margin-top: 56px;
-// }
-
-.card-link {
-  color: #333;
-  outline: none;
-}
-
-#focused-card {
-  background-color: lightcyan;
-}
-
-.starred {
-  background-color: yellow;
-}
-
 .mycards {
+  overflow: auto;
+  height: calc(100vh - 56px);
   margin: 0 3px;
+}
+
+.mycard:first-child {
+  margin-top: 3px;
 }
 
 .mycard {
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 3px;
   padding: 20px;
+}
+
+#focused-card {
+  background-color: lightcyan;
+}
+
+.card-link {
+  color: #333;
+  outline: none;
 }
 
 .flex {
@@ -54,6 +50,10 @@ header {
 
 .star-col {
   margin-right: 50px;
+}
+
+.starred {
+  background-color: yellow;
 }
 
 .feed-col {
