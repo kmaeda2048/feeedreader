@@ -1,4 +1,5 @@
 @import "bootstrap";
+// firstcardのmargin-top
 
 header {
   height: 56px;
@@ -6,8 +7,12 @@ header {
   background-color: #007bff;
   display: flex;
   align-items: center;
-  position: sticky;
-  top: 0px;
+}
+
+.mycards {
+  overflow: auto;
+  height: calc(100vh - 56px);
+  margin: 0 3px;
 }
 
 #brand {
@@ -20,10 +25,6 @@ header {
   color: white;
 }
 
-// body {
-//   margin-top: 56px;
-// }
-
 .card-link {
   color: #333;
   outline: none;
@@ -35,10 +36,6 @@ header {
 
 .starred {
   background-color: yellow;
-}
-
-.mycards {
-  margin: 0 3px;
 }
 
 .mycard {
