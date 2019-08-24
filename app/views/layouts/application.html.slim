@@ -12,14 +12,30 @@ html
     header
       #brand FeeedReader
       #now-page= @now_page
-      / スマホ対応、固定
-    #sidebar
-      / >> << トグル
-    - if notice
-      p.notice
-        = notice
-    - if alert
-      p.alert
-        = alert
-        
-    = yield
+    .flex
+      #sidebar
+        #toggle >>
+        #feeds-icon
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+          = link_to 'img', feeds_path, class: "test"
+      - if notice
+        p.notice
+          = notice
+      - if alert
+        p.alert
+          = alert
+          
+      = yield
