@@ -18,10 +18,41 @@ header {
   color: white;
 }
 
-.mycards {
-  overflow: auto;
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+#sidebar {
+  width: 70px;
+  margin-right: auto;
+  background-color: aliceblue;
+}
+
+#toggle {
+  font-size: 20px;
+  text-align: center;
+  height: 30px;
+  padding-right: 15px;
+}
+
+#feeds-icon {
+  overflow: hidden auto;
+  height: calc(100vh - 56px - 30px);
+}
+
+.test {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 10px 10px;
+  background-color: aqua;
+}
+
+#mycards {
+  overflow: hidden auto;
   height: calc(100vh - 56px);
-  margin: 0 3px;
+  flex: auto;
 }
 
 .mycard:first-child {
@@ -41,11 +72,6 @@ header {
 .card-link {
   color: #333;
   outline: none;
-}
-
-.flex {
-  display: flex;
-  align-items: center;
 }
 
 .star-col {

@@ -96,7 +96,7 @@ document.addEventListener('turbolinks:load', function () {
     let previousCard = focusedCard.previousElementSibling;
     let nextFlag = 0;
     let previousFlag = 0;
-    const cards = document.querySelector('.mycards');
+    const cards = document.getElementById('mycards');
     const cardPerPage = Math.floor((window.innerHeight - 56) / (focusedCard.offsetHeight + 3));
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
