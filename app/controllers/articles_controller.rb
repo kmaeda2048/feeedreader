@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   def index
+    @feeds = Feed.all
     @articles = Article.all.page(params[:page])
     @now_page = '全記事'
   end

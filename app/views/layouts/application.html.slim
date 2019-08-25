@@ -12,30 +12,11 @@ html
     header
       #brand FeeedReader
       #now-page= @now_page
-    .flex
-      #sidebar
-        #toggle >>
-        #feeds-icon
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-          = link_to 'img', feeds_path, class: "test"
-      - if notice
-        p.notice
-          = notice
-      - if alert
-        p.alert
-          = alert
-          
-      = yield
+    - if notice
+      p.notice
+        = notice
+    - if alert
+      p.alert
+        = alert
+        
+    = yield
