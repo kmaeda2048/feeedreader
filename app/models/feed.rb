@@ -21,7 +21,7 @@ class Feed < ApplicationRecord
 
     entry.each do |e|
       images = Nokogiri::HTML.parse(e.content, nil, "utf-8").css('img')
-      first_image_url = images.empty? ? xxxx : images.first.attribute("src").value
+      first_image_url = images.empty? ? "" : images.first.attribute("src").value
       
       article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id, thumbnail_url: first_image_url)
 
