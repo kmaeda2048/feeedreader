@@ -1,8 +1,8 @@
 table
   tr
-    th= t('activerecord.attributes.feed.url')
+    th= t('activerecord.attributes.feed.feed_url')
     td
-      = link_to @feed.url, @feed.url
+      = link_to @feed.feed_url, @feed.feed_url
   tr
     th= t('activerecord.attributes.feed.title')
     td= @feed.title
