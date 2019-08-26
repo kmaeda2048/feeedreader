@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @feeds = Feed.all
-    @articles = Article.all.page(params[:page])
+    @articles = Article.all
     @now_page = '全記事'
   end
 
@@ -15,6 +15,6 @@ class ArticlesController < ApplicationController
   end
 
   def starred
-    @starred = Article.where(starred: true).page(params[:page])
+    @starred = Article.where(starred: true)
   end
 end
