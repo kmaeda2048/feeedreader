@@ -6,7 +6,7 @@
     #toggle >>
     #feeds-favicon
       - @feeds.each do |feed|
-        = link_to image_tag("https://www.google.com/s2/favicons?domain_url=" + feed.url, size: '32x32'), feed_path(feed), class: "favicon"
+        = link_to image_tag("https://www.google.com/s2/favicons?domain_url=" + feed.feed_url, size: '32x32'), feed_path(feed), class: "favicon"
   #mycards
     - @articles.each do |article|
       .mycard

@@ -3,7 +3,7 @@ namespace :fetch_feed do
   task :fetch => :environment do
     feeds = Feed.all
     feeds.each do |feed|
-      xml = HTTParty.get(feed.url).body
+      xml = HTTParty.get(feed.feed_url).body
       articles = Feedjira.parse(xml).entries
 
       articles.each do |article|

@@ -6,7 +6,7 @@
 table
   tr
     th= t('activerecord.attributes.feed.id')
-    th= t('activerecord.attributes.feed.url')
+    th= t('activerecord.attributes.feed.feed_url')
     th= t('activerecord.attributes.feed.title')
     th= t('activerecord.attributes.feed.description')
     th= t('activerecord.attributes.feed.created_at')
@@ -15,7 +15,7 @@ table
     tr
       td= feed.id
       td
-        = link_to feed.url, feed.url
+        = link_to feed.feed_url, feed.feed_url
       td
         = link_to feed.title, feed
       td= feed.description

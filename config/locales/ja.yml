@@ -4,7 +4,7 @@ ja:
     attributes:
       feed:
         id: ID
-        url: URL
+        feed_url: URL
         title: タイトル
         description: 説明
         created_at: 登録日時

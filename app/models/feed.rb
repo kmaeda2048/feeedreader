@@ -3,13 +3,13 @@ class Feed < ApplicationRecord
   
   after_create :create_articles, on: :create
 
-  validates :url, presence: true, uniqueness: true
+  validates :feed_url, presence: true, uniqueness: true
   validates :title, presence: true
 
   private
 
   def create_articles
-    xml = HTTParty.get(self.url).body
+    xml = HTTParty.get(self.feed_url).body
     entry = Feedjira.parse(xml).entries
 
     entry.each do |e|
