@@ -1,22 +1,22 @@
 / = paginate @articles
 / = page_entries_info @articles
 
-= icon 'fas', 'cog'
-= icon 'fas', 'angle-double-left'
-= icon 'fas', 'angle-double-right'
-= icon 'fas', 'globe'
-= icon 'fas', 'info-circle'
-= icon 'fas', 'exclamation-triangle'
-= icon 'fas', 'star'
-= icon 'far', 'image'
-= icon 'far', 'keyboard'
-= icon 'far', 'file-alt'
-= icon 'fab', 'font-awesome', 'Font Awesome', id: 'my-icon', class: 'strong'
-
 .flex
   #sidebar
-    #toggle >>
+    #toggle
+      = icon 'fas', 'angle-double-right', class: 'fa-fw'
     #feeds-favicon
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
       - @feeds.each do |feed|
         = link_to image_tag(feed.thumbnail_url, size: '32x32'), feed_path(feed), class: 'favicon'
   #mycards
@@ -24,7 +24,7 @@
       .mycard.flex
         #thumbnail
           - if article.thumbnail_url.empty?
-            = image_tag("rss.svg", size: '75x75')
+            = icon 'far', 'image', class: 'fa-fw'
           - else
             = image_tag(article.thumbnail_url, size: '75x75')
         #flex-item
@@ -33,9 +33,11 @@
           .flex
             .star-col
               - if article.starred
-                = button_to 'star', article_path(article), method: :put, remort: true, class: "star starred"
+                = link_to article_path(article), method: :put, remort: true do
+                  = icon 'fas', 'star'
               - else
-                = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
+                = link_to article_path(article), method: :put, remort: true do
+                  = icon 'far', 'star'
             .feed-col
               small.text-muted= 'feed: ' + article.feed.title
             .pub-col
