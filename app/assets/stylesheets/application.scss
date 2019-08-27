@@ -64,7 +64,7 @@ header {
 .mycard {
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 3px;
-  padding: 20px;
+  padding: 10px;
 }
 
 #focused-card {
@@ -90,4 +90,12 @@ header {
 
 .pub-col {
   margin-left: auto;
+}
+
+#thumbnail {
+  margin-right: 10px;
+}
+
+#flex-item {
+  flex: auto;
 }
