@@ -69,8 +69,9 @@ document.addEventListener('turbolinks:load', function () {
                 }
             case 's':
                 {
-                    focusedCard.querySelector('.star').click();
-                    focusedCard.querySelector('.star').classList.toggle('starred');
+                    focusedCard.querySelector('.fa-star').click();
+                    focusedCard.querySelector('.fa-star').classList.toggle('far');
+                    focusedCard.querySelector('.fa-star').classList.toggle('fas');
                 }
                 break;
             case 'a':

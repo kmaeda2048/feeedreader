@@ -1,18 +1,6 @@
 / = paginate @articles
 / = page_entries_info @articles
 
-= icon 'fas', 'cog'
-= icon 'fas', 'angle-double-left'
-= icon 'fas', 'angle-double-right'
-= icon 'fas', 'globe'
-= icon 'fas', 'info-circle'
-= icon 'fas', 'exclamation-triangle'
-= icon 'fas', 'star'
-= icon 'far', 'image'
-= icon 'far', 'keyboard'
-= icon 'far', 'file-alt'
-= icon 'fab', 'font-awesome', 'Font Awesome', id: 'my-icon', class: 'strong'
-
 .flex
   #sidebar
     #toggle >>
@@ -33,10 +21,10 @@
           .flex
             .star-col
               - if article.starred
-                = link_to article_path(article), method: :put, remort: true, class: 'star starred' do
+                = link_to article_path(article), method: :put, remort: true do
                   = icon 'fas', 'star'
               - else
-                = link_to article_path(article), method: :put, remort: true, class: 'star' do
+                = link_to article_path(article), method: :put, remort: true do
                   = icon 'far', 'star'
             .feed-col
               small.text-muted= 'feed: ' + article.feed.title

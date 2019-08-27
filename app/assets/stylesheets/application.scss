@@ -80,9 +80,11 @@ header {
   margin-right: 50px;
 }
 
-.starred {
-  // background-color: yellow;
-  fill: yellow;
+.fa-star.far {
+  color: lightgray;
+}
+
+.fa-star.fas {
   color: yellow;
 }
 
