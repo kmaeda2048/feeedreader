@@ -24,7 +24,7 @@
       .mycard.flex
         #thumbnail
           - if article.thumbnail_url.empty?
-            = image_tag("rss.svg", size: '75x75')
+            = icon 'far', 'image', class: 'fa-fw'
           - else
             = image_tag(article.thumbnail_url, size: '75x75')
         #flex-item
@@ -33,9 +33,11 @@
           .flex
             .star-col
               - if article.starred
-                = button_to 'star', article_path(article), method: :put, remort: true, class: "star starred"
+                = link_to article_path(article), method: :put, remort: true, class: 'star starred' do
+                  = icon 'fas', 'star'
               - else
-                = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
+                = link_to article_path(article), method: :put, remort: true, class: 'star' do
+                  = icon 'far', 'star'
             .feed-col
               small.text-muted= 'feed: ' + article.feed.title
             .pub-col

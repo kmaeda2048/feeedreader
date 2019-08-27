@@ -81,7 +81,9 @@ header {
 }
 
 .starred {
-  background-color: yellow;
+  // background-color: yellow;
+  fill: yellow;
+  color: yellow;
 }
 
 .feed-col {
@@ -93,7 +95,16 @@ header {
 }
 
 #thumbnail {
+  width: 75px;
+  height: 75px;
   margin-right: 10px;
+}
+
+.fa-image {
+  width: 75px;
+  height: 75px;
+  font-size: 60px;
+  line-height: 75px;
 }
 
 #flex-item {
