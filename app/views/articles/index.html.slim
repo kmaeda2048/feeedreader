@@ -21,18 +21,24 @@
         = link_to image_tag(feed.thumbnail_url, size: '32x32'), feed_path(feed), class: 'favicon'
   #mycards
     - @articles.each do |article|
-      .mycard
-        h5
-          = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
-        .flex
-          .star-col
-            - if article.starred
-              = button_to 'star', article_path(article), method: :put, remort: true, class: "star starred"
-            - else
-              = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
-          .feed-col
-            small.text-muted= 'feed: ' + article.feed.title
-          .pub-col
-            small.text-muted= 'published: ' + article.published.to_s
+      .mycard.flex
+        #thumbnail
+          - if article.thumbnail_url.empty?
+            = image_tag("rss.svg", size: '75x75')
+          - else
+            = image_tag(article.thumbnail_url, size: '75x75')
+        #flex-item
+          h5
+            = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
+          .flex
+            .star-col
+              - if article.starred
+                = button_to 'star', article_path(article), method: :put, remort: true, class: "star starred"
+              - else
+                = button_to 'star', article_path(article), method: :put, remort: true, class: "star"
+            .feed-col
+              small.text-muted= 'feed: ' + article.feed.title
+            .pub-col
+              small.text-muted= 'published: ' + article.published.to_s
 
 / = paginate @articles
