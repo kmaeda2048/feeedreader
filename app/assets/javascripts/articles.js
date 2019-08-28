@@ -86,6 +86,13 @@ document.addEventListener('turbolinks:load', function () {
     // const controller = document.body.dataset.controller;
     // const action = document.body.dataset.action;
 
+    if (document.getElementById('sidebar')) {
+        const faviconPerPage = Math.floor((window.innerHeight - 56 - 42) / 42)
+        if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
+            document.getElementById('sidebar').style.width = "52px";
+        }
+    }
+
     if (document.querySelector('.mycard')) {
         const firstCard = document.querySelector('.mycard');
         firstCard.setAttribute('id', 'focused-card');
