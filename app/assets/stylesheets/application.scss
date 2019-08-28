@@ -26,25 +26,30 @@ header {
 }
 
 #sidebar {
-  width: 70px;
+  width: 68px; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
+  flex: none;
   margin-right: auto;
   background-color: aliceblue;
+  overflow: hidden auto;
+  height: calc(100vh - 56px);
 }
 
 #toggle {
   text-align: center;
+  position: fixed;
+  background-color: aliceblue;
+  top: 56px;
 }
 
 .fa-angle-double-right {
-  height: 40px;
+  width: 52px;
+  height: 42px;
   font-size: 25px;
-  line-height: 40px;
-  padding-top: 5px;
+  line-height: 42px;
 }
 
 #feeds-favicon {
-  overflow: hidden auto;
-  height: calc(100vh - 56px - 30px);
+  margin-top: 42px;
 }
 
 .favicon {
