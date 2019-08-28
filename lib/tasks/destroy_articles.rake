@@ -1,5 +1,5 @@
 namespace :destroy_articles do
-  desc "既読記事や古い記事の削除"
+  desc '既読記事や古い記事の削除'
   task :destroy => :environment do
     puts "開始時: #{Article.all.size}件"
 
@@ -10,7 +10,7 @@ namespace :destroy_articles do
 
     if Article.all.size > max
       (Article.all.size - max).times do
-        Article.all.order(published: "asc").first.destroy
+        Article.all.order(published: 'asc').first.destroy
       end
       puts "古い記事の削除後: #{Article.all.size}件"
     end

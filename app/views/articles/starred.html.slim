@@ -8,7 +8,7 @@
         = link_to s.title, s.url, class: 'card-link', rel: 'noopener'
       .flex
         .star-col
-          = button_to 'star', article_path(s), method: :put, remort: true, class: "star starred"
+          = button_to 'star', article_path(s), method: :put, remort: true, class: 'star starred'
         .feed-col
           small.text-muted= 'feed: ' + s.feed.title
         .pub-col

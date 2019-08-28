@@ -22,5 +22,5 @@ table
       td= feed.created_at
       td= feed.updated_at
       td
-        = link_to "編集", edit_feed_path(feed), class: 'btn btn-primary mr-3'
+        = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
         = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.title}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
