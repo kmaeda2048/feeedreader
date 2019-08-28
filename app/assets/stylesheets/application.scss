@@ -2,28 +2,32 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-header {
-  height: 56px;
-  padding: 16px;
-  background-color: #007bff;
-  display: flex;
-  align-items: center;
-}
-
-#brand {
-  font-size: 1.25rem;
-  color: white;
-}
-
-#now-page {
-  margin-left: auto;
-  color: white;
-}
+// flex----------------------------------------------------------------------------------------------------------------------------------------
 
 .flex {
   display: flex;
   align-items: center;
 }
+
+// header--------------------------------------------------------------------------------------------------------------------------------------
+
+header {
+  height: 56px;
+  padding: 16px;
+  background-color: #007bff;
+
+  #brand {
+    color: white;
+    font-size: 1.25rem;
+  }
+
+  #now-page {
+    color: white;
+    margin-left: auto;
+  }
+}
+
+// sidebar-------------------------------------------------------------------------------------------------------------------------------------
 
 #sidebar {
   width: 68px; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
@@ -32,33 +36,35 @@ header {
   background-color: aliceblue;
   overflow: hidden auto;
   height: calc(100vh - 56px);
+
+  #toggle {
+    text-align: center;
+    position: fixed;
+    background-color: aliceblue;
+    top: 56px;
+
+    .fa-angle-double-right {
+      width: 52px;
+      height: 42px;
+      font-size: 25px;
+      line-height: 42px;
+    }
+  }
+
+  #feeds-favicon {
+    margin-top: 42px;
+
+    .favicon {
+      display: block;
+      width: 32px;
+      height: 32px;
+      margin: 10px 10px;
+      background-color: aqua;
+    }
+  }
 }
 
-#toggle {
-  text-align: center;
-  position: fixed;
-  background-color: aliceblue;
-  top: 56px;
-}
-
-.fa-angle-double-right {
-  width: 52px;
-  height: 42px;
-  font-size: 25px;
-  line-height: 42px;
-}
-
-#feeds-favicon {
-  margin-top: 42px;
-}
-
-.favicon {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 10px 10px;
-  background-color: aqua;
-}
+// mycards-------------------------------------------------------------------------------------------------------------------------------------
 
 #mycards {
   overflow: hidden auto;
@@ -66,58 +72,58 @@ header {
   flex: auto;
 }
 
-.mycard:first-child {
-  margin-top: 3px;
-}
-
 .mycard {
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 3px;
   padding: 10px;
+
+  #thumbnail {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+
+    .fa-image {
+      width: 75px;
+      height: 75px;
+      font-size: 60px;
+      line-height: 75px;
+    }
+  }
+
+  #flex-item {
+    flex: auto;
+
+    .card-link {
+      color: #333;
+      outline: none;
+    }
+
+    .star-col {
+      margin-right: 50px;
+
+      .fa-star.far {
+        color: lightgray;
+      }
+
+      .fa-star.fas {
+        color: yellow;
+      }
+    }
+
+    .feed-col {
+      margin-right: 50px;
+    }
+
+    .pub-col {
+      margin-left: auto;
+    }
+  }
+}
+
+.mycard:first-child {
+  margin-top: 3px;
 }
 
 #focused-card {
   background-color: lightcyan;
-}
-
-.card-link {
-  color: #333;
-  outline: none;
-}
-
-.star-col {
-  margin-right: 50px;
-}
-
-.fa-star.far {
-  color: lightgray;
-}
-
-.fa-star.fas {
-  color: yellow;
-}
-
-.feed-col {
-  margin-right: 50px;
-}
-
-.pub-col {
-  margin-left: auto;
-}
-
-#thumbnail {
-  width: 75px;
-  height: 75px;
-  margin-right: 10px;
-}
-
-.fa-image {
-  width: 75px;
-  height: 75px;
-  font-size: 60px;
-  line-height: 75px;
-}
-
-#flex-item {
-  flex: auto;
 }

@@ -9,7 +9,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     meta name="viewport" content="width=device-width, initial-scale=1.0"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"    
-    header
+    header.flex
       #brand FeeedReader
       #now-page= @now_page
     - if notice
