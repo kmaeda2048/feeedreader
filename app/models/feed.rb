@@ -12,7 +12,7 @@ class Feed < ApplicationRecord
   def set_url_and_thumbnail_url
     xml = HTTParty.get(self.feed_url).body
     self.url = Feedjira.parse(xml).url
-    self.thumbnail_url = "https://www.google.com/s2/favicons?domain_url=" + self.url
+    self.thumbnail_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
   end
 
   def create_articles
@@ -20,8 +20,8 @@ class Feed < ApplicationRecord
     entry = Feedjira.parse(xml).entries
 
     entry.each do |e|
-      images = Nokogiri::HTML.parse(e.content, nil, "utf-8").css('img')
-      first_image_url = images.empty? ? "" : images.first.attribute("src").value
+      images = Nokogiri::HTML.parse(e.content, nil, 'utf-8').css('img')
+      first_image_url = images.empty? ? '' : images.first.attribute('src').value
       
       article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id, thumbnail_url: first_image_url)
 

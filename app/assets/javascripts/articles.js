@@ -89,7 +89,7 @@ document.addEventListener('turbolinks:load', function () {
     if (document.getElementById('sidebar')) {
         const faviconPerPage = Math.floor((window.innerHeight - 56 - 42) / 42)
         if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
-            document.getElementById('sidebar').style.width = "52px";
+            document.getElementById('sidebar').style.width = '52px';
         }
     }
 
