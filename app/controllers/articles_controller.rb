@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
     @feeds = Feed.all
     @articles = Article.all
     @now_page = '全記事'
+    @articles_count = @articles.size
   end
   
   def update
@@ -18,5 +19,6 @@ class ArticlesController < ApplicationController
     @feeds = Feed.all
     @starred_articles = Article.where(starred: true)
     @now_page = 'スターつき記事'
+    @articles_count = @starred_articles.size
   end
 end
