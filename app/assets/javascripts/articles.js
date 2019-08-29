@@ -58,25 +58,19 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'g':
-                {
-                    window.location.href = focusedCard.querySelector('.card-link');
-                    break;
-                }
+                window.location.href = focusedCard.querySelector('.card-link');
+                break;
             case 't':
-                {
-                    window.open(focusedCard.querySelector('.card-link'), '_blank');
-                    break;
-                }
+                window.open(focusedCard.querySelector('.card-link'), '_blank');
+                break;
             case 's':
-                {
-                    focusedCard.querySelector('.fa-star').click();
-                }
+                focusedCard.querySelector('.fa-star').click();
                 break;
             case 'a':
-                // window.location.href = document.querySelector('[data-link="articles"]');
+                window.location.href = document.getElementById('all');
                 break;
             case 'q':
-                // window.location.href = document.querySelector('[data-link="starred-articles"]');
+                window.location.href = document.getElementById('starred');
                 break;
         }
     }
