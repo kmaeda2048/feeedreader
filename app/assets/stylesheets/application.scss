@@ -135,11 +135,11 @@ header {
     .star-col {
       margin-right: 50px;
 
-      .fa-star.far {
+      .toggleable-star.far {
         color: rgba(0, 0, 0, 0.26);
       }
 
-      .fa-star.fas {
+      .toggleable-star.fas {
         color: $star-color;
       }
     }
