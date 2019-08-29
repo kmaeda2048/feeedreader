@@ -70,8 +70,6 @@ document.addEventListener('turbolinks:load', function () {
             case 's':
                 {
                     focusedCard.querySelector('.fa-star').click();
-                    focusedCard.querySelector('.fa-star').classList.toggle('far');
-                    focusedCard.querySelector('.fa-star').classList.toggle('fas');
                 }
                 break;
             case 'a':
@@ -81,6 +79,11 @@ document.addEventListener('turbolinks:load', function () {
                 // window.location.href = document.querySelector('[data-link="starred-articles"]');
                 break;
         }
+    }
+
+    function toggleStar(e) {
+        e.classList.toggle('far');
+        e.classList.toggle('fas');
     }
 
     // const controller = document.body.dataset.controller;
@@ -106,6 +109,7 @@ document.addEventListener('turbolinks:load', function () {
     let previousFlag = 0;
     const cards = document.getElementById('mycards');
     const cardPerPage = Math.floor((window.innerHeight - 56) / (focusedCard.offsetHeight + 3));
+    const stars = document.getElementsByClassName('toggleable-star');
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
         if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
@@ -123,8 +127,14 @@ document.addEventListener('turbolinks:load', function () {
     }, { root: cards, threshold: 1.0 });
 
     document.addEventListener('keydown', shortcut);
+    for (let i = 0; i < stars.length; ++i) {
+        stars[i].addEventListener('click', () => { toggleStar(stars[i]); });
+    }
 
     document.addEventListener('turbolinks:load', function () {
         document.removeEventListener('keydown', shortcut);
+        for (let i = 0; i < stars.length; ++i) {
+            stars[i].removeEventListener('click', toggleStar);
+        }
     });
 });
