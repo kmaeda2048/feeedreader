@@ -2,6 +2,18 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$maintext-color: rgba(0, 0, 0, 0.87);
+$subtext-color: rgba(0, 0, 0, 0.54);
+$border-color: rgba(0, 0, 0, 0.12);
+$header-color: white;
+$header-bgcolor: #6f20ff;
+$sidebar-bgcolor: whitesmoke;
+$favicon-bgcolor: white;
+$mycards-bgcolor: rgba(0, 0, 0, 0.12);
+$mycard-bgcolor: white;
+$star-color: #ffde20;
+$focused-bgcolor: lightcyan;
+
 // flex----------------------------------------------------------------------------------------------------------------------------------------
 
 .flex {
@@ -14,16 +26,16 @@
 header {
   height: 56px;
   padding: 16px;
-  background-color: #007bff;
+  color: $header-color;
+  background-color: $header-bgcolor;
 
   #brand {
-    color: white;
     font-size: 1.25rem;
   }
 
   #now-page {
-    color: white;
     margin-left: auto;
+    font-size: 18px;
   }
 }
 
@@ -33,21 +45,22 @@ header {
   width: 68px; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
   flex: none;
   margin-right: auto;
-  background-color: aliceblue;
   overflow: hidden auto;
   height: calc(100vh - 56px);
+  background-color: $sidebar-bgcolor;
 
   #toggle {
     text-align: center;
     position: fixed;
-    background-color: aliceblue;
     top: 56px;
+    background-color: $sidebar-bgcolor;
 
     .fa-angle-double-right {
       width: 52px;
       height: 42px;
       font-size: 25px;
       line-height: 42px;
+      color: rgba(0, 0, 0, 0.54);
     }
   }
 
@@ -59,14 +72,15 @@ header {
       width: 32px;
       height: 32px;
       margin: 10px 10px;
-      background-color: white; /////////////////
+      background-color: $favicon-bgcolor;
 
       .fa-star {
         width: 32px;
         height: 32px;
-        font-size: 28px;
+        font-size: 26px;
         line-height: 32px;
-        color: yellow;
+        color: $star-color;
+        border: 1px solid $border-color;
       }
     }
 
@@ -76,6 +90,8 @@ header {
       justify-content: center;
       font-size: 15px;
       font-weight: bold;
+      color: $maintext-color;
+      border: 1px solid $border-color;
     }
   }
 }
@@ -86,10 +102,12 @@ header {
   overflow: hidden auto;
   height: calc(100vh - 56px);
   flex: auto;
+  padding: 0 3px;
+  background-color: $mycards-bgcolor;
 }
 
 .mycard {
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: $mycard-bgcolor;
   margin-bottom: 3px;
   padding: 10px;
 
@@ -110,7 +128,7 @@ header {
     flex: auto;
 
     .card-link {
-      color: #333;
+      color: $maintext-color;
       outline: none;
     }
 
@@ -118,20 +136,30 @@ header {
       margin-right: 50px;
 
       .fa-star.far {
-        color: lightgray;
+        color: rgba(0, 0, 0, 0.26);
       }
 
       .fa-star.fas {
-        color: yellow;
+        color: $star-color;
       }
     }
 
     .feed-col {
       margin-right: 50px;
+
+      span {
+        color: $subtext-color;
+        font-size: 80%;
+      }
     }
 
     .pub-col {
       margin-left: auto;
+
+      span {
+        color: $subtext-color;
+        font-size: 80%;
+      }
     }
   }
 }
@@ -141,5 +169,5 @@ header {
 }
 
 #focused-card {
-  background-color: lightcyan;
+  background-color: $focused-bgcolor;
 }
