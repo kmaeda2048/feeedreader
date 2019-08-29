@@ -1,17 +1,52 @@
 / = paginate @starred
 / = page_entries_info @starred
 
-#mycards
-  - @starred.each do |s|
-    .mycard
-      h5
-        = link_to s.title, s.url, class: 'card-link', rel: 'noopener'
-      .flex
-        .star-col
-          = button_to 'star', article_path(s), method: :put, remort: true, class: 'star starred'
-        .feed-col
-          span= 'feed: ' + s.feed.title
-        .pub-col
-          span= 'published: ' + s.published.to_s
+.flex
+  #sidebar
+    #toggle
+      = icon 'fas', 'angle-double-right', class: 'fa-fw'
+    #feeds-favicon
+      = link_to 'ALL', articles_path, class: 'favicon', id: 'all'
+      = link_to icon('fas', 'star', class: 'fa-fw'), starred_articles_path, class: 'favicon', id: 'starred'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
+      - @feeds.each do |feed|
+        = link_to image_tag(feed.thumbnail_url, size: '32x32'), feed_path(feed), class: 'favicon'
+  #mycards
+    - @starred_articles.each do |article|
+      .mycard.flex
+        #thumbnail
+          - if article.thumbnail_url.empty?
+            = icon 'far', 'image', class: 'fa-fw'
+          - else
+            = image_tag(article.thumbnail_url, size: '75x75')
+        #flex-item
+          h5
+            = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
+          .flex
+            .star-col
+              - if article.starred
+                = link_to article_path(article), method: :put, remort: true do
+                  = icon 'fas', 'star', class: 'toggleable-star'
+              - else
+                = link_to article_path(article), method: :put, remort: true do
+                  = icon 'far', 'star', class: 'toggleable-star'
+            .feed-col
+              span= 'feed: ' + article.feed.title
+            .pub-col
+              span= 'published: ' + article.published.to_s
 
 / = paginate @starred
