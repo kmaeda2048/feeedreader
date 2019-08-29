@@ -10,8 +10,8 @@
         .star-col
           = button_to 'star', article_path(s), method: :put, remort: true, class: 'star starred'
         .feed-col
-          small.text-muted= 'feed: ' + s.feed.title
+          span= 'feed: ' + s.feed.title
         .pub-col
-          small.text-muted= 'published: ' + s.published.to_s
+          span= 'published: ' + s.published.to_s
 
 / = paginate @starred

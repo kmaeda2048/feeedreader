@@ -45,8 +45,8 @@
                 = link_to article_path(article), method: :put, remort: true do
                   = icon 'far', 'star'
             .feed-col
-              small.text-muted= 'feed: ' + article.feed.title
+              span= 'feed: ' + article.feed.title
             .pub-col
-              small.text-muted= 'published: ' + article.published.to_s
+              span= 'published: ' + article.published.to_s
 
 / = paginate @articles
