@@ -83,27 +83,32 @@ document.addEventListener('turbolinks:load', function () {
     // const controller = document.body.dataset.controller;
     // const action = document.body.dataset.action;
 
-    if (document.getElementById('sidebar')) {
-        const faviconPerPage = Math.floor((window.innerHeight - 56 - 42) / 42)
-        if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
-            document.getElementById('sidebar').style.width = '52px';
-        }
-    }
-
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const faviconHeight = document.querySelector('.favicon').offsetHeight;
+    const faviconMargin = parseInt(window.getComputedStyle(document.querySelector('.favicon')).margin);
+    const faviconHeightAndMargin = faviconHeight + faviconMargin;
     if (document.querySelector('.mycard')) {
         const firstCard = document.querySelector('.mycard');
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }
-
+    const cards = document.getElementById('mycards');
+    const cardHeight = document.querySelector('.mycard').offsetHeight; // 最初のカードの高さ(他のカードの中には高さが異なるものが存在する可能性あり)
+    const cardMargin = parseInt(window.getComputedStyle(document.querySelector('.mycard')).marginBottom);
     let focusedCard = document.getElementById('focused-card');
     let nextCard = focusedCard.nextElementSibling;
     let previousCard = focusedCard.previousElementSibling;
     let nextFlag = 0;
     let previousFlag = 0;
-    const cards = document.getElementById('mycards');
-    const cardPerPage = Math.floor((window.innerHeight - 56) / (focusedCard.offsetHeight + 3));
+    const cardPerPage = Math.floor((window.innerHeight - headerHeight) / (cardHeight + cardMargin));
     const stars = document.getElementsByClassName('toggleable-star');
+
+    if (document.getElementById('sidebar')) {
+        const faviconPerPage = Math.floor((window.innerHeight - headerHeight - faviconHeightAndMargin) / faviconHeightAndMargin)
+        if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
+            document.getElementById('sidebar').style.width = '52px';
+        }
+    }
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
         if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
