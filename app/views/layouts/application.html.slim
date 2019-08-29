@@ -11,7 +11,7 @@ html
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"    
     header.flex
       #brand FeeedReader
-      #now-page= @now_page
+      #now-page= @now_page + "(#{@articles_count})"
     - if notice
       p.notice
         = notice
