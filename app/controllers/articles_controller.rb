@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @now_page = '全記事'
   end
-
+  
   def update
     article = Article.find(params[:id])
     if article.starred
@@ -13,8 +13,10 @@ class ArticlesController < ApplicationController
       article.update(starred: true)
     end
   end
-
+  
   def starred
-    @starred = Article.where(starred: true)
+    @feeds = Feed.all
+    @starred_articles = Article.where(starred: true)
+    @now_page = 'スターつき記事'
   end
 end
