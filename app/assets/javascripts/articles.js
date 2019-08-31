@@ -1,3 +1,5 @@
+'use strict';
+
 document.addEventListener('turbolinks:load', function () {
     // let shortcut = (e) => {
     function shortcut(e) {
@@ -87,17 +89,17 @@ document.addEventListener('turbolinks:load', function () {
     const faviconHeight = document.querySelector('.favicon').offsetHeight;
     const faviconMargin = parseInt(window.getComputedStyle(document.querySelector('.favicon')).margin);
     const faviconHeightAndMargin = faviconHeight + faviconMargin;
-    if (document.querySelector('.mycard')) {
-        const firstCard = document.querySelector('.mycard');
+    const cards = document.getElementById('mycards');
+    const firstCard = document.querySelector('.mycard') ? document.querySelector('.mycard') : undefined;
+    const cardHeight = firstCard ? firstCard.offsetHeight : undefined; // 最初のカードの高さ(他のカードの中には高さが異なるものが存在する可能性あり)
+    const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
+    if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }
-    const cards = document.getElementById('mycards');
-    const cardHeight = document.querySelector('.mycard').offsetHeight; // 最初のカードの高さ(他のカードの中には高さが異なるものが存在する可能性あり)
-    const cardMargin = parseInt(window.getComputedStyle(document.querySelector('.mycard')).marginBottom);
-    let focusedCard = document.getElementById('focused-card');
-    let nextCard = focusedCard.nextElementSibling;
-    let previousCard = focusedCard.previousElementSibling;
+    let focusedCard = document.getElementById('focused-card') ? document.getElementById('focused-card') : undefined;
+    let nextCard = focusedCard && focusedCard.nextElementSibling ? focusedCard.nextElementSibling : undefined;
+    let previousCard;
     let nextFlag = 0;
     let previousFlag = 0;
     const cardPerPage = Math.floor((window.innerHeight - headerHeight) / (cardHeight + cardMargin));
