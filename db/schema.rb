@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_114920) do
+ActiveRecord::Schema.define(version: 2019_09_01_024649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_114920) do
     t.bigint "feed_id"
     t.boolean "unread", default: true
     t.boolean "starred", default: false
-    t.string "thumbnail_url", null: false
+    t.string "thumbnail_url", default: "", null: false
     t.index ["feed_id"], name: "index_articles_on_feed_id"
   end
 
