@@ -9,7 +9,7 @@ $header-color: white;
 $header-bgcolor: #6f20ff;
 $sidebar-bgcolor: whitesmoke;
 $favicon-bgcolor: white;
-$mycards-bgcolor: rgba(0, 0, 0, 0.12);
+$mycardarea-bgcolor: rgba(0, 0, 0, 0.12);
 $mycard-bgcolor: white;
 $star-color: #ffde20;
 $focused-bgcolor: lightcyan;
@@ -98,14 +98,14 @@ header {
   }
 }
 
-// mycards-------------------------------------------------------------------------------------------------------------------------------------
+// mycard-area-------------------------------------------------------------------------------------------------------------------------------------
 
-#mycards {
+#mycard-area {
   overflow: hidden auto;
   height: calc(100vh - 56px);
   flex: auto;
   padding: 0 3px;
-  background-color: $mycards-bgcolor;
+  background-color: $mycardarea-bgcolor;
 }
 
 .mycard {
@@ -113,7 +113,7 @@ header {
   margin-bottom: 3px;
   padding: 10px;
 
-  #thumbnail {
+  .thumbnail {
     width: 75px;
     height: 75px;
     margin-right: 10px;
@@ -126,12 +126,21 @@ header {
     }
   }
 
-  #flex-item {
+  .flex-item {
     flex: auto;
 
     .card-link {
       color: $maintext-color;
       outline: none;
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
 
     .star-col {
