@@ -10,7 +10,7 @@ document.addEventListener('turbolinks:load', function () {
                     focusedCard.removeAttribute('id');
                     nextCard.setAttribute('id', 'focused-card');
                     if (nextFlag === 1) {
-                        cardArea.scrollTop = cardArea.scrollTop + (107 * cardPerPage);
+                        cardArea.scrollTop = cardArea.scrollTop + ((cardHeight + cardMargin) * cardPerPage);
                     }
                     nextCard.querySelector('.card-link').focus();
 
@@ -37,7 +37,7 @@ document.addEventListener('turbolinks:load', function () {
                     focusedCard.removeAttribute('id');
                     previousCard.setAttribute('id', 'focused-card');
                     if (previousFlag === 1) {
-                        cardArea.scrollTop = cardArea.scrollTop - (107 * cardPerPage);
+                        cardArea.scrollTop = cardArea.scrollTop - ((cardHeight + cardMargin) * cardPerPage);
                     }
                     previousCard.querySelector('.card-link').focus();
 
@@ -123,7 +123,7 @@ document.addEventListener('turbolinks:load', function () {
     }
     const stars = document.getElementsByClassName('toggleable-star');
     const firstCard = document.querySelector('.mycard') ? document.querySelector('.mycard') : undefined;
-    const cardHeight = firstCard ? firstCard.offsetHeight : undefined; // 最初のカードの高さ(他のカードの中には高さが異なるものが存在する可能性あり)
+    const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
     const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
     if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
