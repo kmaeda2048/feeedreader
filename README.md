@@ -1,24 +1,48 @@
-# README
+# FeeedReader
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ニュースサイトやブログなどが配信する、RSSやAtomなどのフィードを購読するアプリです。
 
-Things you may want to cover:
+URL: (https://feeedreader.herokuapp.com/)
 
-* Ruby version
+<!-- テストユーザー:  -->
+<!-- 実際のアプリの画像 -->
+<!-- 使い方のGIF -->
 
-* System dependencies
+## 機能一覧
 
-* Configuration
+* フィードの登録・編集・削除
+* フィードの一覧表示
+* フィードの記事一覧表示
+* 全記事の一覧表示
+* 記事にスターをつける・外す
+* スターつき記事一覧表示
+* ショートカットキー
+<!-- * ログイン
+* テスト
+* 遅延ロード
+* フィード検索
+* 記事検索
+* フィードソート
+* 記事ソート
+* 記事フェッチ -->
 
-* Database creation
+## 使用技術
 
-* Database initialization
+* 言語: Ruby 2.6.2
+* フレームワーク: Rails 5.2.3
+<!-- * テスト: RSpec -->
+* 本番環境: Heroku
+* データベース: PostgreSQL
+* テンプレートエンジン: Slim
+* CSSプリプロセッサ: Sass(SCSS)
+<!-- * ユーザー管理: Devise -->
+* HTTPクライアント: HTTParty
+* フィードパーサー: Feedjira
+* スクレイピング: Nokogiri
+* アイコン: Font Awesome
+<!-- * 検索・ソート: Ransack -->
+<!-- * JavaScript -->
+<!-- * ページネーション: Kaminari -->
+<!-- * cssフレームワーク: bootstrap -->
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<!-- ## ショートカットキー -->
