@@ -2,54 +2,7 @@
 / = page_entries_info @articles
 
 .flex
-  #sidebar
-    #toggle
-      = icon 'fas', 'angle-double-right', class: 'fa-fw'
-    #feeds-favicon
-      = link_to 'ALL', articles_path, class: 'favicon', id: 'all'
-      = link_to icon('fas', 'star', class: 'fa-fw'), starred_articles_path, class: 'favicon', id: 'starred'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      = link_to image_tag(@feeds.first.thumbnail_url, size: '32x32'), feed_path(@feeds.first), class: 'favicon'
-      - @feeds.each do |feed|
-        = link_to image_tag(feed.thumbnail_url, size: '32x32'), feed_path(feed), class: 'favicon'
-  #mycard-area
-    - @articles.each do |article|
-      .mycard.flex
-        .thumbnail
-          - if article.thumbnail_url.empty?
-            = icon 'far', 'image', class: 'fa-fw'
-          - else
-            = image_tag(article.thumbnail_url, size: '75x75')
-        .flex-item
-          = link_to article.url, class: 'card-link', rel: 'noopener' do
-            .card-title= article.title
-          .flex
-            .star-col
-              - if article.starred
-                = link_to article_path(article), method: :put, remort: true do
-                  = icon 'fas', 'star', class: 'toggleable-star'
-              - else
-                = link_to article_path(article), method: :put, remort: true do
-                  = icon 'far', 'star', class: 'toggleable-star'
-            .feed-col
-              span= article.feed.title
-            .pub-col
-              - if time_ago_in_words(article.published).include?('日')
-                span= l(article.published, format: :short)
-              - else
-                span= time_ago_in_words(article.published) + '前'
+  = render 'shared/sidebar', feeds: @feeds
+  = render 'shared/card_area', articles: @articles
 
 / = paginate @articles
