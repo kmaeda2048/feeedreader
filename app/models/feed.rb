@@ -1,13 +1,18 @@
 class Feed < ApplicationRecord
   has_many :article
   
+  validates :feed_url, presence: true, uniqueness: true
+  validates :title, presence: true
+  validate :validate_feed_url
+
   before_create :set_url_and_thumbnail_url, on: :create
   after_create :create_articles, on: :create
 
-  validates :feed_url, presence: true, uniqueness: true
-  validates :title, presence: true
-
   private
+
+  def validate_feed_url
+    errors.add(:feed_url, :not_a_feed) if HTTParty.get(self.feed_url).body.empty?
+  end
 
   def set_url_and_thumbnail_url
     xml = HTTParty.get(self.feed_url).body

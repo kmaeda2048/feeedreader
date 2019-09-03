@@ -5,12 +5,12 @@
 
 = form_with model: feed, local: true do |f|
   .form-group
-    = f.label :feed_url
+    = f.label(:feed_url) + ' (入力必須)'
     = f.text_field :feed_url, class: 'form-control', id: 'feed_feed_url'
   .form-group
-    = f.label :title
+    = f.label(:title) + ' (入力必須, 20文字以下)'
     = f.text_field :title, class: 'form-control', id: 'feed_title'
   .form-group
-    = f.label :description
+    = f.label(:description) + ' (入力任意)'
     = f.text_area :description, row: 5, class: 'form-control', id: 'feed_description'
   = f.submit nil, class: 'btn btn-primary'
