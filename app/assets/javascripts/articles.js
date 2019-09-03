@@ -102,29 +102,32 @@ document.addEventListener('turbolinks:load', function () {
 
     let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
-    const faviconHeight = document.querySelector('.favicon').offsetHeight;
-    const faviconMargin = parseInt(window.getComputedStyle(document.querySelector('.favicon')).margin);
-    const faviconHeightAndMargin = faviconHeight + faviconMargin;
-    if (document.getElementById('sidebar')) {
+    const sidebar = document.getElementById('sidebar');
+    const favicon = document.querySelector('.favicon');
+    const faviconHeight = favicon ? favicon.offsetHeight : undefined;
+    const faviconMargin = favicon ? parseInt(window.getComputedStyle(favicon).margin) : undefined;
+    const faviconHeightAndMargin = favicon ? faviconHeight + faviconMargin : undefined;
+    if (sidebar) {
         const faviconPerPage = Math.floor((window.innerHeight - headerHeight - faviconHeightAndMargin) / faviconHeightAndMargin)
         if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
-            document.getElementById('sidebar').style.width = '52px';
+            sidebar.style.width = '52px';
         }
     }
-    const sidebarWidth = parseInt(window.getComputedStyle(document.getElementById('sidebar')).width);
+    const sidebarWidth = sidebar ? parseInt(window.getComputedStyle(sidebar).width) : undefined;
     const cardArea = document.getElementById('mycard-area');
-    const cardPadding = parseInt(window.getComputedStyle(document.querySelector('.mycard')).padding);
-    const thumbnailWidth = parseInt(window.getComputedStyle(document.querySelector('.thumbnail')).width);
-    const thumbnailMarginRight = parseInt(window.getComputedStyle(document.querySelector('.thumbnail')).marginRight);
+    const firstCard = document.querySelector('.mycard');
+    const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
+    const cardPadding = firstCard ? parseInt(window.getComputedStyle(firstCard).padding) : undefined;
+    const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
+    const firstThumbnail = document.querySelector('.thumbnail');
+    const thumbnailWidth = firstThumbnail ? parseInt(window.getComputedStyle(firstThumbnail).width) : undefined;
+    const thumbnailMarginRight = firstThumbnail ? parseInt(window.getComputedStyle(firstThumbnail).marginRight) : undefined;
     const cardTitles = document.getElementsByClassName('card-title');
     const cardTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - 50; // 50分は余裕
     for (let i = 0; i < cardTitles.length; ++i) {
         cardTitles[i].style.width = `${cardTitlesWidth}px`
     }
     const stars = document.getElementsByClassName('toggleable-star');
-    const firstCard = document.querySelector('.mycard') ? document.querySelector('.mycard') : undefined;
-    const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
-    const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
     if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
