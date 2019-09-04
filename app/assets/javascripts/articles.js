@@ -97,9 +97,10 @@ document.addEventListener('turbolinks:load', function () {
         }, 500);
     }
 
-    // const controller = document.body.dataset.controller;
-    // const action = document.body.dataset.action;
-
+    const controller = document.body.dataset.controller;
+    const action = document.body.dataset.action;
+    const controllerAndAction = controller + '#' + action;
+    console.log(controllerAndAction);
     let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
     const sidebar = document.getElementById('sidebar');
@@ -161,7 +162,9 @@ document.addEventListener('turbolinks:load', function () {
         }
     }, { root: cardArea, threshold: 1.0 });
 
-    document.addEventListener('keydown', shortcut);
+    if ((controllerAndAction !== 'static_pages#welcome') && (controllerAndAction !== 'feeds#new') && (controllerAndAction !== 'feeds#edit')) {
+        document.addEventListener('keydown', shortcut);
+    }
     for (let i = 0; i < stars.length; ++i) {
         stars[i].addEventListener('click', () => { toggleStar(stars[i]); });
     }
