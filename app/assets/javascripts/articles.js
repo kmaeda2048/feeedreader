@@ -74,6 +74,9 @@ document.addEventListener('turbolinks:load', function () {
             case 'q':
                 window.location.href = document.getElementById('starred');
                 break;
+            case 'f':
+                window.location.href = document.getElementById('all-feeds');
+                break;
         }
     }
 
@@ -89,7 +92,7 @@ document.addEventListener('turbolinks:load', function () {
             const windowInnerWidthAfterResize = window.innerWidth;
             const windowInnerWidthDiff = windowInnerWidthAfterResize - windowInnerWidth;
             windowInnerWidth = windowInnerWidthAfterResize;
-            console.log(windowInnerWidthDiff);
+            // console.log(windowInnerWidthDiff);
             for (let i = 0; i < cardTitles.length; ++i) {
                 const tmp = parseInt(cardTitles[i].style.width) + windowInnerWidthDiff;
                 cardTitles[i].style.width = `${tmp}px`;
@@ -100,7 +103,6 @@ document.addEventListener('turbolinks:load', function () {
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
     const controllerAndAction = controller + '#' + action;
-    console.log(controllerAndAction);
     let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
     const sidebar = document.getElementById('sidebar');
