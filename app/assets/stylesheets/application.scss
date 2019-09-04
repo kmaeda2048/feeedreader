@@ -20,6 +20,13 @@ $focused-bgcolor: lightcyan;
   box-sizing: border-box;
 }
 
+#feeds-area {
+  flex: auto;
+}
+#form-area {
+  flex: auto;
+}
+
 // flex----------------------------------------------------------------------------------------------------------------------------------------
 
 @mixin flex-center {
