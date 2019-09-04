@@ -2,7 +2,7 @@ class Feed < ApplicationRecord
   has_many :article
   
   validates :feed_url, presence: true, uniqueness: true
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 20 }
   validate :validate_feed_url
 
   before_create :set_url_and_thumbnail_url, on: :create
