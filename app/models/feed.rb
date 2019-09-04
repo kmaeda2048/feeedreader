@@ -1,5 +1,5 @@
 class Feed < ApplicationRecord
-  has_many :article
+  has_many :article, dependent: :delete_all
   
   validates :feed_url, presence: true, uniqueness: true
   validates :title, length: { maximum: 20 }
