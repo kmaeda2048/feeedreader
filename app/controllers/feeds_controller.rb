@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = Feed.all.page(params[:page])
+    @feeds = Feed.all
+    @page_feeds = Feed.all.page(params[:page])
   end
 
   def show
@@ -12,6 +13,7 @@ class FeedsController < ApplicationController
   end
 
   def new
+    @feeds = Feed.all
     @feed = Feed.new
   end
 
@@ -26,6 +28,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
+    @feeds = Feed.all
     @feed = Feed.find(params[:id])
   end
 

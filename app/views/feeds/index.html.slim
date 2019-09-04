@@ -1,26 +1,29 @@
-= link_to '新しいフィードの登録', new_feed_path, class: 'btn btn-primary mr-3'
+.flex
+  = render 'shared/sidebar', feeds: @feeds
+  #feeds-area
+    = link_to '新しいフィードの登録', new_feed_path, class: 'btn btn-primary mr-3'
 
-= paginate @feeds
-= page_entries_info @feeds
+    = paginate @page_feeds
+    = page_entries_info @page_feeds
 
-table
-  tr
-    th= t('activerecord.attributes.feed.id')
-    th= t('activerecord.attributes.feed.feed_url')
-    th= t('activerecord.attributes.feed.title')
-    th= t('activerecord.attributes.feed.description')
-    th= t('activerecord.attributes.feed.created_at')
-    th= t('activerecord.attributes.feed.updated_at')
-  - @feeds.each do |feed|
-    tr
-      td= feed.id
-      td
-        = link_to feed.feed_url, feed.feed_url
-      td
-        = link_to feed.title, feed
-      td= feed.description
-      td= l(feed.created_at, format: :short)
-      td= l(feed.updated_at, format: :short)
-      td
-        = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
-        = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.title}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
+    table
+      tr
+        th= t('activerecord.attributes.feed.id')
+        th= t('activerecord.attributes.feed.feed_url')
+        th= t('activerecord.attributes.feed.title')
+        th= t('activerecord.attributes.feed.description')
+        th= t('activerecord.attributes.feed.created_at')
+        th= t('activerecord.attributes.feed.updated_at')
+      - @page_feeds.each do |feed|
+        tr
+          td= feed.id
+          td
+            = link_to feed.feed_url, feed.feed_url
+          td
+            = link_to feed.title, feed
+          td= feed.description
+          td= l(feed.created_at, format: :short)
+          td= l(feed.updated_at, format: :short)
+          td
+            = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
+            = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.title}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
