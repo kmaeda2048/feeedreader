@@ -2,10 +2,10 @@ class Feed < ApplicationRecord
   has_many :article
   
   validates :feed_url, presence: true, uniqueness: true
-  validates :title, presence: true
+  validates :title, length: { maximum: 20 }
   validate :validate_feed_url
 
-  before_create :set_url_and_thumbnail_url, on: :create
+  before_create :set_title_url_and_thumbnail_url, on: :create
   after_create :create_articles, on: :create
 
   private
@@ -14,9 +14,11 @@ class Feed < ApplicationRecord
     errors.add(:feed_url, :not_a_feed) if HTTParty.get(self.feed_url).body.empty?
   end
 
-  def set_url_and_thumbnail_url
+  def set_title_url_and_thumbnail_url
     xml = HTTParty.get(self.feed_url).body
-    self.url = Feedjira.parse(xml).url
+    parse_result = Feedjira.parse(xml)
+    self.title = parse_result.title if self.title == ''
+    self.url = parse_result.url
     self.thumbnail_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
   end
 
