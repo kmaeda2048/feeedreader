@@ -157,7 +157,7 @@ document.addEventListener('turbolinks:load', function () {
         entries.forEach(entry => {
             // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
             if ((!entry.isIntersecting) && (entry.boundingClientRect.y < 0)) { // cardAreaから完全に出た&&上に出た
-                const articleId = (Array.prototype.filter.call(entry.target.classList, c => c.indexOf('article') !== -1))[0].slice(8);
+                const articleId = entry.target.dataset.articleId;
                 const url = '/articles/' + articleId;
                 fetch(url, {
                     method: 'PUT',
