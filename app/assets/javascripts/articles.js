@@ -60,7 +60,7 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'g':
-                window.location.href = focusedCard.querySelector('.card-link');
+                focusedCard.querySelector('.card-link').click();
                 break;
             case 't':
                 window.open(focusedCard.querySelector('.card-link'), '_blank');
@@ -118,6 +118,7 @@ document.addEventListener('turbolinks:load', function () {
     }
     const sidebarWidth = sidebar ? parseInt(window.getComputedStyle(sidebar).width) : undefined;
     const cardArea = document.getElementById('mycard-area');
+    const cards = document.getElementsByClassName('mycard');
     const firstCard = document.querySelector('.mycard');
     const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
     const cardPadding = firstCard ? parseInt(window.getComputedStyle(firstCard).padding) : undefined;
@@ -142,6 +143,7 @@ document.addEventListener('turbolinks:load', function () {
     let previousFlag = 0;
     const cardPerPage = Math.floor((window.innerHeight - headerHeight) / (cardHeight + cardMargin));
     let timeoutId;
+    const ajaxData = { ajax: 'unread' };
 
     // var now = new Date();
     // var Hour = now.getHours();
@@ -149,15 +151,45 @@ document.addEventListener('turbolinks:load', function () {
     // var Sec = now.getSeconds();
     // console.log(`${Hour}:${Min}:${Sec}`);
 
+    const topCardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
+            if ((!entry.isIntersecting) && (entry.boundingClientRect.y < 0)) { // cardAreaから完全に出た&&上に出た
+                const articleId = (Array.prototype.filter.call(entry.target.classList, c => c.indexOf('article') !== -1))[0].slice(8);
+                const url = '/articles/' + articleId;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'X-CSRF-Token': Rails.csrfToken(),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(ajaxData), // data can be `string` or {object}!
+                    credentials: 'same-origin'
+                })
+                // }).then(res => res.json())
+                //     .then(response => console.log('Success:', JSON.stringify(response)))
+                //     .catch(error => console.error('Error:', error));
+                entry.target.classList.add('read');
+                topCardObserver.unobserve(entry.target);
+            }
+        });
+    }, { root: cardArea, threshold: 0 });
+
+    Array.prototype.forEach.call(cards, card => {
+        topCardObserver.observe(card);
+    });
+
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
-        if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
+        // threshold: 1.0でのentries[0].isIntersectingは、cardAreaに完全に入ったときにtrue、cardAreaから少しでも出たときにfalse
+        if (!entries[0].isIntersecting) { // cardAreaから少しでも出たとき
             nextFlag = 1;
         } else {
             nextFlag = 0;
         }
     }, { root: cardArea, threshold: 1.0 });
     const previousCardObserver = new IntersectionObserver((entries, observer) => {
-        if (!entries[0].isIntersecting) { // 完全に見えていないなら(見切れているなら)
+        // threshold: 1.0でのentries[0].isIntersectingは、cardAreaに完全に入ったときにtrue、cardAreaから少しでも出たときにfalse
+        if (!entries[0].isIntersecting) { // cardAreaから少しでも出たとき
             previousFlag = 1;
         } else {
             previousFlag = 0;

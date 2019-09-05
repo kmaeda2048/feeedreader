@@ -8,10 +8,16 @@ class ArticlesController < ApplicationController
   
   def update
     article = Article.find(params[:id])
-    if article.starred
-      article.update(starred: false)
+
+    if params[:ajax] == 'unread'
+      article.update(unread: false)
+      head :no_content
     else
-      article.update(starred: true)
+      if article.starred
+        article.update(starred: false)
+      else
+        article.update(starred: true)
+      end
     end
   end
   
