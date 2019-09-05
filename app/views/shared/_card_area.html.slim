@@ -1,6 +1,6 @@
 #mycard-area
   - articles.each do |article|
-    .mycard.flex
+    .mycard.flex class="article-#{article.id}"
       .thumbnail
         - if article.thumbnail_url.empty?
           = icon 'far', 'image', class: 'fa-fw'
