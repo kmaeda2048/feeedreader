@@ -179,9 +179,11 @@ document.addEventListener('turbolinks:load', function () {
         });
     }, { root: cardArea, threshold: 0 });
 
-    Array.prototype.forEach.call(cards, card => {
-        readObserver.observe(card);
-    });
+    if ((controllerAndAction === 'articles#index') || (controllerAndAction === 'feeds#show')) {
+        Array.prototype.forEach.call(cards, card => {
+            readObserver.observe(card);
+        });
+    }
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
         // threshold: 1.0でのentries[0].isIntersectingは、cardAreaに完全に入ったときにtrue、cardAreaから少しでも出たときにfalse
