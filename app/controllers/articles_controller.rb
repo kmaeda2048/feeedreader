@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
   
   def update
     article = Article.find(params[:id])
-    # logger.debug 'aaaaaaaaaaaaaaaaa'
 
     if params[:ajax] == 'unread'
       article.update(unread: false)

@@ -60,7 +60,6 @@ document.addEventListener('turbolinks:load', function () {
                 }
                 break;
             case 'g':
-                // window.location.href = focusedCard.querySelector('.card-link');
                 focusedCard.querySelector('.card-link').click();
                 break;
             case 't':
@@ -77,24 +76,6 @@ document.addEventListener('turbolinks:load', function () {
                 break;
             case 'f':
                 window.location.href = document.getElementById('all-feeds');
-                break;
-            case 'x':
-                let id = 500; // カードに記事IDをふっておく
-                const data = { ajax: 'unread' };
-                const url = '/articles/' + id;
-
-                fetch(url, {
-                    method: 'PUT',
-                    headers: {
-                        'X-CSRF-Token': Rails.csrfToken(),
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data), // data can be `string` or {object}!
-                    credentials: 'same-origin'
-                })
-                // }).then(res => res.json())
-                //     .then(response => console.log('Success:', JSON.stringify(response)))
-                //     .catch(error => console.error('Error:', error));
                 break;
         }
     }
