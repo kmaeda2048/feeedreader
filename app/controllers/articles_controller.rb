@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
   def index
     @feeds = Feed.all
-    @articles = Article.all
-    @now_page = '全記事'
+    @articles = Article.where(unread: true)
+    @now_page = '未読記事'
     @articles_count = @articles.size
   end
   

@@ -7,7 +7,7 @@ class FeedsController < ApplicationController
   def show
     @feeds = Feed.all
     @feed = Feed.find(params[:id])
-    @articles = Article.where(feed_id: @feed.id)
+    @articles = Article.where(feed_id: @feed.id, unread: true)
     @now_page = @feed.title
     @articles_count = @articles.size
   end
