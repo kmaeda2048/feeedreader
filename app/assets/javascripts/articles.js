@@ -102,6 +102,8 @@ document.addEventListener('turbolinks:load', function () {
 
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
+    const nowPage = document.getElementById('now-page');
+    let articleCount = nowPage.dataset.count;
     const controllerAndAction = controller + '#' + action;
     let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
@@ -151,7 +153,7 @@ document.addEventListener('turbolinks:load', function () {
     // var Sec = now.getSeconds();
     // console.log(`${Hour}:${Min}:${Sec}`);
 
-    const topCardObserver = new IntersectionObserver((entries, observer) => {
+    const readObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
             if ((!entry.isIntersecting) && (entry.boundingClientRect.y < 0)) { // cardAreaから完全に出た&&上に出た
@@ -170,13 +172,15 @@ document.addEventListener('turbolinks:load', function () {
                 //     .then(response => console.log('Success:', JSON.stringify(response)))
                 //     .catch(error => console.error('Error:', error));
                 entry.target.classList.add('read');
-                topCardObserver.unobserve(entry.target);
+                --articleCount;
+                nowPage.querySelector('span').textContent = `(${articleCount})`;
+                readObserver.unobserve(entry.target);
             }
         });
     }, { root: cardArea, threshold: 0 });
 
     Array.prototype.forEach.call(cards, card => {
-        topCardObserver.observe(card);
+        readObserver.observe(card);
     });
 
     const nextCardObserver = new IntersectionObserver((entries, observer) => {
