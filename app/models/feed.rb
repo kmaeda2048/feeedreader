@@ -27,10 +27,16 @@ class Feed < ApplicationRecord
     entry = Feedjira.parse(xml).entries
 
     entry.each do |e|
-      images = Nokogiri::HTML.parse(e.content, nil, 'utf-8').css('img')
-      first_image_url = images.empty? ? '' : images.first.attribute('src').value
+      if e.image
+        image = e.image
+      elsif e.content
+        images = Nokogiri::HTML.parse(e.content, nil, 'utf-8').css('img')
+        image = images.empty? ? '' : images.first.attribute('src').value
+      else
+        image = ''
+      end
       
-      article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id, thumbnail_url: first_image_url)
+      article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id, thumbnail_url: image)
 
       if article.save
       else
