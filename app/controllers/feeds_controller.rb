@@ -18,6 +18,7 @@ class FeedsController < ApplicationController
   end
 
   def create
+    @feeds = Feed.all
     @feed = Feed.new(feed_params)
 
     if @feed.save
