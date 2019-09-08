@@ -36,7 +36,7 @@ class Feed < ApplicationRecord
         image = ''
       end
       
-      article = Article.new(title: e.title, url: e.url, published: e.published, content: e.content, feed_id: self.id, thumbnail_url: image)
+      article = Article.new(title: e.title, url: e.url, published: e.published, feed_id: self.id, thumbnail_url: image)
 
       if article.save
       else

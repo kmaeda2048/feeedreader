@@ -11,9 +11,7 @@ ja:
       article:
         title: タイトル
         url: URL
-        summary: 概要
         published: 公開日
-        content: 内容
         memo: メモ
     errors:
       messages:
