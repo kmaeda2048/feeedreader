@@ -11,7 +11,12 @@ class Feed < ApplicationRecord
   private
 
   def validate_feed_url
-    errors.add(:feed_url, :not_a_feed) if HTTParty.get(self.feed_url).body.empty?
+    response = HTTParty.get(self.feed_url)
+    begin
+      parse_result = Feedjira.parse(response.body)
+    rescue
+      errors.add(:feed_url, :not_a_feed)
+    end
   end
 
   def set_title_url_and_thumbnail_url
