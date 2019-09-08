@@ -2,7 +2,7 @@
 
 ニュースサイトやブログなどが配信する、RSSやAtomなどのフィードを購読するアプリです。
 
-URL: (https://feeedreader.herokuapp.com/)
+URL: https://feeedreader.herokuapp.com/
 
 <!-- テストユーザー:  -->
 <!-- 実際のアプリの画像 -->
@@ -13,10 +13,12 @@ URL: (https://feeedreader.herokuapp.com/)
 * フィードの登録・編集・削除
 * フィードの一覧表示
 * フィードの記事一覧表示
-* 全記事の一覧表示
+* 未読記事の一覧表示
+* 記事のサムネイルの表示
 * 記事にスターをつける・外す
 * スターつき記事一覧表示
 * ショートカットキー
+* レスポンシブ
 <!-- * ログイン
 * テスト
 * 遅延ロード
@@ -33,16 +35,24 @@ URL: (https://feeedreader.herokuapp.com/)
 <!-- * テスト: RSpec -->
 * 本番環境: Heroku
 * データベース: PostgreSQL
-* テンプレートエンジン: Slim
-* CSSプリプロセッサ: Sass(SCSS)
 <!-- * ユーザー管理: Devise -->
 * HTTPクライアント: HTTParty
 * フィードパーサー: Feedjira
-* スクレイピング: Nokogiri
-* アイコン: Font Awesome
+* OGPスクレイピング: Nokogiri
 <!-- * 検索・ソート: Ransack -->
-<!-- * JavaScript -->
 <!-- * ページネーション: Kaminari -->
-<!-- * cssフレームワーク: bootstrap -->
+* テンプレートエンジン: Slim
+* CSSプリプロセッサ: Sass(SCSS)
+* CSSフレームワーク: bootstrap
+* アイコン: Font Awesome
+* JavaScript
+  * ES6
+  * DOM API
+  * EventTarget
+  * Fetch API
+  * Intersection Observer API
 
 <!-- ## ショートカットキー -->
+
+<!-- ## 動作環境
+chrome, firefox, ieとか(pc, スマホ) -->
