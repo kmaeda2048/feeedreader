@@ -11,7 +11,6 @@
         th= t('activerecord.attributes.feed.id')
         th= t('activerecord.attributes.feed.feed_url')
         th= t('activerecord.attributes.feed.title')
-        th= t('activerecord.attributes.feed.description')
         th= t('activerecord.attributes.feed.created_at')
         th= t('activerecord.attributes.feed.updated_at')
       - @page_feeds.each do |feed|
@@ -21,7 +20,6 @@
             = link_to feed.feed_url, feed.feed_url
           td
             = link_to feed.title, feed
-          td= feed.description
           td= l(feed.created_at, format: :short)
           td= l(feed.updated_at, format: :short)
           td

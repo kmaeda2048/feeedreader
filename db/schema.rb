@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_132607) do
+ActiveRecord::Schema.define(version: 2019_09_08_054941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_09_01_132607) do
   create_table "feeds", force: :cascade do |t|
     t.string "feed_url", null: false
     t.string "title", limit: 20, null: false
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url", null: false
