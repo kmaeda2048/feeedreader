@@ -19,7 +19,7 @@ namespace :fetch_feed do
           image = ''
         end  
         
-        local_article.update_attributes(url: article.url, published: article.published, content: article.content, feed_id: feed.id, thumbnail_url: image)
+        local_article.update_attributes(url: article.url, published: article.published, feed_id: feed.id, thumbnail_url: image)
       end      
     end
   end
