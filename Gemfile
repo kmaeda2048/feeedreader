@@ -52,8 +52,8 @@ gem 'kaminari', '~> 1.1.1'
 
 gem 'ransack', '~> 2.1.1'
 
-gem "feedjira", '~> 3.0.0'
-gem "httparty", '~> 0.17.0'
+gem 'feedjira', '~> 3.0.0'
+gem 'httparty', '~> 0.17.0'
 
 gem 'font-awesome-sass', '~> 5.9.0'
 

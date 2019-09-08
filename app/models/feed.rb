@@ -15,27 +15,24 @@ class Feed < ApplicationRecord
   end
 
   def set_title_url_and_thumbnail_url
-    xml = HTTParty.get(self.feed_url).body
-    parse_result = Feedjira.parse(xml)
+    response = HTTParty.get(self.feed_url)
+    parse_result = Feedjira.parse(response.body)
     self.title = parse_result.title if self.title == ''
     self.url = parse_result.url
     self.thumbnail_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
   end
 
   def create_articles
-    xml = HTTParty.get(self.feed_url).body
-    entry = Feedjira.parse(xml).entries
+    response = HTTParty.get(self.feed_url)
+    entry = Feedjira.parse(response.body).entries
 
     entry.each do |e|
-      if e.image
-        image = e.image
-      elsif e.content
-        images = Nokogiri::HTML.parse(e.content, nil, 'utf-8').css('img')
-        image = images.empty? ? '' : images.first.attribute('src').value
-      else
-        image = ''
+      image = e.image ? e.image : ''
+      if image == ''
+        response = HTTParty.get(e.url)
+        image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
       end
-      
+
       article = Article.new(title: e.title, url: e.url, published: e.published, feed_id: self.id, thumbnail_url: image)
 
       if article.save
