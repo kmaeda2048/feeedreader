@@ -10,7 +10,4 @@
   .form-group
     = f.label(:title) + ' (入力任意, 20文字以下)'
     = f.text_field :title, class: 'form-control', id: 'feed_title'
-  .form-group
-    = f.label(:description) + ' (入力任意)'
-    = f.text_area :description, row: 5, class: 'form-control', id: 'feed_description'
   = f.submit nil, class: 'btn btn-primary'
