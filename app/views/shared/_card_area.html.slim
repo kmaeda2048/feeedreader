@@ -18,7 +18,7 @@
               = link_to article_path(article), method: :put, remort: true do
                 = icon 'far', 'star', class: 'toggleable-star'
           .feed-col
-            span= article.feed.title
+            .feed-title= article.feed.title
           .pub-col
             - if time_ago_in_words(article.published).include?('日')
               span= l(article.published, format: :short)
