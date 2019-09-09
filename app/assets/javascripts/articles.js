@@ -74,8 +74,8 @@ document.addEventListener('turbolinks:load', function () {
             case 'q':
                 window.location.href = document.getElementById('starred');
                 break;
-            case 'f':
-                window.location.href = document.getElementById('all-feeds');
+            case 'c':
+                window.location.href = document.getElementById('config');
                 break;
         }
     }
