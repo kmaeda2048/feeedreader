@@ -1,7 +1,7 @@
 #sidebar
   #toggle
     = icon 'fas', 'angle-double-right', class: 'fa-fw'
-  #feeds-favicon
+  #favicons
     = link_to 'ALL', articles_path, class: 'favicon', id: 'all'
     = link_to icon('fas', 'star', class: 'fa-fw'), starred_articles_path, class: 'favicon', id: 'starred'
     - feeds.each do |feed|
