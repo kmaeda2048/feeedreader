@@ -105,8 +105,8 @@ document.addEventListener('turbolinks:load', function () {
 
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
-    const nowPage = document.getElementById('now-page');
-    let articleCount = nowPage.dataset.count;
+    const articlesCountElement = document.getElementById('articles-count');
+    let articlesCount = articlesCountElement.dataset.count;
     const controllerAndAction = controller + '#' + action;
     let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
@@ -188,8 +188,8 @@ document.addEventListener('turbolinks:load', function () {
                 //     .then(response => console.log('Success:', JSON.stringify(response)))
                 //     .catch(error => console.error('Error:', error));
                 entry.target.classList.add('read');
-                --articleCount;
-                nowPage.querySelector('span').textContent = `(${articleCount})`;
+                --articlesCount;
+                nowPage.querySelector('span').textContent = `(${articlesCount})`;
                 readObserver.unobserve(entry.target);
             }
         });

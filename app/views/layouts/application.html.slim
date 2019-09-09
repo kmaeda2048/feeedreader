@@ -11,11 +11,17 @@ html lang="ja"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"    
     header.flex
       #brand FeeedReader
-      #now-page data-count="#{@articles_count}"
+      #now-page.omitted
         - if @now_page
           = @now_page
+      #articles-count data-count="#{@articles_count}"
         - if @articles_count
           span= "(#{@articles_count})"
+      / #now-page data-count="#{@articles_count}"
+      /   - if @now_page
+      /     = @now_page
+      /   - if @articles_count
+      /     span= "(#{@articles_count})"
     - if notice
       p.notice
         = notice
