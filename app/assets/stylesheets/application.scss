@@ -31,6 +31,12 @@ $focused-bgcolor: lightcyan;
   opacity: 0.7;
 }
 
+@mixin omitted {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 // flex----------------------------------------------------------------------------------------------------------------------------------------
 
 @mixin flex-center {
@@ -53,11 +59,15 @@ header {
 
   #brand {
     font-size: 1.25rem;
+    margin-right: 100px;
   }
 
   #now-page {
     margin-left: auto;
     font-size: 18px;
+    &.omitted {
+      @include omitted;
+    }
   }
 }
 
@@ -163,9 +173,9 @@ header {
         font-size: 1.25rem;
         font-weight: 500;
         margin-bottom: 0.5rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        &.omitted {
+          @include omitted;
+        }
       }
     }
 
@@ -187,9 +197,9 @@ header {
       .feed-title {
         color: $subtext-color;
         font-size: 80%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        &.omitted {
+          @include omitted;
+        }
       }
     }
 
