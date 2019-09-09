@@ -85,18 +85,21 @@ document.addEventListener('turbolinks:load', function () {
         e.classList.toggle('fas');
     }
 
-    function changeCardTitleWidth() {
+    function changeCardTitleWidthAndFeedTitleWidth() {
         clearTimeout(timeoutId);
-
         timeoutId = setTimeout(function () {
             const windowInnerWidthAfterResize = window.innerWidth;
             const windowInnerWidthDiff = windowInnerWidthAfterResize - windowInnerWidth;
             windowInnerWidth = windowInnerWidthAfterResize;
             // console.log(windowInnerWidthDiff);
-            for (let i = 0; i < cardTitles.length; ++i) {
-                const tmp = parseInt(cardTitles[i].style.width) + windowInnerWidthDiff;
-                cardTitles[i].style.width = `${tmp}px`;
-            }
+            Array.prototype.forEach.call(cardTitles, cardTitle => {
+                const newWidth = parseInt(cardTitle.style.width) + windowInnerWidthDiff;
+                cardTitle.style.width = `${newWidth}px`;
+            });
+            Array.prototype.forEach.call(feedTitles, feedTitle => {
+                const newWidth = parseInt(feedTitle.style.width) + windowInnerWidthDiff;
+                feedTitle.style.width = `${newWidth}px`;
+            });
         }, 500);
     }
 
@@ -130,14 +133,27 @@ document.addEventListener('turbolinks:load', function () {
     const thumbnailMarginRight = firstThumbnail ? parseInt(window.getComputedStyle(firstThumbnail).marginRight) : undefined;
     const cardTitles = document.getElementsByClassName('card-title');
     const cardTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - 50; // 50分は余裕
-    for (let i = 0; i < cardTitles.length; ++i) {
-        cardTitles[i].style.width = `${cardTitlesWidth}px`
-    }
+    Array.prototype.forEach.call(cardTitles, cardTitle => {
+        cardTitle.style.width = `${cardTitlesWidth}px`;
+    });
+    const starCol = document.querySelector('.star-col');
+    const starColWidth = starCol ? starCol.offsetWidth : undefined;
+    const starColMarginRight = starCol ? parseInt(window.getComputedStyle(starCol).marginRight) : undefined;
     const stars = document.getElementsByClassName('toggleable-star');
     if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }
+    const feedCol = document.querySelector('.feed-col');
+    const feedColMarginRight = feedCol ? parseInt(window.getComputedStyle(feedCol).marginRight) : undefined;
+    const feedTitles = document.getElementsByClassName('feed-title');
+    const pubCol = document.querySelector('.pub-col');
+    const pubColWidth = pubCol ? pubCol.offsetWidth : undefined;
+    const pubColMarginLeft = pubCol ? parseInt(window.getComputedStyle(pubCol).marginLeft) : undefined;
+    const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - pubColMarginLeft - 75; // 75分は余裕
+    Array.prototype.forEach.call(feedTitles, feedTitle => {
+        feedTitle.style.width = `${feedTitlesWidth}px`;
+    });
     let focusedCard = document.getElementById('focused-card') ? document.getElementById('focused-card') : undefined;
     let nextCard = focusedCard && focusedCard.nextElementSibling ? focusedCard.nextElementSibling : undefined;
     let previousCard;
@@ -205,16 +221,16 @@ document.addEventListener('turbolinks:load', function () {
     if ((controllerAndAction !== 'static_pages#welcome') && (controllerAndAction !== 'feeds#new') && (controllerAndAction !== 'feeds#edit')) {
         document.addEventListener('keydown', shortcut);
     }
-    for (let i = 0; i < stars.length; ++i) {
-        stars[i].addEventListener('click', () => { toggleStar(stars[i]); });
-    }
-    window.addEventListener('resize', changeCardTitleWidth);
+    Array.prototype.forEach.call(stars, star => {
+        star.addEventListener('click', () => { toggleStar(star); });
+    });
+    window.addEventListener('resize', changeCardTitleWidthAndFeedTitleWidth);
 
     document.addEventListener('turbolinks:load', function () {
         document.removeEventListener('keydown', shortcut);
-        for (let i = 0; i < stars.length; ++i) {
-            stars[i].removeEventListener('click', toggleStar);
-        }
-        window.removeEventListener('resize', changeCardTitleWidth);
+        Array.prototype.forEach.call(stars, star => {
+            star.removeEventListener('click', toggleStar);
+        });
+        window.removeEventListener('resize', changeCardTitleWidthAndFeedTitleWidth);
     });
 });

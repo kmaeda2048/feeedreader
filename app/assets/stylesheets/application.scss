@@ -184,9 +184,12 @@ header {
     .feed-col {
       margin-right: 50px;
 
-      span {
+      .feed-title {
         color: $subtext-color;
         font-size: 80%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
 
