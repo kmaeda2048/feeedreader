@@ -2,7 +2,6 @@ class Feed < ApplicationRecord
   has_many :article, dependent: :delete_all
   
   validates :feed_url, presence: true, uniqueness: true
-  validates :title, length: { maximum: 20 }
   validate :validate_feed_url
 
   before_create :set_title_url_and_thumbnail_url, on: :create
