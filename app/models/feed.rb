@@ -4,7 +4,7 @@ class Feed < ApplicationRecord
   validates :feed_url, presence: true, uniqueness: true
   validate :validate_feed_url
 
-  before_create :set_title_url_and_thumbnail_url, on: :create
+  before_create :set_title_and_url_and_favicon_url, on: :create
   after_create :create_articles, on: :create
 
   private
@@ -18,12 +18,12 @@ class Feed < ApplicationRecord
     end
   end
 
-  def set_title_url_and_thumbnail_url
+  def set_title_and_url_and_favicon_url
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
     self.title = parse_result.title if self.title == ''
     self.url = parse_result.url
-    self.thumbnail_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
+    self.favicon_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
   end
 
   def create_articles
@@ -37,7 +37,7 @@ class Feed < ApplicationRecord
         image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
       end
 
-      article = Article.new(title: e.title, url: e.url, published: e.published, feed_id: self.id, thumbnail_url: image)
+      article = Article.new(title: e.title, url: e.url, published: e.published, feed_id: self.id, favicon_url: image)
 
       if article.save
       else
