@@ -21,6 +21,6 @@
             .feed-title.omitted= article.feed.title
           .pub-col
             - if time_ago_in_words(article.published).include?('日')
-              span= l(article.published, format: :short)
+              = l(article.published, format: :short)
             - else
-              span= time_ago_in_words(article.published) + '前'
+              = time_ago_in_words(article.published) + '前'

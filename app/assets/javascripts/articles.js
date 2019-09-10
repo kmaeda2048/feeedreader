@@ -85,30 +85,11 @@ document.addEventListener('turbolinks:load', function () {
         e.classList.toggle('fas');
     }
 
-    function changeCardTitleWidthAndFeedTitleWidth() {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(function () {
-            const windowInnerWidthAfterResize = window.innerWidth;
-            const windowInnerWidthDiff = windowInnerWidthAfterResize - windowInnerWidth;
-            windowInnerWidth = windowInnerWidthAfterResize;
-            // console.log(windowInnerWidthDiff);
-            Array.prototype.forEach.call(cardTitles, cardTitle => {
-                const newWidth = parseInt(cardTitle.style.width) + windowInnerWidthDiff;
-                cardTitle.style.width = `${newWidth}px`;
-            });
-            Array.prototype.forEach.call(feedTitles, feedTitle => {
-                const newWidth = parseInt(feedTitle.style.width) + windowInnerWidthDiff;
-                feedTitle.style.width = `${newWidth}px`;
-            });
-        }, 500);
-    }
-
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
     const articlesCountElement = document.getElementById('articles-count');
     let articlesCount = articlesCountElement.dataset.count;
     const controllerAndAction = controller + '#' + action;
-    let windowInnerWidth = window.innerWidth;
     const headerHeight = document.querySelector('header').offsetHeight;
     const sidebar = document.getElementById('sidebar');
     const favicon = document.querySelector('.favicon');
@@ -121,38 +102,16 @@ document.addEventListener('turbolinks:load', function () {
             sidebar.style.width = '52px';
         }
     }
-    const sidebarWidth = sidebar ? parseInt(window.getComputedStyle(sidebar).width) : undefined;
     const cardArea = document.getElementById('mycard-area');
     const cards = document.getElementsByClassName('mycard');
     const firstCard = document.querySelector('.mycard');
     const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
-    const cardPadding = firstCard ? parseInt(window.getComputedStyle(firstCard).padding) : undefined;
     const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
-    const firstThumbnail = document.querySelector('.thumbnail');
-    const thumbnailWidth = firstThumbnail ? parseInt(window.getComputedStyle(firstThumbnail).width) : undefined;
-    const thumbnailMarginRight = firstThumbnail ? parseInt(window.getComputedStyle(firstThumbnail).marginRight) : undefined;
-    const cardTitles = document.getElementsByClassName('card-title');
-    const cardTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - 50; // 50分は余裕
-    Array.prototype.forEach.call(cardTitles, cardTitle => {
-        cardTitle.style.width = `${cardTitlesWidth}px`;
-    });
-    const starCol = document.querySelector('.star-col');
-    const starColWidth = starCol ? starCol.offsetWidth : undefined;
-    const starColMarginRight = starCol ? parseInt(window.getComputedStyle(starCol).marginRight) : undefined;
     const stars = document.getElementsByClassName('toggleable-star');
     if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
         firstCard.querySelector('.card-link').focus();
     }
-    const feedCol = document.querySelector('.feed-col');
-    const feedColMarginRight = feedCol ? parseInt(window.getComputedStyle(feedCol).marginRight) : undefined;
-    const feedTitles = document.getElementsByClassName('feed-title');
-    const pubCol = document.querySelector('.pub-col');
-    const pubColWidth = pubCol ? pubCol.offsetWidth : undefined;
-    const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - 60; // 60分は余裕
-    Array.prototype.forEach.call(feedTitles, feedTitle => {
-        feedTitle.style.width = `${feedTitlesWidth}px`;
-    });
     let focusedCard = document.getElementById('focused-card') ? document.getElementById('focused-card') : undefined;
     let nextCard = focusedCard && focusedCard.nextElementSibling ? focusedCard.nextElementSibling : undefined;
     let previousCard;
@@ -223,13 +182,11 @@ document.addEventListener('turbolinks:load', function () {
     Array.prototype.forEach.call(stars, star => {
         star.addEventListener('click', () => { toggleStar(star); });
     });
-    window.addEventListener('resize', changeCardTitleWidthAndFeedTitleWidth);
 
     document.addEventListener('turbolinks:load', function () {
         document.removeEventListener('keydown', shortcut);
         Array.prototype.forEach.call(stars, star => {
             star.removeEventListener('click', toggleStar);
         });
-        window.removeEventListener('resize', changeCardTitleWidthAndFeedTitleWidth);
     });
 });
