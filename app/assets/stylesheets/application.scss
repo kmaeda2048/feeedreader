@@ -205,7 +205,10 @@ header {
     }
 
     .pub-col {
+      width: 70px;
       margin-left: auto;
+      color: $subtext-color;
+      font-size: 80%;
 
       span {
         color: $subtext-color;

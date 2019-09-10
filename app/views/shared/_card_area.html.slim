@@ -19,8 +19,12 @@
                 = icon 'far', 'star', class: 'toggleable-star'
           .feed-col
             .feed-title.omitted= article.feed.title
-          .pub-col
-            - if time_ago_in_words(article.published).include?('日')
-              span= l(article.published, format: :short)
-            - else
-              span= time_ago_in_words(article.published) + '前'
+          / .pub-col
+          - if time_ago_in_words(article.published).include?('日')
+            .pub-col= l(article.published, format: :short)
+          - else
+            .pub-col= time_ago_in_words(article.published) + '前'
+            / - if time_ago_in_words(article.published).include?('日')
+            /   span= l(article.published, format: :short)
+            / - else
+            /   span= time_ago_in_words(article.published) + '前'
