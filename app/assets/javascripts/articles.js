@@ -149,8 +149,7 @@ document.addEventListener('turbolinks:load', function () {
     const feedTitles = document.getElementsByClassName('feed-title');
     const pubCol = document.querySelector('.pub-col');
     const pubColWidth = pubCol ? pubCol.offsetWidth : undefined;
-    const pubColMarginLeft = pubCol ? parseInt(window.getComputedStyle(pubCol).marginLeft) : undefined;
-    const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - pubColMarginLeft - 75; // 75分は余裕
+    const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - 60; // 60分は余裕
     Array.prototype.forEach.call(feedTitles, feedTitle => {
         feedTitle.style.width = `${feedTitlesWidth}px`;
     });
