@@ -14,6 +14,19 @@ $mycard-bgcolor: white;
 $star-color: #ffde20;
 $focused-bgcolor: lightcyan;
 
+$sidebar-width: 68px;
+$card-padding: 10px;
+$thumbnail-width: 75px;
+$thumbnail-mr: 10px;
+$starcol-width: 18px;
+$starcol-mr: 50px;
+$feedcol-mr: 50px;
+$pubcol-width: 70px;
+$feedtitle-width: calc(
+  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - #{$starcol-width} - #{$starcol-mr} -
+    #{$feedcol-mr} - #{$pubcol-width} - 60px
+); // 60分は余裕
+
 *,
 *::before,
 *::after {
@@ -74,7 +87,7 @@ header {
 // sidebar-------------------------------------------------------------------------------------------------------------------------------------
 
 #sidebar {
-  width: 68px; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
+  width: $sidebar-width; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
   flex: none;
   margin-right: auto;
   overflow: hidden auto;
@@ -147,12 +160,12 @@ header {
 .mycard {
   background-color: $mycard-bgcolor;
   margin-bottom: 3px;
-  padding: 10px;
+  padding: $card-padding;
 
   .thumbnail {
-    width: 75px;
+    width: $thumbnail-width;
     height: 75px;
-    margin-right: 10px;
+    margin-right: $thumbnail-mr;
 
     .fa-image {
       @include flex-center;
@@ -180,7 +193,8 @@ header {
     }
 
     .star-col {
-      margin-right: 50px;
+      width: $starcol-width;
+      margin-right: $starcol-mr;
 
       .toggleable-star.far {
         color: rgba(0, 0, 0, 0.26);
@@ -192,9 +206,10 @@ header {
     }
 
     .feed-col {
-      margin-right: 50px;
+      margin-right: $feedcol-mr;
 
       .feed-title {
+        width: $feedtitle-width;
         color: $subtext-color;
         font-size: 80%;
         background-color: red;
@@ -205,7 +220,7 @@ header {
     }
 
     .pub-col {
-      width: 70px;
+      width: $pubcol-width;
       margin-left: auto;
       color: $subtext-color;
       font-size: 80%;

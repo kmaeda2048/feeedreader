@@ -96,10 +96,10 @@ document.addEventListener('turbolinks:load', function () {
                 const newWidth = parseInt(cardTitle.style.width) + windowInnerWidthDiff;
                 cardTitle.style.width = `${newWidth}px`;
             });
-            Array.prototype.forEach.call(feedTitles, feedTitle => {
-                const newWidth = parseInt(feedTitle.style.width) + windowInnerWidthDiff;
-                feedTitle.style.width = `${newWidth}px`;
-            });
+            // Array.prototype.forEach.call(feedTitles, feedTitle => {
+            //     const newWidth = parseInt(feedTitle.style.width) + windowInnerWidthDiff;
+            //     feedTitle.style.width = `${newWidth}px`;
+            // });
         }, 500);
     }
 
@@ -149,10 +149,10 @@ document.addEventListener('turbolinks:load', function () {
     const feedTitles = document.getElementsByClassName('feed-title');
     const pubCol = document.querySelector('.pub-col');
     const pubColWidth = pubCol ? pubCol.offsetWidth : undefined;
-    const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - 60; // 60分は余裕
-    Array.prototype.forEach.call(feedTitles, feedTitle => {
-        feedTitle.style.width = `${feedTitlesWidth}px`;
-    });
+    // const feedTitlesWidth = windowInnerWidth - sidebarWidth - (cardPadding * 2) - thumbnailWidth - thumbnailMarginRight - starColWidth - starColMarginRight - feedColMarginRight - pubColWidth - 60; // 60分は余裕
+    // Array.prototype.forEach.call(feedTitles, feedTitle => {
+    //     feedTitle.style.width = `${feedTitlesWidth}px`;
+    // });
     let focusedCard = document.getElementById('focused-card') ? document.getElementById('focused-card') : undefined;
     let nextCard = focusedCard && focusedCard.nextElementSibling ? focusedCard.nextElementSibling : undefined;
     let previousCard;
