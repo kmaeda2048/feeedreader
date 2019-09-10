@@ -118,14 +118,7 @@ document.addEventListener('turbolinks:load', function () {
     let nextFlag = 0;
     let previousFlag = 0;
     const cardPerPage = Math.floor((window.innerHeight - headerHeight) / (cardHeight + cardMargin));
-    let timeoutId;
     const ajaxData = { ajax: 'unread' };
-
-    // var now = new Date();
-    // var Hour = now.getHours();
-    // var Min = now.getMinutes();
-    // var Sec = now.getSeconds();
-    // console.log(`${Hour}:${Min}:${Sec}`);
 
     const readObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {

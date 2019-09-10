@@ -216,7 +216,6 @@ header {
         width: $feedtitle-width;
         color: $subtext-color;
         font-size: 80%;
-        background-color: red;
         &.omitted {
           @include omitted;
         }
