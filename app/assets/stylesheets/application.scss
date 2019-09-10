@@ -121,15 +121,8 @@ header {
       margin: 10px 10px;
       background-color: $favicon-bgcolor;
 
-      .fa-star {
-        @include flex-center;
-        width: 32px;
-        height: 32px;
-        font-size: 26px;
-        color: $star-color;
-        border: 1px solid $border-color;
-      }
-
+      .fa-star,
+      .fa-plus,
       .fa-cog {
         @include flex-center;
         width: 32px;
@@ -137,6 +130,10 @@ header {
         font-size: 26px;
         color: $maintext-color;
         border: 1px solid $border-color;
+      }
+
+      .fa-star {
+        color: $star-color;
       }
     }
 
