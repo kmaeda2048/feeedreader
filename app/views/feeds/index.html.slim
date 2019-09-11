@@ -5,7 +5,7 @@
 
     = search_form_for @q do |f|
       .form-group
-        = f.search_field :feed_url_or_title_or_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
+        = f.search_field :feed_url_or_name_or_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
 
     = paginate @page_feeds
     = page_entries_info @page_feeds
@@ -14,7 +14,7 @@
       tr
         th= t('activerecord.attributes.feed.id')
         th= t('activerecord.attributes.feed.feed_url')
-        th= t('activerecord.attributes.feed.title')
+        th= t('activerecord.attributes.feed.name')
         th= t('activerecord.attributes.feed.created_at')
         th= t('activerecord.attributes.feed.updated_at')
       - @page_feeds.each do |feed|
@@ -23,9 +23,9 @@
           td
             = link_to feed.feed_url, feed.feed_url
           td
-            = link_to feed.title, feed
+            = link_to feed.name, feed
           td= l(feed.created_at, format: :short)
           td= l(feed.updated_at, format: :short)
           td
             = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
-            = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.title}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
+            = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.name}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
