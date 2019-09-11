@@ -1,7 +1,8 @@
 class FeedsController < ApplicationController
   def index
     @feeds = Feed.all
-    @page_feeds = Feed.all.page(params[:page])
+    @q = Feed.ransack(params[:q])
+    @page_feeds = @q.result(distinct: true).page(params[:page])
   end
 
   def show
