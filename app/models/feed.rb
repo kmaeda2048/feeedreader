@@ -7,6 +7,14 @@ class Feed < ApplicationRecord
   before_create :set_title_and_url_and_favicon_url, on: :create
   after_create :create_articles, on: :create
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[feed_url title url]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   private
 
   def validate_feed_url
