@@ -25,7 +25,7 @@ $pubcol-width: 70px;
 $cardtitle-width: calc(
   100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - 50px
 ); // 50分は余裕
-$feedtitle-width: calc(
+$feedname-width: calc(
   100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - #{$starcol-width} - #{$starcol-mr} -
     #{$feedcol-mr} - #{$pubcol-width} - 60px
 ); // 60分は余裕
@@ -209,8 +209,8 @@ header {
     .feed-col {
       margin-right: $feedcol-mr;
 
-      .feed-title {
-        width: $feedtitle-width;
+      .feed-name {
+        width: $feedname-width;
         color: $subtext-color;
         font-size: 80%;
         &.omitted {

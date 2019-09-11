@@ -16,7 +16,7 @@ namespace :fetch_feed do
           image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
         end
         
-        local_article.update_attributes(url: article.url, published: article.published, feed_id: feed.id, favicon_url: image)
+        local_article.update_attributes(url: article.url, published: article.published, feed_id: feed.id, thumbnail_url: image)
       end      
     end
   end

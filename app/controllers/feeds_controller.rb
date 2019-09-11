@@ -9,7 +9,7 @@ class FeedsController < ApplicationController
     @feeds = Feed.all
     @feed = Feed.find(params[:id])
     @articles = Article.where(feed_id: @feed.id, unread: true)
-    @now_page = @feed.title
+    @now_page = @feed.name
     @articles_count = @articles.size
   end
 
@@ -23,7 +23,7 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
 
     if @feed.save
-      redirect_to @feed, notice: "「#{@feed.title}」を登録しました。"
+      redirect_to @feed, notice: "「#{@feed.name}」を登録しました。"
     else
       render :new
     end
@@ -37,7 +37,7 @@ class FeedsController < ApplicationController
   def update
     @feed = Feed.find(params[:id])
     if @feed.update(feed_params)
-      redirect_to @feed, notice: "「#{@feed.title}」を更新しました。"
+      redirect_to @feed, notice: "「#{@feed.name}」を更新しました。"
     else
       render :edit
     end
@@ -52,6 +52,6 @@ class FeedsController < ApplicationController
   private
 
   def feed_params
-    params.require(:feed).permit(:title, :feed_url)
+    params.require(:feed).permit(:name, :feed_url)
   end
 end
