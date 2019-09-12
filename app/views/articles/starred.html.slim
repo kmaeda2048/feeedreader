@@ -1,6 +1,11 @@
 / = paginate @starred
 / = page_entries_info @starred
 
+= search_form_for @q do |f|
+  .form-group
+    = f.search_field :title_or_url_cont, placeholder: '記事タイトルまたはURLで検索', class: 'form-control'
+
+
 .flex
   = render 'shared/sidebar', feeds: @feeds
   = render 'shared/card_area', articles: @starred_articles
