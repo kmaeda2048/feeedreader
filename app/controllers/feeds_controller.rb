@@ -8,7 +8,8 @@ class FeedsController < ApplicationController
   def show
     @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
-    @articles = Article.where(feed_id: @feed.id, unread: true)
+    @q = Article.where(feed_id: @feed.id, unread: true).ransack(params[:q])
+    @articles = @q.result(distinct: true)
     @now_page = @feed.name
     @articles_count = @articles.size
   end

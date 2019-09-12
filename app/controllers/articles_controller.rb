@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   def index
     @side_feeds = Feed.all
-    @articles = Article.where(unread: true)
+    @q = Article.where(unread: true).ransack(params[:q])
+    @articles = @q.result(distinct: true)
     @now_page = '全フィード'
     @articles_count = @articles.size
   end

@@ -3,10 +3,6 @@
   #feeds-area
     = link_to '新しいフィードの登録', new_feed_path, class: 'btn btn-primary mr-3'
 
-    = search_form_for @q do |f|
-      .form-group
-        = f.search_field :feed_url_or_name_or_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
-
     = paginate @feeds
     = page_entries_info @feeds
 
