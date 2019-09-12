@@ -11,17 +11,18 @@ html lang="ja"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"    
     header.flex
       #brand FeeedReader
+      #search
+        - if @q
+          = search_form_for @q do |f|
+            .form-group
+              - if controller.controller_name == 'articles' && controller.action_name == 'starred'
+                = f.search_field :title_or_url_cont, placeholder: '記事タイトルまたはURLで検索', class: 'form-control'
       #now-page.omitted
         - if @now_page
           = @now_page
       #articles-count data-count="#{@articles_count}"
         - if @articles_count
           span= "(#{@articles_count})"
-      / #now-page data-count="#{@articles_count}"
-      /   - if @now_page
-      /     = @now_page
-      /   - if @articles_count
-      /     span= "(#{@articles_count})"
     - if notice
       p.notice
         = notice
