@@ -13,10 +13,20 @@ html lang="ja"
       #brand FeeedReader
       #search
         - if @q
-          = search_form_for @q, url: starred_articles_path do |f|
-            .form-group
-              - if controller.controller_name == 'articles' && controller.action_name == 'starred'
-                = f.search_field :title_or_url_cont, placeholder: '記事タイトルまたはURLで検索', class: 'form-control'
+          .form-group
+            - if controller.controller_name == 'articles' && controller.action_name == 'starred'
+              = search_form_for @q, url: starred_articles_path do |f|
+                = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
+            - elsif controller.controller_name == 'feeds' && controller.action_name == 'show'
+              = search_form_for @q, url: feed_path(@feed) do |f|
+                = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
+            - else
+              = search_form_for @q do |f|
+                - if controller.controller_name == 'feeds' && controller.action_name == 'index'
+                  = f.search_field :feed_url_or_name_or_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
+                - elsif controller.controller_name == 'articles' && controller.action_name == 'index'
+                  = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
+
       #now-page.omitted
         - if @now_page
           = @now_page
