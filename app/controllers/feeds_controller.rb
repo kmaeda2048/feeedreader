@@ -1,12 +1,12 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @q = Feed.ransack(params[:q])
-    @page_feeds = @q.result(distinct: true).page(params[:page])
+    @feeds = @q.result(distinct: true).page(params[:page])
   end
 
   def show
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
     @articles = Article.where(feed_id: @feed.id, unread: true)
     @now_page = @feed.name
@@ -14,12 +14,12 @@ class FeedsController < ApplicationController
   end
 
   def new
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @feed = Feed.new
   end
 
   def create
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @feed = Feed.new(feed_params)
 
     if @feed.save
@@ -30,7 +30,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
   end
 

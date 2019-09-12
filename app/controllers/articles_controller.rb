@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @articles = Article.where(unread: true)
     @now_page = '全フィード'
     @articles_count = @articles.size
@@ -22,10 +22,10 @@ class ArticlesController < ApplicationController
   end
   
   def starred
-    @feeds = Feed.all
+    @side_feeds = Feed.all
     @q = Article.where(starred: true).ransack(params[:q])
-    @starred_articles = @q.result(distinct: true)
+    @articles = @q.result(distinct: true)
     @now_page = 'スター付き'
-    @articles_count = @starred_articles.size
+    @articles_count = @articles.size
   end
 end
