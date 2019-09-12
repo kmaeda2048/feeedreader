@@ -7,7 +7,7 @@
 
 
 .flex
-  = render 'shared/sidebar', feeds: @feeds
-  = render 'shared/card_area', articles: @starred_articles
+  = render 'shared/sidebar', feeds: @side_feeds
+  = render 'shared/card_area', articles: @articles
 
 / = paginate @starred
