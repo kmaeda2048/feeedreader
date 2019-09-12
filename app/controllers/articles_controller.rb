@@ -23,7 +23,8 @@ class ArticlesController < ApplicationController
   
   def starred
     @feeds = Feed.all
-    @starred_articles = Article.where(starred: true)
+    @q = Article.where(starred: true).ransack(params[:q])
+    @starred_articles = @q.result(distinct: true)
     @now_page = 'スター付き'
     @articles_count = @starred_articles.size
   end
