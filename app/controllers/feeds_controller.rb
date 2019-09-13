@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
     @feeds = @q.result(distinct: true).page(params[:page])
   end
 
-  def show
+  def unread
     @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
     @q = Article.where(feed_id: @feed.id, unread: true).ransack(params[:q])
