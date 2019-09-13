@@ -140,7 +140,7 @@ document.addEventListener('turbolinks:load', function () {
                 //     .catch(error => console.error('Error:', error));
                 entry.target.classList.add('read');
                 --articlesCount;
-                nowPage.querySelector('span').textContent = `(${articlesCount})`;
+                articlesCountElement.querySelector('span').textContent = `(${articlesCount})`;
                 readObserver.unobserve(entry.target);
             }
         });
