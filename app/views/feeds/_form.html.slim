@@ -6,8 +6,8 @@
 = form_with model: feed, local: true do |f|
   .form-group
     = f.label(:feed_url) + ' (入力必須)'
-    = f.text_field :feed_url, class: 'form-control', id: 'feed_feed_url'
+    = f.text_field :feed_url, placeholder: '例: https://github.com/kmaeda2048/feeedreader/commits/master.atom', class: 'form-control', id: 'feed_feed_url'
   .form-group
     = f.label(:name) + ' (入力任意)'
-    = f.text_field :name, class: 'form-control', id: 'feed_name'
+    = f.text_field :name, placeholder: '例: Recent Commits to feeedreader:master', class: 'form-control', id: 'feed_name'
   = f.submit nil, class: 'btn btn-primary'
