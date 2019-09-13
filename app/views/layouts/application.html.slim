@@ -20,8 +20,8 @@ html lang="ja"
             - elsif controller.controller_name == 'articles' && controller.action_name == 'starred'
               = search_form_for @q, url: starred_articles_path do |f|
                 = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
-            - elsif controller.controller_name == 'feeds' && controller.action_name == 'show'
-              = search_form_for @q, url: feed_path(@feed) do |f|
+            - elsif controller.controller_name == 'feeds' && controller.action_name == 'unread'
+              = search_form_for @q, url: unread_feed_path(@feed) do |f|
                 = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
             - else
               = search_form_for @q do |f|

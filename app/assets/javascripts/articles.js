@@ -146,7 +146,7 @@ document.addEventListener('turbolinks:load', function () {
         });
     }, { root: cardArea, threshold: 0 });
 
-    if ((controllerAndAction === 'articles#unread') || (controllerAndAction === 'feeds#show')) {
+    if ((controllerAndAction === 'articles#unread') || (controllerAndAction === 'feeds#unread')) {
         Array.prototype.forEach.call(cards, card => {
             readObserver.observe(card);
         });
