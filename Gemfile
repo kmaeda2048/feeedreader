@@ -45,7 +45,7 @@ gem 'jquery-rails', '~> 4.3.5'
 gem 'rspec-rails', '~> 3.7'
 gem 'factory_bot_rails', '~> 4.11'
 
-gem 'devise', '~> 4.6.1'
+gem 'devise', '~> 4.7.1'
 gem 'devise-i18n', '~> 1.8.0'
 
 gem 'kaminari', '~> 1.1.1'
