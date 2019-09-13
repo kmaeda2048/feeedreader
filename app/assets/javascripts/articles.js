@@ -87,9 +87,9 @@ document.addEventListener('turbolinks:load', function () {
 
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
+    const controllerAndAction = controller + '#' + action;
     const articlesCountElement = document.getElementById('articles-count');
     let articlesCount = articlesCountElement.dataset.count;
-    const controllerAndAction = controller + '#' + action;
     const headerHeight = document.querySelector('header').offsetHeight;
     const sidebar = document.getElementById('sidebar');
     const favicon = document.querySelector('.favicon');
