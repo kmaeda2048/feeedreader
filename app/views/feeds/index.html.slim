@@ -19,7 +19,7 @@
           td
             = link_to feed.feed_url, feed.feed_url
           td
-            = link_to feed.name, feed
+            = link_to feed.name, unread_feed_path(feed)
           td= l(feed.created_at, format: :short)
           td= l(feed.updated_at, format: :short)
           td
