@@ -2,7 +2,7 @@
   #toggle
     = icon 'fas', 'angle-double-right', class: 'fa-fw'
   #favicons
-    = link_to 'ALL', articles_path, class: 'favicon', id: 'all'
+    = link_to 'ALL', unread_articles_path, class: 'favicon', id: 'all'
     = link_to icon('fas', 'star', class: 'fa-fw'), starred_articles_path, class: 'favicon', id: 'starred'
     = link_to icon('fas', 'plus', class: 'fa-fw'), new_feed_path, class: 'favicon'
     - feeds.each do |feed|

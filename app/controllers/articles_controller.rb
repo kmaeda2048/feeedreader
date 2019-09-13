@@ -1,9 +1,17 @@
 class ArticlesController < ApplicationController
-  def index
+  def unread
     @side_feeds = Feed.all
     @q = Article.where(unread: true).ransack(params[:q])
     @articles = @q.result(distinct: true)
     @now_page = '全フィード'
+    @articles_count = @articles.size
+  end
+    
+  def starred
+    @side_feeds = Feed.all
+    @q = Article.where(starred: true).ransack(params[:q])
+    @articles = @q.result(distinct: true)
+    @now_page = 'スター付き'
     @articles_count = @articles.size
   end
   
@@ -20,13 +28,5 @@ class ArticlesController < ApplicationController
         article.update(starred: true)
       end
     end
-  end
-  
-  def starred
-    @side_feeds = Feed.all
-    @q = Article.where(starred: true).ransack(params[:q])
-    @articles = @q.result(distinct: true)
-    @now_page = 'スター付き'
-    @articles_count = @articles.size
   end
 end
