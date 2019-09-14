@@ -1,15 +1,15 @@
 #mycard-area
   - articles.each do |article|
     .mycard.flex data-article-id="#{article.id}"
-      .thumbnail
+      .thumbnail-col
         - if article.thumbnail_url.empty?
           = icon 'far', 'image', class: 'fa-fw'
         - else
           = image_tag(article.thumbnail_url, size: '75x75')
-      .flex-item
+      .another-col
         .card-link-row.omitted
           = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
-        .flex
+        .another-row.flex
           .star-col
             - if article.starred
               = link_to article_path(article), method: :put, remort: true do

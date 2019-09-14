@@ -16,18 +16,18 @@ $focused-bgcolor: lightcyan;
 
 $sidebar-width: 68px;
 $card-padding: 10px;
-$thumbnail-width: 75px;
-$thumbnail-mr: 10px;
+$thumbnailcol-width: 75px;
+$thumbnailcol-mr: 10px;
 $starcol-width: 18px;
 $starcol-mr: 50px;
 $feedcol-mr: 50px;
 $pubcol-width: 70px;
 $cardlinkrow-width: calc(
-  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - 50px
+  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - 50px
 ); // 50分は余裕
 $feedname-width: calc(
-  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - #{$starcol-width} - #{$starcol-mr} -
-    #{$feedcol-mr} - #{$pubcol-width} - 60px
+  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - #{$starcol-width} -
+    #{$starcol-mr} - #{$feedcol-mr} - #{$pubcol-width} - 60px
 ); // 60分は余裕
 
 *,
@@ -162,10 +162,10 @@ header {
   margin-bottom: 3px;
   padding: $card-padding;
 
-  .thumbnail {
-    width: $thumbnail-width;
+  .thumbnail-col {
+    width: $thumbnailcol-width;
     height: 75px;
-    margin-right: $thumbnail-mr;
+    margin-right: $thumbnailcol-mr;
 
     .fa-image {
       @include flex-center;
@@ -175,7 +175,7 @@ header {
     }
   }
 
-  .flex-item {
+  .another-col {
     flex: auto;
 
     .card-link-row {
