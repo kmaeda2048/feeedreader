@@ -22,7 +22,7 @@ $starcol-width: 18px;
 $starcol-mr: 50px;
 $feedcol-mr: 50px;
 $pubcol-width: 70px;
-$cardlink-width: calc(
+$cardlinkrow-width: calc(
   100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnail-width} - #{$thumbnail-mr} - 50px
 ); // 50分は余裕
 $feedname-width: calc(
@@ -178,16 +178,19 @@ header {
   .flex-item {
     flex: auto;
 
-    .card-link {
-      display: block;
-      width: $cardlink-width;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: $maintext-color;
-      outline: none;
+    .card-link-row {
+      width: $cardlinkrow-width;
       margin-bottom: 0.5rem;
+
       &.omitted {
         @include omitted;
+      }
+
+      .card-link {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: $maintext-color;
+        outline: none;
       }
     }
 
