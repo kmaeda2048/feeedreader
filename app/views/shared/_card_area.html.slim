@@ -7,7 +7,8 @@
         - else
           = image_tag(article.thumbnail_url, size: '75x75')
       .flex-item
-        = link_to article.title, article.url, class: 'card-link omitted', rel: 'noopener'
+        .card-link-row.omitted
+          = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
         .flex
           .star-col
             - if article.starred
