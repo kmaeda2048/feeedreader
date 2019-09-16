@@ -1,0 +1,57 @@
+#sidebar {
+  width: $sidebar-width; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
+  flex: none;
+  margin-right: auto;
+  overflow: hidden auto;
+  height: calc(100vh - 56px);
+  background-color: $sidebar-bgcolor;
+
+  #toggle {
+    position: fixed;
+    top: 56px;
+    background-color: $sidebar-bgcolor;
+
+    .fa-angle-double-right {
+      @include flex-center;
+      width: 52px;
+      height: 42px;
+      font-size: 25px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  #favicons {
+    margin-top: 42px;
+
+    .favicon {
+      display: block;
+      width: 32px;
+      height: 32px;
+      margin: 10px 10px;
+      background-color: $favicon-bgcolor;
+
+      .fa-star,
+      .fa-plus,
+      .fa-cog {
+        @include flex-center;
+        width: 32px;
+        height: 32px;
+        font-size: 26px;
+        color: $maintext-color;
+        border: 1px solid $border-color;
+      }
+
+      .fa-star {
+        color: $star-color;
+      }
+    }
+
+    #all {
+      @include flex-center;
+      font-size: 15px;
+      font-weight: bold;
+      color: $maintext-color;
+      border: 1px solid $border-color;
+    }
+  }
+}

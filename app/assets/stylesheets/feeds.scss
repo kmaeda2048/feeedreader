@@ -2,8 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+#feeds-area {
+    flex: auto;
+}  
+
 #form-area {
     padding: 0 50px;
+    flex: auto;
+
     h1 {
         font-size: 1.5rem;
     }

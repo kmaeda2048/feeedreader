@@ -1,0 +1,18 @@
+header {
+  height: 56px;
+  padding: 16px;
+  color: $header-color;
+  background-color: $header-bgcolor;
+
+  #brand {
+    font-size: 1.25rem;
+    margin-right: 100px;
+  }
+
+  #now-page {
+    margin-left: auto;
+    &.omitted {
+      @include omitted;
+    }
+  }
+}
