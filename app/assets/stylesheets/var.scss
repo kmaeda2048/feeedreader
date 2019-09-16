@@ -1,0 +1,27 @@
+$maintext-color: rgba(0, 0, 0, 0.87);
+$subtext-color: rgba(0, 0, 0, 0.54);
+$border-color: rgba(0, 0, 0, 0.12);
+$header-color: white;
+$header-bgcolor: #6f20ff;
+$sidebar-bgcolor: whitesmoke;
+$favicon-bgcolor: white;
+$mycardarea-bgcolor: rgba(0, 0, 0, 0.12);
+$mycard-bgcolor: white;
+$star-color: #ffde20;
+$focused-bgcolor: lightcyan;
+
+$sidebar-width: 68px;
+$card-padding: 10px;
+$thumbnailcol-width: 75px;
+$thumbnailcol-mr: 10px;
+$starcol-width: 18px;
+$starcol-mr: 50px;
+$feedcol-mr: 50px;
+$pubcol-width: 70px;
+$cardlinkrow-width: calc(
+  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - 50px
+); // 50分は余裕
+$feedname-width: calc(
+  100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - #{$starcol-width} -
+    #{$starcol-mr} - #{$feedcol-mr} - #{$pubcol-width} - 60px
+); // 60分は余裕

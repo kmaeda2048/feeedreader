@@ -1,0 +1,82 @@
+#mycard-area {
+  overflow: hidden auto;
+  height: calc(100vh - 56px);
+  flex: auto;
+  padding: 0 3px;
+  background-color: $mycardarea-bgcolor;
+}
+
+.mycard {
+  background-color: $mycard-bgcolor;
+  margin-bottom: 3px;
+  padding: $card-padding;
+
+  .thumbnail-col {
+    width: $thumbnailcol-width;
+    height: 75px;
+    margin-right: $thumbnailcol-mr;
+
+    .fa-image {
+      @include flex-center;
+      width: 75px;
+      height: 75px;
+      font-size: 60px;
+    }
+  }
+
+  .another-col {
+    flex: auto;
+
+    .card-link-row {
+      width: $cardlinkrow-width;
+      margin-bottom: 0.5rem;
+
+      &.omitted {
+        @include omitted;
+      }
+
+      .card-link {
+        font-weight: bold;
+        color: $maintext-color;
+        outline: none;
+      }
+    }
+
+    .star-col {
+      width: $starcol-width;
+      margin-right: $starcol-mr;
+
+      .toggleable-star.far {
+        color: rgba(0, 0, 0, 0.26);
+      }
+
+      .toggleable-star.fas {
+        color: $star-color;
+      }
+    }
+
+    .feed-col {
+      margin-right: $feedcol-mr;
+
+      .feed-name {
+        width: $feedname-width;
+        color: $subtext-color;
+        font-size: 0.8rem;
+        &.omitted {
+          @include omitted;
+        }
+      }
+    }
+
+    .pub-col {
+      width: $pubcol-width;
+      margin-left: auto;
+      color: $subtext-color;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.mycard:first-child {
+  margin-top: 3px;
+}
