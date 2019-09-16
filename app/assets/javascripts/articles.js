@@ -1,8 +1,7 @@
 'use strict';
 
-document.addEventListener('turbolinks:load', function () {
-    // let shortcut = (e) => {
-    function shortcut(e) {
+document.addEventListener('turbolinks:load', () => {
+    const shortcut = (e) => {
         const keyName = e.key;
         switch (keyName) {
             case 'j':
@@ -80,7 +79,7 @@ document.addEventListener('turbolinks:load', function () {
         }
     }
 
-    function toggleStar(e) {
+    const toggleStar = (e) => {
         e.classList.toggle('far');
         e.classList.toggle('fas');
     }
@@ -176,7 +175,7 @@ document.addEventListener('turbolinks:load', function () {
         star.addEventListener('click', () => { toggleStar(star); });
     });
 
-    document.addEventListener('turbolinks:load', function () {
+    document.addEventListener('turbolinks:load', () => {
         document.removeEventListener('keydown', shortcut);
         Array.prototype.forEach.call(stars, star => {
             star.removeEventListener('click', toggleStar);
