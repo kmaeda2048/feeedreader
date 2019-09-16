@@ -16,6 +16,9 @@
 
 require 'capybara/rspec'
 
+require 'selenium-webdriver'
+Selenium::WebDriver::Chrome::Service.driver_path = "/mnt/c/Program Files/chromedriver_win32/chromedriver.exe"
+
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless
