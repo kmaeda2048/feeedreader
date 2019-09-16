@@ -80,7 +80,6 @@ header {
 
   #now-page {
     margin-left: auto;
-    font-size: 18px;
     &.omitted {
       @include omitted;
     }
@@ -187,8 +186,7 @@ header {
       }
 
       .card-link {
-        font-size: 1.25rem;
-        font-weight: 500;
+        font-weight: bold;
         color: $maintext-color;
         outline: none;
       }
@@ -213,7 +211,7 @@ header {
       .feed-name {
         width: $feedname-width;
         color: $subtext-color;
-        font-size: 80%;
+        font-size: 0.8rem;
         &.omitted {
           @include omitted;
         }
@@ -224,7 +222,7 @@ header {
       width: $pubcol-width;
       margin-left: auto;
       color: $subtext-color;
-      font-size: 80%;
+      font-size: 0.8rem;
     }
   }
 }
