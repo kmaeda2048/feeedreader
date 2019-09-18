@@ -42,9 +42,6 @@ gem 'html2slim', '~> 0.2.0'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails', '~> 4.3.5'
 
-gem 'rspec-rails', '~> 3.7'
-gem 'factory_bot_rails', '~> 4.11'
-
 gem 'devise', '~> 4.7.1'
 gem 'devise-i18n', '~> 1.8.0'
 
@@ -60,6 +57,8 @@ gem 'font-awesome-sass', '~> 5.9.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails', '~> 4.11'
 end
 
 group :development do
