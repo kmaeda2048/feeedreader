@@ -1,10 +1,11 @@
 FactoryBot.define do
   factory :article do
-    title { "MyString" }
-    url { "MyString" }
-    summary { "MyText" }
-    published { "2019-07-25 11:56:07" }
-    content { "MyText" }
-    memo { "MyText" }
+    title { 'Example article' }
+    url { 'http://example.com/articles/1' }
+    published { '2000-01-01 00:00:00' }
+    unread { true }
+    starred { false }
+    thumbnail_url { 'https://placehold.jp/75x75.png' }
+    feed
   end
 end
