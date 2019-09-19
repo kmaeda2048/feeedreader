@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '記事表示機能', type: :system do
+RSpec.describe '記事表示機能', type: :system do
   describe '未読記事一覧表示' do
     let!(:atom_feed) { FactoryBot.create(:feed) }
     let!(:unread_article) { FactoryBot.create(:article, title: 'Unread article', url: 'http://example.com/unread', unread: true, feed: atom_feed) }
