@@ -18,11 +18,16 @@ class Feed < ApplicationRecord
   private
 
   def validate_feed_url
-    response = HTTParty.get(self.feed_url)
+    begin
+      response = HTTParty.get(self.feed_url)
+    rescue
+      errors.add(:feed_url, :cannot_access)
+    end
+
     begin
       parse_result = Feedjira.parse(response.body)
     rescue
-      errors.add(:feed_url, :not_a_feed)
+      errors.add(:feed_url, :cannot_parse)
     end
   end
 
