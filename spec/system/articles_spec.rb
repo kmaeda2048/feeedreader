@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '記事表示機能', type: :system do
   let!(:feed) { FactoryBot.create(:feed) }
-  
+
   describe '未読記事一覧表示' do
     let!(:unread_article) { FactoryBot.create(:article, feed: feed) }
     let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
@@ -47,7 +47,6 @@ RSpec.describe '記事表示機能', type: :system do
   end
 
   describe 'スター付き記事一覧表示' do
-    # let!(:feed) { FactoryBot.create(:feed) }
     let!(:starred_article) { FactoryBot.create(:article, :starred, feed: feed) }
     let!(:unstarred_article) { FactoryBot.create(:article, feed: feed) }
     
