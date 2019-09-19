@@ -21,8 +21,8 @@ RSpec.describe 'フィード管理機能', type: :system do
 
   describe 'フィードの未読記事一覧表示' do
     let!(:feed) { FactoryBot.create(:feed) }
-    let!(:unread_article) { FactoryBot.create(:article, title: 'Unread article', url: 'http://example.com/unread', unread: true, feed: feed) }
-    let!(:read_article) { FactoryBot.create(:article, title: 'Read article', url: 'http://example.com/read', unread: false, feed: feed) }
+    let!(:unread_article) { FactoryBot.create(:article, feed: feed) }
+    let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
     
     context 'feeds/N/unreadにアクセスしたとき' do
       before do
