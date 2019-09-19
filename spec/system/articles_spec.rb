@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe '記事表示機能', type: :system do
+  let!(:feed) { FactoryBot.create(:feed) }
+
   describe '未読記事一覧表示' do
-    let!(:atom_feed) { FactoryBot.create(:feed) }
-    let!(:unread_article) { FactoryBot.create(:article, title: 'Unread article', url: 'http://example.com/unread', unread: true, feed: atom_feed) }
-    let!(:read_article) { FactoryBot.create(:article, title: 'Read article', url: 'http://example.com/read', unread: false, feed: atom_feed) }
+    let!(:unread_article) { FactoryBot.create(:article, feed: feed) }
+    let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
     
     context 'articles/unreadにアクセスしたとき' do
       before do
@@ -46,9 +47,8 @@ RSpec.describe '記事表示機能', type: :system do
   end
 
   describe 'スター付き記事一覧表示' do
-    let!(:atom_feed) { FactoryBot.create(:feed) }
-    let!(:starred_article) { FactoryBot.create(:article, title: 'Starred article', url: 'http://example.com/starred', starred: true, feed: atom_feed) }
-    let!(:unstarred_article) { FactoryBot.create(:article, title: 'Unstarred article', url: 'http://example.com/unstarred', starred: false, feed: atom_feed) }
+    let!(:starred_article) { FactoryBot.create(:article, :starred, feed: feed) }
+    let!(:unstarred_article) { FactoryBot.create(:article, feed: feed) }
     
     context 'articles/starredにアクセスしたとき' do
       before do
