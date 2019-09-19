@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'フィード管理機能', type: :system do
+RSpec.describe 'フィード管理機能', type: :system do
   describe 'フィードの一覧表示' do
     let!(:github_feed) { FactoryBot.create(:feed, :github) }
     let!(:vscode_feed) { FactoryBot.create(:feed, :vscode) }
