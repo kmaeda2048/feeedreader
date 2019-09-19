@@ -17,5 +17,10 @@ FactoryBot.define do
       feed_url { 'https://weblog.rubyonrails.org/feed/atom.xml' }
       name { 'Riding Rails' }
     end
+
+    trait :apple do
+      feed_url { 'https://www.apple.com/jp/newsroom/rss-feed.rss' }
+      name { 'Apple Newsroom' }
+    end
   end
 end
