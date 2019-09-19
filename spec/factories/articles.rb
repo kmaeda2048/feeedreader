@@ -7,5 +7,12 @@ FactoryBot.define do
     starred { false }
     thumbnail_url { 'https://placehold.jp/75x75.png' }
     feed
+
+
+    # trait :github do
+    #   feed_url { 'https://github.blog/feed/' }
+    #   name { 'The GitHub Blog' }
+    # end
+
   end
 end

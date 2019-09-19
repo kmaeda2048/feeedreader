@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Feed, type: :model do
   context '入力された値が有効な場合' do
-    let!(:feed) { FactoryBot.create(:feed, url: '', favicon_url: '') }
+    let!(:feed) { FactoryBot.create(:feed) }
 
     it '登録に成功する' do
       expect(feed).to be_valid
@@ -17,7 +17,7 @@ RSpec.describe Feed, type: :model do
     end
 
     context 'nameが未入力の場合' do
-      let!(:name_blank_feed) { FactoryBot.create(:feed, :github, name: '', url: '', favicon_url: '') }
+      let!(:name_blank_feed) { FactoryBot.create(:feed, :github, name: '') }
 
       it '自動で登録される' do
         expect(name_blank_feed.name).to eq 'The GitHub Blog'
@@ -26,7 +26,7 @@ RSpec.describe Feed, type: :model do
   end
 
   context '入力された値が有効でない場合' do
-    let!(:feed) { FactoryBot.create(:feed, url: '', favicon_url: '') }
+    let!(:feed) { FactoryBot.create(:feed) }
 
     context 'feed_urlが未入力の場合' do
       it '登録に失敗する' do
