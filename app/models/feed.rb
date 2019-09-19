@@ -1,7 +1,7 @@
 class Feed < ApplicationRecord
   has_many :article, dependent: :delete_all
   
-  validates :feed_url, presence: true, uniqueness: true
+  validates :feed_url, uniqueness: true
   validate :validate_feed_url
 
   before_create :set_name_and_url_and_favicon_url, on: :create
@@ -18,11 +18,20 @@ class Feed < ApplicationRecord
   private
 
   def validate_feed_url
-    response = HTTParty.get(self.feed_url)
-    begin
-      parse_result = Feedjira.parse(response.body)
-    rescue
-      errors.add(:feed_url, :not_a_feed)
+    if self.feed_url.blank?
+      errors.add(:feed_url, :blank)
+    else
+      begin
+        response = HTTParty.get(self.feed_url)
+      rescue
+        errors.add(:feed_url, :cannot_access)
+      else
+        begin
+          parse_result = Feedjira.parse(response.body)
+        rescue
+          errors.add(:feed_url, :cannot_parse)
+        end
+      end
     end
   end
 
