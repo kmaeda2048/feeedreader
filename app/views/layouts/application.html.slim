@@ -25,7 +25,7 @@ html lang="ja"
                 = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control'
             - else
               = search_form_for @q do |f|
-                = f.search_field :feed_url_or_name_or_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
+                = f.search_field :feed_url_or_name_or_origin_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control'
 
       #now-page.omitted
         - if @now_page

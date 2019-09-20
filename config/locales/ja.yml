@@ -12,7 +12,6 @@ ja:
         title: タイトル
         url: URL
         published: 公開日
-        memo: メモ
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -58,15 +58,15 @@ RSpec.describe Feed, type: :model do
       end
     end
 
-    describe '#set_url' do
-      it 'urlが自動で登録される' do
-        expect(name_blank_feed.feed_url).to include name_blank_feed.url
+    describe '#set_origin_url' do
+      it 'origin_urlが自動で登録される' do
+        expect(name_blank_feed.feed_url).to include name_blank_feed.origin_url
       end
     end
 
     describe '#set_favicon_url' do
       it 'favicon_urlが自動で登録される' do
-        expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.url}"
+        expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.origin_url}"
       end
     end
   end
