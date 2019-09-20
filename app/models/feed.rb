@@ -8,7 +8,7 @@ class Feed < ApplicationRecord
   after_create :create_articles, on: :create
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[feed_url name url]
+    %w[feed_url name origin_url]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -39,7 +39,7 @@ class Feed < ApplicationRecord
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
     set_name(parse_result) if self.name == ''
-    set_url(parse_result)
+    set_origin_url(parse_result)
     set_favicon_url
   end
 
@@ -47,12 +47,12 @@ class Feed < ApplicationRecord
     self.name = parse_result.title
   end
 
-  def set_url(parse_result)
-    self.url = parse_result.url
+  def set_origin_url(parse_result)
+    self.origin_url = parse_result.url
   end
 
   def set_favicon_url
-    self.favicon_url = "https://www.google.com/s2/favicons?domain_url=#{self.url}"
+    self.favicon_url = "https://www.google.com/s2/favicons?domain_url=#{self.origin_url}"
   end
 
   def create_articles
