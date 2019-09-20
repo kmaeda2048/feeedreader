@@ -49,19 +49,25 @@ RSpec.describe Feed, type: :model do
     end
   end
 
-  describe '#set_name_and_url_and_favicon_url' do
+  describe '#set_attributes' do
     let!(:name_blank_feed) { FactoryBot.create(:feed, :apple, name: '') }
 
-    it 'nameが自動で登録される' do
-      expect(name_blank_feed.name).to eq 'Apple Newsroom'
+    describe '#set_name' do
+      it 'nameが自動で登録される' do
+        expect(name_blank_feed.name).to eq 'Apple Newsroom'
+      end
     end
 
-    it 'urlが自動で登録される' do
-      expect(name_blank_feed.feed_url).to include name_blank_feed.url
+    describe '#set_url' do
+      it 'urlが自動で登録される' do
+        expect(name_blank_feed.feed_url).to include name_blank_feed.url
+      end
     end
 
-    it 'favicon_urlが自動で登録される' do
-      expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.url}"
+    describe '#set_favicon_url' do
+      it 'favicon_urlが自動で登録される' do
+        expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.url}"
+      end
     end
   end
 

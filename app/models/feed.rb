@@ -4,7 +4,7 @@ class Feed < ApplicationRecord
   validates :feed_url, uniqueness: true
   validate :validate_feed_url
 
-  before_create :set_name_and_url_and_favicon_url, on: :create
+  before_create :set_attributes, on: :create
   after_create :create_articles, on: :create
 
   def self.ransackable_attributes(auth_object = nil)
@@ -35,12 +35,24 @@ class Feed < ApplicationRecord
     end
   end
 
-  def set_name_and_url_and_favicon_url
+  def set_attributes
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
-    self.name = parse_result.title if self.name == ''
+    set_name(parse_result) if self.name == ''
+    set_url(parse_result)
+    set_favicon_url
+  end
+
+  def set_name(parse_result)
+    self.name = parse_result.title
+  end
+
+  def set_url(parse_result)
     self.url = parse_result.url
-    self.favicon_url = 'https://www.google.com/s2/favicons?domain_url=' + self.url
+  end
+
+  def set_favicon_url
+    self.favicon_url = "https://www.google.com/s2/favicons?domain_url=#{self.url}"
   end
 
   def create_articles
