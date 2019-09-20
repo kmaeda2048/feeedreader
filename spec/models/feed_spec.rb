@@ -26,29 +26,29 @@ RSpec.describe Feed, type: :model do
   end
 
   context '入力された値が有効でない場合' do
-    let!(:not_valid_feed) { FactoryBot.build(:feed) }
+    let!(:invalid_feed) { FactoryBot.build(:feed) }
 
     context 'feed_urlが未入力の場合' do
       it '登録に失敗する' do
-        not_valid_feed.feed_url = ''
-        not_valid_feed.valid?
-        expect(not_valid_feed.errors.full_messages).to include 'URLを入力してください'
+        invalid_feed.feed_url = ''
+        invalid_feed.valid?
+        expect(invalid_feed.errors.full_messages).to include 'URLを入力してください'
       end
     end
     
     context 'feed_urlがURLでない場合' do
       it '登録に失敗する' do
-        not_valid_feed.feed_url = 'not url'
-        not_valid_feed.valid?
-        expect(not_valid_feed.errors.full_messages).to include 'URLにアクセスできません'
+        invalid_feed.feed_url = 'not url'
+        invalid_feed.valid?
+        expect(invalid_feed.errors.full_messages).to include 'URLにアクセスできません'
       end
     end
   
     context 'フィードをパースできない場合' do
       it '登録に失敗する' do
-        not_valid_feed.feed_url = 'http://example.com'
-        not_valid_feed.valid?
-        expect(not_valid_feed.errors.full_messages).to include 'URLをパースできません。入力されたURLがフィードではない可能性があります。'
+        invalid_feed.feed_url = 'http://example.com'
+        invalid_feed.valid?
+        expect(invalid_feed.errors.full_messages).to include 'URLをパースできません。入力されたURLがフィードではない可能性があります。'
       end
     end
     
