@@ -1,4 +1,4 @@
-namespace :destroy_articles do
+namespace :article do
   desc '既読記事や古い記事の削除'
   task :destroy => :environment do
     puts "開始時: #{Article.all.size}件"
