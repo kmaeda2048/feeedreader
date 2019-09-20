@@ -7,23 +7,7 @@ RSpec.describe Feed, type: :model do
       
       it 'バリデーションにかからない' do
         expect(valid_feed).to be_valid
-      end
-      
-      context 'nameが未入力の場合' do
-        let!(:name_blank_feed) { FactoryBot.create(:feed, :apple, name: '') }
-  
-        it '自動で登録される' do
-          expect(name_blank_feed.name).to eq 'Apple Newsroom'
-        end
-      end
-  
-      it 'urlが自動で登録される' do
-        expect(valid_feed.feed_url).to include valid_feed.url
-      end
-  
-      it 'favicon_urlが自動で登録される' do
-        expect(valid_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{valid_feed.url}"
-      end
+      end      
     end
   
     context '入力された値が有効でない場合' do
@@ -66,6 +50,19 @@ RSpec.describe Feed, type: :model do
   end
 
   describe '#set_name_and_url_and_favicon_url' do
+    let!(:name_blank_feed) { FactoryBot.create(:feed, :apple, name: '') }
+
+    it 'nameが自動で登録される' do
+      expect(name_blank_feed.name).to eq 'Apple Newsroom'
+    end
+
+    it 'urlが自動で登録される' do
+      expect(name_blank_feed.feed_url).to include name_blank_feed.url
+    end
+
+    it 'favicon_urlが自動で登録される' do
+      expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.url}"
+    end
   end
 
   describe '#create_articles' do
