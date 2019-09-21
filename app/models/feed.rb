@@ -15,6 +15,32 @@ class Feed < ApplicationRecord
     []
   end
 
+  def self.fetch_all_feed
+    feeds = Feed.all
+
+    feeds.each do |feed|
+      feed.fetch_feed
+    end
+  end
+
+  def fetch_feed
+    response = HTTParty.get(self.feed_url)
+    articles = Feedjira.parse(response.body).entries
+
+    articles.each do |article|
+      # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
+      local_article = self.article.where(title: article.title).first_or_initialize
+
+      image = article.image ? article.image : ''
+      if image == ''
+        response = HTTParty.get(article.url)
+        image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
+      end
+      
+      local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: image)
+    end
+  end
+
   private
 
   def validate_feed_url
