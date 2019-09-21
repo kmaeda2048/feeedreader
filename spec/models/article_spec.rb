@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.destroy_read_articles' do
+  end
+
+  describe '.destroy_overflowing_articles' do
+  end
 end
