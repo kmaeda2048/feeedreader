@@ -38,8 +38,7 @@ RSpec.describe Feed, type: :model do
       end
       
       context '既に存在するフィードの場合' do
-        let!(:rails_feed) { FactoryBot.create(:feed, :rails) }
-        let!(:existing_feed) { FactoryBot.build(:feed, :rails) }
+        let!(:existing_feed) { FactoryBot.build(:feed, :existing) }
   
         it '登録に失敗する' do
           existing_feed.valid?
@@ -81,7 +80,7 @@ RSpec.describe Feed, type: :model do
 
   describe '#fetch_feed' do
     it 'フィードをフェッチして、新規記事があれば追加する' do
-      test_feed = Feed.find_by(feed_url: 'http://b.hatena.ne.jp/hotentry/it.rss')
+      test_feed = Feed.find_by(feed_url: 'http://b.hatena.ne.jp/hotentry/it.rss') # githubに置き換える
       before_fetch_size = test_feed.article.all.size
       test_feed.fetch_feed
       expect(test_feed.article.all.size).to be > before_fetch_size
