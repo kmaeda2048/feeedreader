@@ -64,7 +64,7 @@ class Feed < ApplicationRecord
   def set_attributes
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
-    set_name(parse_result) if self.name == ''
+    set_name(parse_result) if self.name.blank?
     set_origin_url(parse_result)
     set_favicon_url
   end
