@@ -26,6 +26,7 @@ class Feed < ApplicationRecord
   def fetch_feed
     response = HTTParty.get(self.feed_url)
     articles = Feedjira.parse(response.body).entries
+    self.update(last_modified: Time.zone.now)
 
     articles.each do |article|
       # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
@@ -53,7 +54,8 @@ class Feed < ApplicationRecord
         errors.add(:feed_url, :cannot_access)
       else
         begin
-          parse_result = Feedjira.parse(response.body)
+          @parse_result = Feedjira.parse(response.body)
+          self.last_modified = Time.zone.now
         rescue
           errors.add(:feed_url, :cannot_parse)
         end
@@ -62,19 +64,17 @@ class Feed < ApplicationRecord
   end
 
   def set_attributes
-    response = HTTParty.get(self.feed_url)
-    parse_result = Feedjira.parse(response.body)
-    set_name(parse_result) if self.name.blank?
-    set_origin_url(parse_result)
+    set_name if self.name.blank?
+    set_origin_url
     set_favicon_url
   end
 
-  def set_name(parse_result)
-    self.name = parse_result.title
+  def set_name
+    self.name = @parse_result.title
   end
 
-  def set_origin_url(parse_result)
-    self.origin_url = parse_result.url
+  def set_origin_url
+    self.origin_url = @parse_result.url
   end
 
   def set_favicon_url
@@ -82,8 +82,7 @@ class Feed < ApplicationRecord
   end
 
   def create_articles
-    response = HTTParty.get(self.feed_url)
-    entry = Feedjira.parse(response.body).entries
+    entry = @parse_result.entries
 
     entry.each do |e|
       image = e.image ? e.image : ''
@@ -99,5 +98,4 @@ class Feed < ApplicationRecord
       end
     end
   end
-
 end
