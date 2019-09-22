@@ -77,7 +77,7 @@ RSpec.describe Feed, type: :model do
       expect(Article.last.feed_id).to eq vscode_feed.id
     end
   end
-
+  
   describe '#fetch_feed' do
     it 'フィードをフェッチして、新規記事があれば追加する' do
       test_feed = Feed.find_by(feed_url: 'http://b.hatena.ne.jp/hotentry/it.rss') # githubに置き換える
