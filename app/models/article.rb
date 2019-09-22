@@ -10,7 +10,7 @@ class Article < ApplicationRecord
   end
 
   def self.destroy_read_articles
-    Article.where(unread: false).map(&:destroy)
+    Article.where(unread: false, starred: false).map(&:destroy)
   end
 
   def self.destroy_overflowing_articles(max)
