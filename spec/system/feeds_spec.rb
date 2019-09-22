@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'フィード管理機能', type: :system do
   describe 'フィードの一覧表示' do
-    let!(:github_feed) { FactoryBot.create(:feed, :github) }
     let!(:vscode_feed) { FactoryBot.create(:feed, :vscode) }
     let!(:rails_feed) { FactoryBot.create(:feed, :rails) }
+    let!(:apple_feed) { FactoryBot.create(:feed, :apple) }
 
     context 'feedsにアクセスしたとき' do
       before do
@@ -12,7 +12,7 @@ RSpec.describe 'フィード管理機能', type: :system do
       end
 
       it '全フィードが表示される' do
-        expect(page).to have_content github_feed.name
+        expect(page).to have_content apple_feed.name
         expect(page).to have_content vscode_feed.name
         expect(page).to have_content rails_feed.name
       end
