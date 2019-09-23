@@ -79,12 +79,16 @@ RSpec.describe Feed, type: :model do
     end
   end
   
-  # describe '#fetch' do
-  #   it 'フィードをフェッチして、新規記事があれば追加する' do
-  #     test_feed = Feed.find_by(feed_url: 'http://b.hatena.ne.jp/hotentry/it.rss') # githubに置き換える
-  #     before_fetch_size = test_feed.article.all.size
-  #     test_feed.fetch
-  #     expect(test_feed.article.all.size).to be > before_fetch_size
-  #   end
-  # end
+  describe '#fetch' do
+    let!(:rails_feed) { FactoryBot.create(:feed, :rails) }
+
+    it 'フィードをフェッチして、フィードが更新されていれば、記事を追加・更新する' do # 現状はFeedモデルをつくった直後にFeed#fetchしているので、フィードはおそらく更新されていない
+      rails_feed.last_modified -= 1
+      rails_feed.article.last.destroy
+      before_fetch_size = rails_feed.article.all.size
+      rails_feed.fetch
+      expect(rails_feed.article.all.size).to be > before_fetch_size
+      # last_modifiedの更新のテスト
+    end
+  end
 end
