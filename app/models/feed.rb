@@ -32,15 +32,20 @@ class Feed < ApplicationRecord
     articles.each do |article|
       # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
       local_article = self.article.where(title: article.title).first_or_initialize
-
-      image = article.image ? article.image : ''
-      if image == ''
-        response = HTTParty.get(article.url)
-        image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
-      end
-      
-      local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: image)
+      thumbnail = decide_thumbnail(article)
+      local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: thumbnail)
     end
+  end
+
+  def decide_thumbnail(article)
+    thumbnail = article.image ? article.image : ''
+
+    if thumbnail == ''
+      response = HTTParty.get(article.url)
+      thumbnail = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
+    end
+
+    return thumbnail
   end
 
   private
@@ -86,13 +91,8 @@ class Feed < ApplicationRecord
     articles = @parse_result.entries
 
     articles.each do |article|
-      image = article.image ? article.image : ''
-      if image == ''
-        response = HTTParty.get(article.url)
-        image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
-      end
-
-      article = Article.new(title: article.title, url: article.url, published: article.published, feed_id: self.id, thumbnail_url: image)
+      thumbnail = decide_thumbnail(article)
+      article = Article.new(title: article.title, url: article.url, published: article.published, feed_id: self.id, thumbnail_url: thumbnail)
 
       if article.save
       else
