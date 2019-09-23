@@ -3,7 +3,7 @@ FactoryBot.define do
     feed_url { 'https://github.com/kmaeda2048/feeedreader/commits/master.atom' }
     name { 'Recent Commits to feeedreader:master' }
 
-    trait :existing do # テスト環境のDBにあらかじめ入れておく
+    trait :github do
       feed_url { 'https://github.blog/feed/' }
       name { 'The GitHub Blog' }
     end
