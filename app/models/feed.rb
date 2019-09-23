@@ -25,8 +25,9 @@ class Feed < ApplicationRecord
 
   def fetch_feed
     response = HTTParty.get(self.feed_url)
-    articles = Feedjira.parse(response.body).entries
-    self.update(last_modified: Time.zone.now)
+    parse_result = Feedjira.parse(response.body)
+    self.update(last_modified: parse_result.last_modified)
+    articles = parse_result.entries
 
     articles.each do |article|
       # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
@@ -55,7 +56,7 @@ class Feed < ApplicationRecord
       else
         begin
           @parse_result = Feedjira.parse(response.body)
-          self.last_modified = Time.zone.now
+          self.last_modified = @parse_result.last_modified
         rescue
           errors.add(:feed_url, :cannot_parse)
         end
