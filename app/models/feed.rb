@@ -83,16 +83,16 @@ class Feed < ApplicationRecord
   end
 
   def create_articles
-    entry = @parse_result.entries
+    articles = @parse_result.entries
 
-    entry.each do |e|
-      image = e.image ? e.image : ''
+    articles.each do |article|
+      image = article.image ? article.image : ''
       if image == ''
-        response = HTTParty.get(e.url)
+        response = HTTParty.get(article.url)
         image = Nokogiri::HTML.parse(response.body, nil, 'utf-8').css('//meta[property="og:image"]/@content').to_s
       end
 
-      article = Article.new(title: e.title, url: e.url, published: e.published, feed_id: self.id, thumbnail_url: image)
+      article = Article.new(title: article.title, url: article.url, published: article.published, feed_id: self.id, thumbnail_url: image)
 
       if article.save
       else
