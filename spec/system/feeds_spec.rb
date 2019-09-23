@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe 'フィード管理機能', type: :system do
   describe 'フィードの一覧表示' do
-    let!(:vscode_feed) { FactoryBot.create(:feed, :vscode) }
-    let!(:rails_feed) { FactoryBot.create(:feed, :rails) }
-    let!(:apple_feed) { FactoryBot.create(:feed, :apple) }
+    let!(:feed) { FactoryBot.create(:feed) }
+
+    after do
+      feed.destroy
+    end
 
     context 'feedsにアクセスしたとき' do
       before do
         visit feeds_path
       end
 
-      it '全フィードが表示される' do
-        expect(page).to have_content apple_feed.name
-        expect(page).to have_content vscode_feed.name
-        expect(page).to have_content rails_feed.name
+      it 'フィード名が表示される' do
+        expect(page).to have_content feed.name
       end
     end
   end
@@ -23,6 +23,10 @@ RSpec.describe 'フィード管理機能', type: :system do
     let!(:feed) { FactoryBot.create(:feed) }
     let!(:unread_article) { FactoryBot.create(:article, feed: feed) }
     let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
+
+    after do
+      feed.destroy
+    end
     
     context 'feeds/N/unreadにアクセスしたとき' do
       before do
