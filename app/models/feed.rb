@@ -26,14 +26,17 @@ class Feed < ApplicationRecord
   def fetch
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
-    self.update(last_modified: parse_result.last_modified)
-    articles = parse_result.entries
 
-    articles.each do |article|
-      # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
-      local_article = self.article.where(title: article.title).first_or_initialize
-      thumbnail = decide_thumbnail(article)
-      local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: thumbnail)
+    if parse_result.last_modified.in_time_zone > self.last_modified
+      self.update(last_modified: parse_result.last_modified.in_time_zone)
+      articles = parse_result.entries
+  
+      articles.each do |article|
+        # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
+        local_article = self.article.where(title: article.title).first_or_initialize
+        thumbnail = decide_thumbnail(article)
+        local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: thumbnail)
+      end
     end
   end
 
@@ -61,7 +64,7 @@ class Feed < ApplicationRecord
       else
         begin
           @parse_result = Feedjira.parse(response.body)
-          self.last_modified = @parse_result.last_modified
+          self.last_modified = @parse_result.last_modified.in_time_zone
         rescue
           errors.add(:feed_url, :cannot_parse)
         end
