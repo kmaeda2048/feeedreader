@@ -79,11 +79,11 @@ RSpec.describe Feed, type: :model do
     end
   end
   
-  # describe '#fetch_feed' do
+  # describe '#fetch' do
   #   it 'フィードをフェッチして、新規記事があれば追加する' do
   #     test_feed = Feed.find_by(feed_url: 'http://b.hatena.ne.jp/hotentry/it.rss') # githubに置き換える
   #     before_fetch_size = test_feed.article.all.size
-  #     test_feed.fetch_feed
+  #     test_feed.fetch
   #     expect(test_feed.article.all.size).to be > before_fetch_size
   #   end
   # end
