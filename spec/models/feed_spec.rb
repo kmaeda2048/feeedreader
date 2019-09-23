@@ -4,6 +4,10 @@ RSpec.describe Feed, type: :model do
   describe 'バリデーション' do
     context '入力された値が有効な場合' do
       let!(:valid_feed) { FactoryBot.create(:feed) }
+
+      after do
+        valid_feed.destroy
+      end
       
       it 'バリデーションにかからない' do
         expect(valid_feed).to be_valid
@@ -38,56 +42,72 @@ RSpec.describe Feed, type: :model do
       end
       
       context '既に存在するフィードの場合' do
-        let!(:github_feed) { FactoryBot.create(:feed, :github) }
-        let!(:existing_feed) { FactoryBot.build(:feed, :github) }
+        let!(:valid_feed) { FactoryBot.create(:feed) }
+        let!(:invalid_feed) { FactoryBot.build(:feed) }
+
+        after do
+          valid_feed.destroy
+        end
   
         it '登録に失敗する' do
-          existing_feed.valid?
-          expect(existing_feed.errors.full_messages).to include 'URLはすでに存在します'
+          invalid_feed.valid?
+          expect(invalid_feed.errors.full_messages).to include 'URLはすでに存在します'
         end
       end
     end
   end
 
   describe '#set_attributes' do
-    let!(:name_blank_feed) { FactoryBot.create(:feed, :apple, name: '') }
+    let!(:feed) { FactoryBot.create(:feed, name: '') }
+
+    after do
+      feed.destroy
+    end
 
     describe '#set_name' do
       it 'nameが自動で登録される' do
-        expect(name_blank_feed.name).to eq 'Apple Newsroom'
+        expect(feed.name).to eq 'Recent Commits to feeedreader:master'
       end
     end
 
     describe '#set_origin_url' do
       it 'origin_urlが自動で登録される' do
-        expect(name_blank_feed.feed_url).to include name_blank_feed.origin_url
+        expect(feed.feed_url).to include feed.origin_url
       end
     end
 
     describe '#set_favicon_url' do
       it 'favicon_urlが自動で登録される' do
-        expect(name_blank_feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{name_blank_feed.origin_url}"
+        expect(feed.favicon_url).to eq "https://www.google.com/s2/favicons?domain_url=#{feed.origin_url}"
       end
     end
   end
 
   describe '#create_articles' do
-    let!(:vscode_feed) { FactoryBot.create(:feed, :vscode) }
+    let!(:feed) { FactoryBot.create(:feed) }
+
+    after do
+      feed.destroy
+    end
 
     it '登録したフィードの記事が追加される' do
-      expect(Article.last.feed_id).to eq vscode_feed.id
+      expect(Article.last.feed_id).to eq feed.id
     end
   end
   
   describe '#fetch' do
-    let!(:rails_feed) { FactoryBot.create(:feed, :rails) }
+    let!(:feed) { FactoryBot.create(:feed) }
+
+    after do
+      feed.destroy
+    end
 
     it 'フィードをフェッチして、フィードが更新されていれば、記事を追加・更新する' do # 現状はFeedモデルをつくった直後にFeed#fetchしているので、フィードはおそらく更新されていない
-      rails_feed.last_modified -= 1
-      rails_feed.article.last.destroy
-      before_fetch_size = rails_feed.article.all.size
-      rails_feed.fetch
-      expect(rails_feed.article.all.size).to be > before_fetch_size
+      feed.last_modified -= 1
+      feed.article.last.destroy
+      before_fetch_size = feed.article.all.size
+      feed.fetch
+      expect(feed.article.all.size).to be > before_fetch_size
       # last_modifiedの更新のテスト
     end
   end
