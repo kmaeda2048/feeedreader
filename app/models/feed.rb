@@ -15,15 +15,15 @@ class Feed < ApplicationRecord
     []
   end
 
-  def self.fetch_all_feed
+  def self.fetch_all
     feeds = Feed.all
 
     feeds.each do |feed|
-      feed.fetch_feed
+      feed.fetch
     end
   end
 
-  def fetch_feed
+  def fetch
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
     self.update(last_modified: parse_result.last_modified)
