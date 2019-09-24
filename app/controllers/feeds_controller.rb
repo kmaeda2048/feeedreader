@@ -2,14 +2,14 @@ class FeedsController < ApplicationController
   def index
     @side_feeds = Feed.all
     @q = Feed.ransack(params[:q])
-    @feeds = @q.result(distinct: true).page(params[:page])
+    @feeds = @q.result(distinct: true).recently.page(params[:page])
   end
 
   def unread
     @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
     @q = Article.where(feed_id: @feed.id, unread: true).ransack(params[:q])
-    @articles = @q.result(distinct: true)
+    @articles = @q.result(distinct: true).order_pub
     @now_page = @feed.name
     @articles_count = @articles.size
   end

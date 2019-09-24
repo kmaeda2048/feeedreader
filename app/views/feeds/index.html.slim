@@ -8,20 +8,16 @@
 
     table
       tr
-        th= t('activerecord.attributes.feed.id')
+        th= sort_link(@q, :name)
         th= t('activerecord.attributes.feed.feed_url')
-        th= t('activerecord.attributes.feed.name')
-        th= t('activerecord.attributes.feed.created_at')
-        th= t('activerecord.attributes.feed.updated_at')
+        th= sort_link(@q, :created_at)
       - @feeds.each do |feed|
         tr
-          td= feed.id
+          td
+            = link_to feed.name, unread_feed_path(feed), class: 'feed-name'
           td
             = link_to feed.feed_url, feed.feed_url
-          td
-            = link_to feed.name, unread_feed_path(feed)
           td= l(feed.created_at, format: :short)
-          td= l(feed.updated_at, format: :short)
           td
             = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
             = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.name}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'

@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
   belongs_to :feed
 
+  scope :order_pub, -> { order(published: :asc) }
+  scope :order_star, -> { order(starred_at: :asc) }
+
   def self.ransackable_attributes(auth_object = nil)
     %w[title]
   end
