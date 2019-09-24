@@ -12,9 +12,9 @@
         th= t('activerecord.attributes.feed.feed_url')
         th= sort_link(@q, :created_at)
       - @feeds.each do |feed|
-        tr data-feed-id="#{feed.id}"
+        tr
           td
-            = link_to feed.name, unread_feed_path(feed)
+            = link_to feed.name, unread_feed_path(feed), class: 'feed-name'
           td
             = link_to feed.feed_url, feed.feed_url
           td= l(feed.created_at, format: :short)
