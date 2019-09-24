@@ -57,6 +57,14 @@ RSpec.describe 'フィード管理機能', type: :system do
       it '既読記事が含まれない' do
         expect(page).not_to have_content read_article.title
       end
+      
+      it '現在ページが表示される' do
+        expect(find('#now-page').text).to eq feed.name
+      end
+
+      it '表示記事数が表示される' do
+        expect(find('#articles-count').text).to eq "(#{feed.article.where(unread: true).size})"
+      end
     end
   end
 

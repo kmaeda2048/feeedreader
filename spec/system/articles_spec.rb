@@ -38,6 +38,14 @@ RSpec.describe '記事表示機能', type: :system do
       it '既読記事が含まれない' do
         expect(page).not_to have_content read_article.title
       end
+
+      it '現在ページが表示される' do
+        expect(find('#now-page').text).to eq '全フィード'
+      end
+
+      it '表示記事数が表示される' do
+        expect(find('#articles-count').text).to eq "(#{Article.where(unread: true).size})"
+      end
     end
   end
 
@@ -71,6 +79,14 @@ RSpec.describe '記事表示機能', type: :system do
 
       it 'スター付きでない記事が含まれない' do
         expect(page).not_to have_content unstarred_article.title
+      end
+
+      it '現在ページが表示される' do
+        expect(find('#now-page').text).to eq 'スター付き'
+      end
+
+      it '表示記事数が表示される' do
+        expect(find('#articles-count').text).to eq "(#{Article.where(starred: true).size})"
       end
     end
   end
