@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
     title { 'Example article' }
-    url { 'http://example.com/articles/1' }
+    url { 'http://example.com/unread' }
     published { '2000-01-01 00:00:00' }
     unread { true }
     starred { false }
@@ -10,7 +10,7 @@ FactoryBot.define do
 
     trait :old_unread do
       title { 'Old article' }
-      url { 'http://example.com/articles/old' }
+      url { 'http://example.com/unread/old' }
       published { '2000-01-01 00:00:00' }
       unread { true }
       starred { false }
@@ -20,7 +20,7 @@ FactoryBot.define do
 
     trait :new_unread do
       title { 'New article' }
-      url { 'http://example.com/articles/new' }
+      url { 'http://example.com/unread/new' }
       published { '2001-01-01 00:00:00' }
       unread { true }
       starred { false }
@@ -30,7 +30,7 @@ FactoryBot.define do
 
     trait :read do
       title { 'Read article' }
-      url { 'http://example.com/articles/read' }
+      url { 'http://example.com/read' }
       published { '2000-01-01 00:00:00' }
       unread { false }
       starred { false }
@@ -40,7 +40,7 @@ FactoryBot.define do
 
     trait :starred do
       title { 'Starred article' }
-      url { 'http://example.com/articles/starred' }
+      url { 'http://example.com/starred' }
       published { '2000-01-01 00:00:00' }
       unread { true }
       starred { true }
@@ -50,7 +50,7 @@ FactoryBot.define do
 
     trait :old_starred do
       title { 'Starred article' }
-      url { 'http://example.com/articles/starred' }
+      url { 'http://example.com/starred/old' }
       published { '2000-01-01 00:00:00' }
       unread { true }
       starred { true }
@@ -61,7 +61,7 @@ FactoryBot.define do
 
     trait :new_starred do
       title { 'Starred article' }
-      url { 'http://example.com/articles/starred' }
+      url { 'http://example.com/starred/new' }
       published { '2000-01-01 00:00:00' }
       unread { true }
       starred { true }
