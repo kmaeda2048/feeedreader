@@ -61,11 +61,61 @@ RSpec.describe 'フィード管理機能', type: :system do
   end
 
   describe 'フィードの新規登録' do
+    let(:url) { 'https://github.com/kmaeda2048/feeedreader/commits/master.atom' }
+
+    before do
+      visit new_feed_path
+      fill_in 'feed_feed_url', with: url
+      click_button '登録する'
+    end
+
+    after do
+      Feed.last.destroy
+    end
+
+    it '登録される' do
+      expect(Feed.last.feed_url).to eq url
+    end
+
+    it 'unread_feed_pathにリダイレクトされる' do
+      expect(find('.notice').text).to eq "「#{Feed.last.name}」を登録しました。"
+    end
   end
 
   describe 'フィードの編集' do
+    let!(:feed) { FactoryBot.create(:feed) }
+    let(:new_name) { '新しいフィード名' }
+
+    before do
+      visit edit_feed_path(feed)
+      fill_in 'feed_name', with: new_name
+      click_button '更新する'
+    end
+
+    after do
+      feed.destroy
+    end
+
+    it '編集される' do
+      expect(Feed.last.name).to eq new_name
+    end
+
+    it 'unread_feed_pathにリダイレクトされる' do
+      expect(find('.notice').text).to eq "「#{new_name}」を更新しました。"
+    end
   end
 
   describe 'フィードの削除' do
+    let!(:feed) { FactoryBot.create(:feed) }
+
+    before do
+      visit feeds_path
+      click_on '削除'
+      page.driver.browser.switch_to.alert.accept
+    end
+
+    it '削除される' do
+      expect(Article.where(id: feed.id)).not_to exist
+    end
   end
 end
