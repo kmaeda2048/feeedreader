@@ -8,7 +8,7 @@ class Feed < ApplicationRecord
   after_create :create_articles, on: :create
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[feed_url name origin_url]
+    %w[feed_url name origin_url created_at]
   end
 
   def self.ransackable_associations(auth_object = nil)
