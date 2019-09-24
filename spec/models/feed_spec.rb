@@ -97,18 +97,20 @@ RSpec.describe Feed, type: :model do
   
   describe '#fetch' do
     let!(:feed) { FactoryBot.create(:feed) }
+    let(:article) { feed.article.last }
+
+    before do
+      article.destroy
+      feed.last_modified -= 1
+    end
 
     after do
       feed.destroy
     end
 
-    it 'フィードをフェッチして、フィードが更新されていれば、記事を追加・更新する' do # 現状はFeedモデルをつくった直後にFeed#fetchしているので、フィードはおそらく更新されていない
-      feed.last_modified -= 1
-      feed.article.last.destroy
-      before_fetch_size = feed.article.all.size
+    it '削除した記事が再度追加される' do
       feed.fetch
-      expect(feed.article.all.size).to be > before_fetch_size
-      # last_modifiedの更新のテスト
+      expect(Article.where(title: article.title)).to exist
     end
   end
 end
