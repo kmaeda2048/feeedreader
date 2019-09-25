@@ -2,80 +2,82 @@
 
 document.addEventListener('turbolinks:load', () => {
     const shortcut = (e) => {
-        const keyName = e.key;
-        switch (keyName) {
-            case 'j':
-                if (focusedCard !== cardArea.lastElementChild) {
-                    focusedCard.removeAttribute('id');
-                    nextCard.setAttribute('id', 'focused-card');
-                    if (nextFlag === 1) {
-                        cardArea.scrollTop = cardArea.scrollTop + ((cardHeight + cardMargin) * cardPerPage);
-                    }
-                    nextCard.querySelector('.card-link').focus();
+        if (document.activeElement.className !== 'form-control') {
+            const keyName = e.key;
+            switch (keyName) {
+                case 'j':
+                    if (focusedCard !== cardArea.lastElementChild) {
+                        focusedCard.removeAttribute('id');
+                        nextCard.setAttribute('id', 'focused-card');
+                        if (nextFlag === 1) {
+                            cardArea.scrollTop = cardArea.scrollTop + ((cardHeight + cardMargin) * cardPerPage);
+                        }
+                        nextCard.querySelector('.card-link').focus();
 
-                    // 監視終了
-                    nextCardObserver.unobserve(nextCard);
-                    if (previousCard) {
-                        previousCardObserver.unobserve(previousCard);
-                    }
-
-                    // 変数更新
-                    previousCard = focusedCard;
-                    focusedCard = nextCard;
-                    nextCard = focusedCard.nextElementSibling;
-
-                    // 監視開始
-                    if (nextCard) {
-                        nextCardObserver.observe(nextCard);
-                    }
-                    previousCardObserver.observe(previousCard);
-                }
-                break;
-            case 'k':
-                if (focusedCard !== cardArea.firstElementChild) {
-                    focusedCard.removeAttribute('id');
-                    previousCard.setAttribute('id', 'focused-card');
-                    if (previousFlag === 1) {
-                        cardArea.scrollTop = cardArea.scrollTop - ((cardHeight + cardMargin) * cardPerPage);
-                    }
-                    previousCard.querySelector('.card-link').focus();
-
-                    // 監視終了
-                    if (nextCard) {
+                        // 監視終了
                         nextCardObserver.unobserve(nextCard);
-                    }
-                    previousCardObserver.unobserve(previousCard);
+                        if (previousCard) {
+                            previousCardObserver.unobserve(previousCard);
+                        }
 
-                    // 変数更新
-                    nextCard = focusedCard;
-                    focusedCard = previousCard;
-                    previousCard = focusedCard.previousElementSibling;
+                        // 変数更新
+                        previousCard = focusedCard;
+                        focusedCard = nextCard;
+                        nextCard = focusedCard.nextElementSibling;
 
-                    // 監視開始
-                    nextCardObserver.observe(nextCard);
-                    if (previousCard) {
+                        // 監視開始
+                        if (nextCard) {
+                            nextCardObserver.observe(nextCard);
+                        }
                         previousCardObserver.observe(previousCard);
                     }
-                }
-                break;
-            case 'g':
-                focusedCard.querySelector('.card-link').click();
-                break;
-            case 't':
-                window.open(focusedCard.querySelector('.card-link'), '_blank');
-                break;
-            case 's':
-                focusedCard.querySelector('.fa-star').click();
-                break;
-            case 'a':
-                window.location.href = document.getElementById('all');
-                break;
-            case 'q':
-                window.location.href = document.getElementById('starred');
-                break;
-            case 'c':
-                window.location.href = document.getElementById('config');
-                break;
+                    break;
+                case 'k':
+                    if (focusedCard !== cardArea.firstElementChild) {
+                        focusedCard.removeAttribute('id');
+                        previousCard.setAttribute('id', 'focused-card');
+                        if (previousFlag === 1) {
+                            cardArea.scrollTop = cardArea.scrollTop - ((cardHeight + cardMargin) * cardPerPage);
+                        }
+                        previousCard.querySelector('.card-link').focus();
+
+                        // 監視終了
+                        if (nextCard) {
+                            nextCardObserver.unobserve(nextCard);
+                        }
+                        previousCardObserver.unobserve(previousCard);
+
+                        // 変数更新
+                        nextCard = focusedCard;
+                        focusedCard = previousCard;
+                        previousCard = focusedCard.previousElementSibling;
+
+                        // 監視開始
+                        nextCardObserver.observe(nextCard);
+                        if (previousCard) {
+                            previousCardObserver.observe(previousCard);
+                        }
+                    }
+                    break;
+                case 'g':
+                    focusedCard.querySelector('.card-link').click();
+                    break;
+                case 't':
+                    window.open(focusedCard.querySelector('.card-link'), '_blank');
+                    break;
+                case 's':
+                    focusedCard.querySelector('.fa-star').click();
+                    break;
+                case 'a':
+                    window.location.href = document.getElementById('all');
+                    break;
+                case 'q':
+                    window.location.href = document.getElementById('starred');
+                    break;
+                case 'c':
+                    window.location.href = document.getElementById('config');
+                    break;
+            }
         }
     }
 
@@ -168,7 +170,7 @@ document.addEventListener('turbolinks:load', () => {
         }
     }, { root: cardArea, threshold: 1.0 });
 
-    if ((controllerAndAction !== 'static_pages#welcome') && (controllerAndAction !== 'feeds#new') && (controllerAndAction !== 'feeds#edit')) {
+    if (controllerAndAction !== 'static_pages#welcome') {
         document.addEventListener('keydown', shortcut);
     }
     Array.prototype.forEach.call(stars, star => {
