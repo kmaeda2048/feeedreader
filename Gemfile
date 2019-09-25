@@ -45,8 +45,6 @@ gem 'jquery-rails', '~> 4.3.5'
 gem 'devise', '~> 4.7.1'
 gem 'devise-i18n', '~> 1.8.0'
 
-gem 'kaminari', '~> 1.1.1'
-
 gem 'ransack', '~> 2.1.1'
 
 gem 'feedjira', '~> 3.0.0'
