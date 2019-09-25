@@ -8,7 +8,7 @@ class FeedsController < ApplicationController
   def unread
     @side_feeds = Feed.all
     @feed = Feed.find(params[:id])
-    @q = Article.where(feed_id: @feed.id, unread: true).ransack(params[:q])
+    @q = Article.where(feed_id: @feed.id).unread.ransack(params[:q])
     @articles = @q.result(distinct: true).order_pub
     @now_page = @feed.name
     @articles_count = @articles.size
@@ -38,7 +38,7 @@ class FeedsController < ApplicationController
   def update
     @feed = Feed.find(params[:id])
     if @feed.update(feed_params)
-      redirect_to unread_feed_path(@feed), notice: "「#{@feed.name}」を更新しました。"
+      redirect_to unread_feed_path(@feed), notice: "「#{@feed.name}」に更新しました。"
     else
       render :edit
     end
