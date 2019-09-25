@@ -4,7 +4,7 @@
   #favicons
     = link_to 'ALL', unread_articles_path, class: 'favicon', id: 'all'
     = link_to icon('fas', 'star', class: 'fa-fw'), starred_articles_path, class: 'favicon', id: 'starred'
-    = link_to icon('fas', 'plus', class: 'fa-fw'), new_feed_path, class: 'favicon'
+    = link_to icon('fas', 'plus', class: 'fa-fw'), new_feed_path, class: 'favicon', id: 'new'
     - feeds.each do |feed|
       = link_to image_tag(feed.favicon_url, size: '32x32'), unread_feed_path(feed), class: 'favicon'
     = link_to icon('fas', 'cog', class: 'fa-fw'), feeds_path, class: 'favicon', id: 'config'

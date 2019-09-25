@@ -31,6 +31,7 @@ document.addEventListener('turbolinks:load', () => {
                         }
                         previousCardObserver.observe(previousCard);
                     }
+                    goFlag = false;
                     break;
                 case 'k':
                     if (focusedCard !== cardArea.firstElementChild) {
@@ -58,24 +59,57 @@ document.addEventListener('turbolinks:load', () => {
                             previousCardObserver.observe(previousCard);
                         }
                     }
+                    goFlag = false;
                     break;
-                case 'g':
+                case 'o':
                     focusedCard.querySelector('.card-link').click();
+                    goFlag = false;
                     break;
                 case 't':
                     window.open(focusedCard.querySelector('.card-link'), '_blank');
+                    goFlag = false;
                     break;
-                case 's':
-                    focusedCard.querySelector('.fa-star').click();
+                case 'g':
+                    goFlag = true;
+                    gKeyDownTime = new Date;
                     break;
                 case 'a':
-                    window.location.href = document.getElementById('all');
+                    if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                        window.location.href = document.getElementById('all');
+                    }
+                    goFlag = false;
                     break;
-                case 'q':
-                    window.location.href = document.getElementById('starred');
+                case 's':
+                    if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                        window.location.href = document.getElementById('starred');
+                    } else {
+                        focusedCard.querySelector('.fa-star').click();
+                    }
+                    goFlag = false;
                     break;
+                case 'n':
+                    if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                        window.location.href = document.getElementById('new');
+                    }
+                    goFlag = false;
+                    break;
+                // case 'h':
+                //     if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                //         window.location.href = document.getElementById('config');
+                //     }
+                //     goFlag = false;
+                //     break;
+                // case '/':
+                //     if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                //         window.location.href = document.getElementById('config');
+                //     }
+                //     goFlag = false;
+                //     break;
                 case 'c':
-                    window.location.href = document.getElementById('config');
+                    if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                        window.location.href = document.getElementById('config');
+                    }
+                    goFlag = false;
                     break;
             }
         }
@@ -119,6 +153,8 @@ document.addEventListener('turbolinks:load', () => {
     let nextFlag = 0;
     let previousFlag = 0;
     const cardPerPage = Math.floor((window.innerHeight - headerHeight) / (cardHeight + cardMargin));
+    let goFlag = false;
+    let gKeyDownTime;
     const ajaxData = { ajax: 'unread' };
 
     const readObserver = new IntersectionObserver((entries, observer) => {
