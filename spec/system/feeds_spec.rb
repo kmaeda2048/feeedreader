@@ -109,7 +109,7 @@ RSpec.describe 'フィード管理機能', type: :system do
     end
 
     it 'unread_feed_pathにリダイレクトされる' do
-      expect(find('.notice').text).to eq "「#{new_name}」を更新しました。"
+      expect(find('.notice').text).to eq "「#{new_name}」に更新しました。"
     end
   end
 
