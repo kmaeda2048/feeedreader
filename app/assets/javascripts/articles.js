@@ -99,18 +99,22 @@ document.addEventListener('turbolinks:load', () => {
                 //     }
                 //     goFlag = false;
                 //     break;
-                // case '/':
-                //     if (goFlag && (new Date - gKeyDownTime < 1000)) {
-                //         window.location.href = document.getElementById('config');
-                //     }
-                //     goFlag = false;
-                //     break;
                 case 'c':
                     if (goFlag && (new Date - gKeyDownTime < 1000)) {
                         window.location.href = document.getElementById('config');
                     }
                     goFlag = false;
                     break;
+            }
+        }
+    }
+
+    const focusSearchForm = (e) => {
+        if (document.activeElement.className !== 'form-control') {
+            const keyName = e.key;
+            if (keyName == '/') {
+                document.getElementById('search-form').focus();
+                goFlag = false;
             }
         }
     }
@@ -208,6 +212,7 @@ document.addEventListener('turbolinks:load', () => {
 
     if (controllerAndAction !== 'static_pages#welcome') {
         document.addEventListener('keydown', shortcut);
+        document.addEventListener('keyup', focusSearchForm);
     }
     Array.prototype.forEach.call(stars, star => {
         star.addEventListener('click', () => { toggleStar(star); });
@@ -215,6 +220,7 @@ document.addEventListener('turbolinks:load', () => {
 
     document.addEventListener('turbolinks:load', () => {
         document.removeEventListener('keydown', shortcut);
+        document.removeEventListener('keyup', focusSearchForm);
         Array.prototype.forEach.call(stars, star => {
             star.removeEventListener('click', toggleStar);
         });
