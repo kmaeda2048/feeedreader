@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     get 'unread', on: :collection
     get 'starred', on: :collection
   end
+  get 'shortcuts', to: 'static_pages#shortcuts'
 end

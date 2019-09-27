@@ -93,12 +93,12 @@ document.addEventListener('turbolinks:load', () => {
                     }
                     goFlag = false;
                     break;
-                // case 'h':
-                //     if (goFlag && (new Date - gKeyDownTime < 1000)) {
-                //         window.location.href = document.getElementById('config');
-                //     }
-                //     goFlag = false;
-                //     break;
+                case 'h':
+                    if (goFlag && (new Date - gKeyDownTime < 1000)) {
+                        window.location.href = document.getElementById('shortcuts');
+                    }
+                    goFlag = false;
+                    break;
                 case 'c':
                     if (goFlag && (new Date - gKeyDownTime < 1000)) {
                         window.location.href = document.getElementById('config');

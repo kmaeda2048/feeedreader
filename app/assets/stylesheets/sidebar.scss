@@ -32,7 +32,8 @@
 
       .fa-star,
       .fa-plus,
-      .fa-cog {
+      .fa-cog,
+      .fa-keyboard {
         @include flex-center;
         width: 32px;
         height: 32px;

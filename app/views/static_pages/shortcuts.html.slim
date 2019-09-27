@@ -1,0 +1,43 @@
+.flex
+  = render 'shared/sidebar', feeds: @side_feeds
+
+  #shortcuts-area
+    h1 ショートカットキー
+    table
+      tr
+        td j
+        td 次のカードへ
+      tr
+        td k
+        td 前のカードへ
+      tr
+        td o
+        td 現在のタブで記事を開く
+      tr
+        td t
+        td 新しいタブで記事を開く
+      tr
+        td s
+        td スターのトグル
+      tr
+        td
+          | /
+        td 検索フォームにフォーカス
+      tr
+        td g → a
+        td 未読記事一覧へ
+      tr
+        td g → s
+        td スター付き記事一覧へ
+      tr
+        td g → n
+        td 新規フィード登録へ
+      tr
+        td g → c
+        td フィード一覧へ
+      tr
+        td g → h
+        td ショートカットキー一覧(今開いているページ)へ
+
+/ 1画面分下にスクロール
+/ 1画面分上にスクロール
