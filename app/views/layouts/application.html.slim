@@ -13,19 +13,18 @@ html lang="ja"
       #brand FeeedReader
       #search
         - if @q
-          .form-group
-            - if controller.controller_name == 'articles' && controller.action_name == 'unread'
-              = search_form_for @q, url: unread_articles_path do |f|
-                = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
-            - elsif controller.controller_name == 'articles' && controller.action_name == 'starred'
-              = search_form_for @q, url: starred_articles_path do |f|
-                = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
-            - elsif controller.controller_name == 'feeds' && controller.action_name == 'unread'
-              = search_form_for @q, url: unread_feed_path(@feed) do |f|
-                = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
-            - else
-              = search_form_for @q do |f|
-                = f.search_field :feed_url_or_name_or_origin_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control', id: 'search-form'
+          - if controller.controller_name == 'articles' && controller.action_name == 'unread'
+            = search_form_for @q, url: unread_articles_path do |f|
+              = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
+          - elsif controller.controller_name == 'articles' && controller.action_name == 'starred'
+            = search_form_for @q, url: starred_articles_path do |f|
+              = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
+          - elsif controller.controller_name == 'feeds' && controller.action_name == 'unread'
+            = search_form_for @q, url: unread_feed_path(@feed) do |f|
+              = f.search_field :title_cont, placeholder: '記事タイトルで検索', class: 'form-control', id: 'search-form'
+          - else
+            = search_form_for @q do |f|
+              = f.search_field :feed_url_or_name_or_origin_url_cont, placeholder: 'フィード名またはURLで検索', class: 'form-control', id: 'search-form'
 
       #now-page.omitted
         - if @now_page
