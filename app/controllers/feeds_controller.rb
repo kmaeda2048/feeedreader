@@ -1,12 +1,12 @@
 class FeedsController < ApplicationController
   def index
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @q = Feed.ransack(params[:q])
     @feeds = @q.result(distinct: true).recently
   end
 
   def unread
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @feed = Feed.find(params[:id])
     @q = Article.where(feed_id: @feed.id).unread.ransack(params[:q])
     @articles = @q.result(distinct: true).order_pub
@@ -15,12 +15,12 @@ class FeedsController < ApplicationController
   end
 
   def new
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @feed = Feed.new
   end
 
   def create
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @feed = Feed.new(feed_params)
 
     if @feed.save
@@ -31,7 +31,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @feed = Feed.find(params[:id])
   end
 
