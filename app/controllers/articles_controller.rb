@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def unread
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @q = Article.unread.ransack(params[:q])
     @articles = @q.result(distinct: true).order_pub
     @now_page = '全フィード'
@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   end
     
   def starred
-    @side_feeds = Feed.all
+    @side_feeds = Feed.all.recently
     @q = Article.starred.ransack(params[:q])
     @articles = @q.result(distinct: true).order_star
     @now_page = 'スター付き'
