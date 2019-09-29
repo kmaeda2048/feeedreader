@@ -2,7 +2,7 @@ class FeedsController < ApplicationController
   def index
     @side_feeds = Feed.all.recently
     @q = Feed.ransack(params[:q])
-    @feeds = @q.result(distinct: true).recently.page(params[:page])
+    @feeds = @q.result(distinct: true).recently.page(params[:page]).per(10)
   end
 
   def unread
