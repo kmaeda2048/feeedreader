@@ -118,7 +118,7 @@ RSpec.describe 'フィード管理機能', type: :system do
 
     before do
       visit feeds_path
-      click_on '削除'
+      find('#delete').click
       page.driver.browser.switch_to.alert.accept
     end
 

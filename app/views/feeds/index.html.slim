@@ -15,6 +15,7 @@
           td
             = link_to feed.feed_url, feed.feed_url
           td= l(feed.created_at, format: :short)
-          td
-            = link_to '編集', edit_feed_path(feed), class: 'btn btn-primary mr-3'
-            = link_to '削除', feed, method: :delete, data: { confirm: "#{feed.name}を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
+          td.edit_and_delete
+            = link_to icon('far', 'edit', class: 'fa-fw'), edit_feed_path(feed)
+            = link_to feed, method: :delete, data: { confirm: "#{feed.name}を削除します。よろしいですか？" }, id: 'delete' do
+              = icon('far', 'trash-alt', class: 'fa-fw')
