@@ -7,7 +7,7 @@
   .form-group
     - if controller.action_name == 'new'
       = f.label(:feed_url) + ' (入力必須)'
-      = f.text_field :feed_url, placeholder: '例: https://github.com/kmaeda2048/feeedreader/commits/master.atom', class: 'form-control', id: 'feed_feed_url'
+      = f.text_field :feed_url, placeholder: '例: https://github.com/kmaeda2048/feeedreader/commits/master.atom', autofocus: true, class: 'form-control', id: 'feed_feed_url'
     - if controller.action_name == 'edit'
       = f.label(:feed_url)
       = f.text_field :feed_url, placeholder: '例: https://github.com/kmaeda2048/feeedreader/commits/master.atom', readonly: true, class: 'form-control', id: 'feed_feed_url'
