@@ -92,6 +92,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.feed_fetch_logger = Logger.new('./log/pro_feed_fetch.log')
-  config.article_destroy_logger = Logger.new('./log/pro_article_destroy.log')
+  config.feed_fetch_logger = Logger.new(STDOUT)
+  config.article_destroy_logger = Logger.new(STDOUT)
 end
