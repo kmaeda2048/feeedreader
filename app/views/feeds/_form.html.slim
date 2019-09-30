@@ -17,4 +17,11 @@
     - if controller.action_name == 'edit'
       = f.label(:name)
     = f.text_field :name, placeholder: '例: Recent Commits to feeedreader:master', class: 'form-control', id: 'feed_name'
-  = f.submit nil, class: 'btn btn-primary'
+  - if controller.action_name == 'new'
+    = f.button type: 'submit', class: 'btn btn-primary' do
+      span id="submit" 登録する
+      = icon('fas', 'spinner', class: 'fa-fw', id: 'spinner')
+  - if controller.action_name == 'edit'
+    = f.button type: 'submit', class: 'btn btn-primary' do
+      span id="submit" 更新する
+      = icon('fas', 'spinner', class: 'fa-fw', id: 'spinner')
