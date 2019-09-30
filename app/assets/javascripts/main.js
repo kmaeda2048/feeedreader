@@ -161,6 +161,15 @@ document.addEventListener('turbolinks:load', () => {
     let gKeyDownTime;
     const ajaxData = { ajax: 'unread' };
 
+    if ((controllerAndAction === 'feeds#new') || (controllerAndAction === 'feeds#edit')) {
+        const submit = document.getElementById('submit');
+        const spinner = document.getElementById('spinner');
+        document.addEventListener('submit', () => {
+            submit.style.display = 'none';
+            spinner.style.display = 'block';
+        });
+    }
+
     const readObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
