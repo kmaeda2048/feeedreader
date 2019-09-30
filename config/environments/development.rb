@@ -60,4 +60,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.task_logger = Logger.new('./log/dev_task.log', 'daily')
+  config.article_destroy_logger = Logger.new('./log/dev_article_destroy.log')
 end
