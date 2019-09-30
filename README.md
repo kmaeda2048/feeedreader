@@ -17,6 +17,7 @@ URL: https://feeedreader.herokuapp.com/
 * 記事のサムネイルの表示
 * 記事にスターをつける・外す
 * スター付き記事一覧表示
+* フィード一覧ページネーション
 * フィード検索
 * 記事検索
 * フィードソート
@@ -36,6 +37,7 @@ URL: https://feeedreader.herokuapp.com/
 * HTTPクライアント: HTTParty
 * フィードパーサー: Feedjira
 * OGPスクレイピング: Nokogiri
+* ページネーション: kaminari
 * 検索: Ransack
 * テンプレートエンジン: Slim
 * CSSプリプロセッサ: Sass(SCSS)
