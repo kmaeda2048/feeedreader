@@ -18,23 +18,21 @@ class Feed < ApplicationRecord
   end
 
   def self.fetch_all
-    Rails.application.config.task_logger.debug('--------------------------------------------------------------------------------------------')
     feeds = Feed.all
     
     feeds.each do |feed|
       feed.fetch
     end
-    Rails.application.config.task_logger.debug('--------------------------------------------------------------------------------------------')
   end
 
   def fetch
-    Rails.application.config.task_logger.debug("id=#{self.id}「#{self.name}」の#fetch開始(記事数: #{self.article.size})")
+    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch開始(記事数: #{self.article.size})")
 
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
 
     if parse_result.last_modified.in_time_zone > self.last_modified
-      Rails.application.config.task_logger.debug("フィード更新あり")
+      Rails.application.config.feed_fetch_logger.debug("フィード更新あり")
 
       self.update(last_modified: parse_result.last_modified.in_time_zone)
       articles = parse_result.entries
@@ -47,7 +45,7 @@ class Feed < ApplicationRecord
       end
     end
 
-    Rails.application.config.task_logger.debug("id=#{self.id}「#{self.name}」の#fetch終了(記事数: #{self.article.size})")
+    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch終了(記事数: #{self.article.size})")
   end
 
   def decide_thumbnail(article)
