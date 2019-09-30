@@ -93,4 +93,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.task_logger = Logger.new('./log/pro_task.log', 'daily')
+  config.article_destroy_logger = Logger.new('./log/pro_article_destroy.log')
 end

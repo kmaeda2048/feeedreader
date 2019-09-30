@@ -45,4 +45,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.task_logger = Logger.new('./log/test_task.log', 'daily')
+  config.article_destroy_logger = Logger.new('./log/test_article_destroy.log')
 end
