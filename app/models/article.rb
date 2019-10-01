@@ -20,7 +20,7 @@ class Article < ApplicationRecord
 
   def self.destroy_overflowing_articles(max)
     (Article.all.size - max).times do
-      Article.all.order(published: 'asc').first.destroy
+      Article.where(starred: false).order(published: 'asc').first.destroy
     end
   end
 
