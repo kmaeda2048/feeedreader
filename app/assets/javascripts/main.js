@@ -146,6 +146,7 @@ document.addEventListener('turbolinks:load', () => {
     const firstCard = document.querySelector('.mycard');
     const cardHeight = firstCard ? firstCard.offsetHeight : undefined;
     const cardMargin = firstCard ? parseInt(window.getComputedStyle(firstCard).marginBottom) : undefined;
+    const lazyLoads = document.querySelectorAll('.lazyload');
     const stars = document.getElementsByClassName('toggleable-star');
     if (firstCard) {
         firstCard.setAttribute('id', 'focused-card');
@@ -170,6 +171,22 @@ document.addEventListener('turbolinks:load', () => {
         });
     }
 
+    const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+        // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { // cardAreaに少しでも入ったとき
+                entry.target.setAttribute('src', entry.target.dataset.src);
+                lazyLoadObserver.unobserve(entry.target);
+            }
+        });
+    }, { root: cardArea, threshold: 0 });
+
+    if ((controllerAndAction === 'articles#unread') || (controllerAndAction === 'articles#starred') || (controllerAndAction === 'feeds#unread')) {
+        Array.prototype.forEach.call(lazyLoads, lazyLoad => {
+            lazyLoadObserver.observe(lazyLoad);
+        });
+    }
+
     const readObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             // threshold: 0でのentries[0].isIntersectingは、cardAreaに少しでも入ったときにtrue、cardAreaから完全に出たときにfalse
@@ -184,7 +201,7 @@ document.addEventListener('turbolinks:load', () => {
                     },
                     body: JSON.stringify(ajaxData), // data can be `string` or {object}!
                     credentials: 'same-origin'
-                })
+                });
                 // }).then(res => res.json())
                 //     .then(response => console.log('Success:', JSON.stringify(response)))
                 //     .catch(error => console.error('Error:', error));
