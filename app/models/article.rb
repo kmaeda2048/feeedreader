@@ -32,7 +32,7 @@ class Article < ApplicationRecord
     if self.starred
       self.update(starred: false, starred_at: nil)
     else
-      self.update(starred: true, starred_at: Time.now)
+      self.update(unread: false, starred: true, starred_at: Time.now)
     end
   end
 end
