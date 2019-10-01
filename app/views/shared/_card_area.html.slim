@@ -26,8 +26,8 @@
                 = icon 'far', 'star', class: 'toggleable-star'
           .feed-col
             .feed-name.omitted= article.feed.name
-          .pub-col
-            - if time_ago_in_words(article.published).include?('日')
-              = l(article.published, format: :short)
+          .updated-at-col
+            - if time_ago_in_words(article.updated_at).include?('日')
+              = l(article.updated_at, format: :short)
             - else
-              = time_ago_in_words(article.published) + '前'
+              = time_ago_in_words(article.updated_at) + '前'

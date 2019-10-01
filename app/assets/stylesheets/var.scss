@@ -17,11 +17,11 @@ $thumbnailcol-mr: 10px;
 $starcol-width: 18px;
 $starcol-mr: 50px;
 $feedcol-mr: 50px;
-$pubcol-width: 70px;
+$updated-at-col-width: 70px;
 $cardlinkrow-width: calc(
   100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - 50px
 ); // 50分は余裕
 $feedname-width: calc(
   100vw - #{$sidebar-width} - (#{$card-padding} * 2) - #{$thumbnailcol-width} - #{$thumbnailcol-mr} - #{$starcol-width} -
-    #{$starcol-mr} - #{$feedcol-mr} - #{$pubcol-width} - 60px
+    #{$starcol-mr} - #{$feedcol-mr} - #{$updated-at-col-width} - 60px
 ); // 60分は余裕

@@ -8,17 +8,11 @@ RSpec.describe '記事表示機能', type: :system do
   end
 
   describe '未読記事一覧表示' do
-    let!(:old_unread_article) { FactoryBot.create(:article, :old_unread, feed: feed) }
-    let!(:new_unread_article) { FactoryBot.create(:article, :new_unread, feed: feed) }
     let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
     
     context 'articles/unreadにアクセスしたとき' do
       before do
         visit unread_articles_path
-      end
-
-      it '公開日が最も古い未読記事が、一番上に表示される' do
-        expect(first('.card-link').text).to eq old_unread_article.title
       end
       
       # it '未読記事のフィード名が含まれる' do
