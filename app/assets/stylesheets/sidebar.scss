@@ -2,7 +2,8 @@
   width: $sidebar-width; // スクロールバーありのとき。なしのときはJSで52pxに変更される。
   flex: none;
   margin-right: auto;
-  overflow: hidden auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: calc(100vh - 56px);
   background-color: $sidebar-bgcolor;
 
