@@ -1,5 +1,6 @@
 #mycard-area {
-  overflow: hidden auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: calc(100vh - 56px);
   flex: auto;
   padding: 0 3px;
