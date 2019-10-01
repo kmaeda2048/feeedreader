@@ -1,4 +1,11 @@
 #mycard-area
+  - if notice
+    .notice.alert.alert-success
+      = notice
+  - if alert
+    .alert
+      = alert
+
   - articles.each do |article|
     .mycard.flex data-article-id="#{article.id}"
       .thumbnail-col
