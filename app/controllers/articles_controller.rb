@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   def unread
     @side_feeds = Feed.all.recently
     @q = Article.unread.ransack(params[:q])
-    @articles = @q.result(distinct: true).order_pub
+    @articles = @q.result(distinct: true).formerly
     @now_page = '全フィード'
     @articles_count = @articles.size
   end

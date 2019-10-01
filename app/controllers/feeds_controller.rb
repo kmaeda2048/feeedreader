@@ -9,7 +9,7 @@ class FeedsController < ApplicationController
     @side_feeds = Feed.all.recently
     @feed = Feed.find(params[:id])
     @q = Article.where(feed_id: @feed.id).unread.ransack(params[:q])
-    @articles = @q.result(distinct: true).order_pub
+    @articles = @q.result(distinct: true).formerly
     @now_page = @feed.name
     @articles_count = @articles.size
   end

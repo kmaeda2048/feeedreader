@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
   scope :unread, -> { where(unread: true) }
   scope :starred, -> { where(starred: true) }
-  scope :order_pub, -> { order(published: :asc) }
+  scope :formerly, -> { order(updated_at: :asc) }
   scope :order_star, -> { order(starred_at: :asc) }
 
   def self.ransackable_attributes(auth_object = nil)
@@ -20,7 +20,7 @@ class Article < ApplicationRecord
 
   def self.destroy_overflowing_articles(max)
     (Article.all.size - max).times do
-      Article.where(starred: false).order(published: 'asc').first.destroy
+      Article.where(starred: false).formerly.first.destroy
     end
   end
 
