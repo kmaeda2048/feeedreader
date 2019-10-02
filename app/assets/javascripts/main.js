@@ -124,12 +124,18 @@ document.addEventListener('turbolinks:load', () => {
         e.classList.toggle('fas');
     }
 
+    const removeAlert = () => {
+        alertElement.style.display = 'none';
+        document.removeEventListener('animationend', removeAlert);
+    }
+
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;
     const controllerAndAction = controller + '#' + action;
     const articlesCountElement = document.getElementById('articles-count');
     let articlesCount = articlesCountElement.dataset.count;
     const headerHeight = document.querySelector('header').offsetHeight;
+    const alertElement = document.querySelector('.alert') ? document.querySelector('.alert') : undefined;
     const sidebar = document.getElementById('sidebar');
     const favicon = document.querySelector('.favicon');
     const faviconHeight = favicon ? favicon.offsetHeight : undefined;
@@ -169,6 +175,10 @@ document.addEventListener('turbolinks:load', () => {
             submit.style.display = 'none';
             spinner.style.display = 'block';
         });
+    }
+
+    if ((controllerAndAction === 'feeds#unread') && alertElement) {
+        document.addEventListener('animationend', removeAlert);
     }
 
     const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
