@@ -4,7 +4,7 @@
 
 URL: https://feeedreader.herokuapp.com/
 
-![GIF](https://user-images.githubusercontent.com/48312376/66030049-81802180-e53b-11e9-87e5-440270a0b35c.gif)
+![GIF](https://user-images.githubusercontent.com/48312376/66032564-914e3480-e540-11e9-915f-b6d31d0bc3b6.gif)
 
 <!-- テストユーザー:  -->
 <!-- 実際のアプリの画像 -->
