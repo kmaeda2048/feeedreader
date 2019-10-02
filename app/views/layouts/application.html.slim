@@ -32,11 +32,12 @@ html lang="ja"
       #articles-count data-count="#{@articles_count}"
         - if @articles_count
           span= "(#{@articles_count})"
-    / - if notice
-    /   p.notice
-    /     = notice
-    / - if alert
-    /   p.alert
-    /     = alert
+          
+    - if notice
+      .notice.alert.alert-success
+        = notice
+    - if alert
+      .alert
+        = alert
         
     = yield
