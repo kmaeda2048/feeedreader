@@ -7,7 +7,7 @@ namespace :article do
     Article.destroy_read_articles
     Rails.application.config.article_destroy_logger.debug("既読記事の削除後: #{Article.all.size}件")
 
-    max = 1000
+    max = 500
     if Article.all.size > max
       Article.destroy_overflowing_articles(max)
       Rails.application.config.article_destroy_logger.debug("古い記事の削除後: #{Article.all.size}件")
