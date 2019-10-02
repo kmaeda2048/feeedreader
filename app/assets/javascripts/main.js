@@ -142,7 +142,8 @@ document.addEventListener('turbolinks:load', () => {
     const faviconMargin = favicon ? parseInt(window.getComputedStyle(favicon).margin) : undefined;
     const faviconHeightAndMargin = favicon ? faviconHeight + faviconMargin : undefined;
     if (sidebar) {
-        const faviconPerPage = Math.floor((window.innerHeight - headerHeight - faviconHeightAndMargin) / faviconHeightAndMargin)
+        const faviconPerPage = Math.floor((window.innerHeight - headerHeight) / faviconHeightAndMargin)
+        // const faviconPerPage = Math.floor((window.innerHeight - headerHeight - faviconHeightAndMargin) / faviconHeightAndMargin)トグルボタンありのとき
         if (document.getElementsByClassName('favicon').length <= faviconPerPage) {
             sidebar.style.width = '52px';
         }
