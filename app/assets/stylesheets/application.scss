@@ -15,12 +15,14 @@ body {
 }
 
 .alert {
+  z-index: 1;
   position: absolute;
   top: 0;
   right: 0;
+  width: calc(100vw / 3);
+  @include omitted;
   margin-top: 3px;
   margin-bottom: 0;
-  z-index: 1;
 
   animation: anime 3s ease 3s forwards;
 

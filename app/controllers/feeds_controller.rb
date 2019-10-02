@@ -24,7 +24,7 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
 
     if @feed.save
-      redirect_to unread_feed_path(@feed), notice: "「#{@feed.name}」を登録しました。"
+      redirect_to unread_feed_path(@feed), notice: "登録完了: #{@feed.name}"
     else
       render :new
     end
@@ -38,7 +38,7 @@ class FeedsController < ApplicationController
   def update
     @feed = Feed.find(params[:id])
     if @feed.update(feed_params)
-      redirect_to unread_feed_path(@feed), notice: "「#{@feed.name}」に更新しました。"
+      redirect_to unread_feed_path(@feed), notice: "更新完了: #{@feed.name}"
     else
       render :edit
     end
