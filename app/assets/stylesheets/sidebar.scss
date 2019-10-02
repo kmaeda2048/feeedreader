@@ -7,22 +7,22 @@
   height: calc(100vh - 56px);
   background-color: $sidebar-bgcolor;
 
-  #toggle {
-    position: fixed;
-    top: 56px;
-    background-color: $sidebar-bgcolor;
+  // #toggle {
+  //   position: fixed;
+  //   top: 56px;
+  //   background-color: $sidebar-bgcolor;
 
-    .fa-angle-double-right {
-      @include flex-center;
-      width: 52px;
-      height: 42px;
-      font-size: 25px;
-      color: rgba(0, 0, 0, 0.54);
-    }
-  }
+  //   .fa-angle-double-right {
+  //     @include flex-center;
+  //     width: 52px;
+  //     height: 42px;
+  //     font-size: 25px;
+  //     color: rgba(0, 0, 0, 0.54);
+  //   }
+  // }
 
   #favicons {
-    margin-top: 42px;
+    // margin-top: 42px;
 
     .favicon {
       display: block;
