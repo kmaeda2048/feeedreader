@@ -9,3 +9,7 @@
 @import "./mycard_area";
 @import "./feeds";
 @import "./static_pages";
+
+body {
+  overscroll-behavior-y: none;
+}
