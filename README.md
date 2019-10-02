@@ -4,17 +4,10 @@
 
 URL: https://feeedreader.herokuapp.com/
 
+![GIF](https://user-images.githubusercontent.com/48312376/66030049-81802180-e53b-11e9-87e5-440270a0b35c.gif)
+
 <!-- テストユーザー:  -->
 <!-- 実際のアプリの画像 -->
-
-使い方のGIF
-https://user-images.githubusercontent.com/48312376/66030049-81802180-e53b-11e9-87e5-440270a0b35c.gif
-
-使い方のGIF
-[test](https://user-images.githubusercontent.com/48312376/66030049-81802180-e53b-11e9-87e5-440270a0b35c.gif)
-
-使い方のGIF
-![test](https://user-images.githubusercontent.com/48312376/66030049-81802180-e53b-11e9-87e5-440270a0b35c.gif)
 
 ## 機能一覧
 
