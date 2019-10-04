@@ -6,3 +6,28 @@
     font-size: 1.5rem;
   }
 }
+
+#welcome {
+  background-color: $mycardarea-bgcolor;
+  height: calc(100vh - 56px);
+  @include flex-center;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  #left {
+    width: 50vw;
+    padding: 0 50px;
+  }
+
+  #right {
+    width: 50vw;
+    padding-right: 50px;
+
+    #gif {
+      width: calc(50vw - 50px);
+      border: solid black 1px;
+    }
+  }
+}

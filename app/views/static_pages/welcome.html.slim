@@ -1,7 +1,7 @@
-.jumbotron.text-center
-  h1.display-4 FeeedReader
-  p.lead シンプルなフィードリーダー
-  hr.my-4
-  p It uses utility classes for typography and spacing to space content out within the larger container.
-  / = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary btn-lg'
-  / = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg'
+#welcome
+  #left
+    h1 FeeedReader
+    p.lead ニュースサイトやブログなどが配信する、RSSやAtomなどのフィードを購読するアプリです。
+    = link_to '始める！', unread_articles_path, class: 'btn btn-primary mr-3'  
+  #right
+    = image_tag('https://user-images.githubusercontent.com/48312376/66178668-1e100400-e6a1-11e9-9332-39117ebbb61c.gif', id: 'gif')
