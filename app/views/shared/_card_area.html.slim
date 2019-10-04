@@ -22,5 +22,7 @@
           .updated-at-col
             - if time_ago_in_words(article.updated_at).include?('日')
               = l(article.updated_at, format: :short)
+            - elsif time_ago_in_words(article.updated_at).include?('以内')
+              = time_ago_in_words(article.updated_at)
             - else
               = time_ago_in_words(article.updated_at) + '前'
