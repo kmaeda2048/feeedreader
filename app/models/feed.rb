@@ -35,7 +35,7 @@ class Feed < ApplicationRecord
       Rails.application.config.feed_fetch_logger.debug("フィード更新あり")
 
       self.update(last_modified: parse_result.last_modified.in_time_zone)
-      articles = parse_result.entries
+      articles = parse_result.entries.reverse
   
       articles.each do |article|
         # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
@@ -99,7 +99,7 @@ class Feed < ApplicationRecord
   end
 
   def create_articles
-    articles = @parse_result.entries
+    articles = @parse_result.entries.reverse
 
     articles.each do |article|
       thumbnail = decide_thumbnail(article)
