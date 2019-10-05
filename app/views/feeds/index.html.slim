@@ -20,5 +20,3 @@
             = link_to icon('far', 'edit', class: 'fa-fw'), edit_feed_path(feed)
             = link_to feed, method: :delete, data: { confirm: "#{feed.name}を削除します。よろしいですか？" }, id: 'delete' do
               = icon('far', 'trash-alt', class: 'fa-fw')
-    
-    = paginate @feeds
