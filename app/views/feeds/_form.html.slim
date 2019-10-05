@@ -1,7 +1,7 @@
 - if feed.errors.present?
   ul#error_explanation
     - feed.errors.full_messages.each do |message|
-      li= message
+      .alert.alert-danger= message
 
 = form_with model: feed, local: true do |f|
   .form-group
