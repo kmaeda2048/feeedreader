@@ -58,7 +58,7 @@
 
     #gif {
       width: calc(50vw - 50px);
-      filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.4));
+      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     }
   }
 }
