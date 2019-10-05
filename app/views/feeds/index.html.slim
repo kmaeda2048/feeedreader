@@ -3,11 +3,12 @@
   #feeds-area
     = link_to '新しいフィードの登録', new_feed_path, class: 'btn btn-primary mr-3'
 
-    table
+    table.table align='center'
       tr
         th= sort_link(@q, :name)
         th= t('activerecord.attributes.feed.feed_url')
         th= sort_link(@q, :created_at)
+        th 編集・削除
       - @feeds.each do |feed|
         tr
           td
