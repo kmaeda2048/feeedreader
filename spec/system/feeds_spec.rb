@@ -112,6 +112,7 @@ RSpec.describe 'フィード管理機能', type: :system do
 
     before do
       visit feeds_path
+      Capybara.page.driver.browser.manage.window.resize_to(1920, 1080)
       find('#delete').click
       page.driver.browser.switch_to.alert.accept
     end
