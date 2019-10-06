@@ -6,9 +6,6 @@ URL: https://feeedreader.herokuapp.com/
 
 ![GIF](https://user-images.githubusercontent.com/48312376/66178668-1e100400-e6a1-11e9-9332-39117ebbb61c.gif)
 
-<!-- テストユーザー:  -->
-<!-- 実際のアプリの画像 -->
-
 ## 機能一覧
 
 * フィードの登録・未読記事一覧表示・編集・削除
@@ -23,7 +20,6 @@ URL: https://feeedreader.herokuapp.com/
 * フィードのソート
 * ショートカットキー
 * 定期処理による記事フェッチ
-<!-- * ログイン -->
 
 ## 使用技術
 
@@ -32,7 +28,6 @@ URL: https://feeedreader.herokuapp.com/
 * テスト: RSpec
 * 本番環境: Heroku
 * データベース: PostgreSQL
-<!-- * ユーザー管理: Devise -->
 * HTTPクライアント: HTTParty
 * フィードパーサー: Feedjira
 * OGPスクレイピング: Nokogiri
@@ -61,6 +56,3 @@ URL: https://feeedreader.herokuapp.com/
 | `g` → `n`          | 新規フィード登録へ       |
 | `g` → `c`          | フィード一覧へ           |
 | `g` → `h`          | ショートカットキー一覧へ |
-
-<!-- ## 動作環境
-chrome, firefox, ieとか(pc, スマホ) -->
