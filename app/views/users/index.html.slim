@@ -1,5 +1,15 @@
 h1 Users#index
 
+ul
+  - if user_signed_in?
+    p= "#{current_user.email}でログイン中"
+    / p= user_session
+    li= link_to 'ユーザー編集', edit_user_registration_path
+    li= link_to 'ログアウト', destroy_user_session_path, method: :delete
+  - else
+    li= link_to 'ユーザー登録', new_user_registration_path
+    li= link_to 'ログイン', new_user_session_path
+
 table.table align='center'
   tr
     th= t('activerecord.attributes.user.id')
@@ -12,9 +22,3 @@ table.table align='center'
       td= link_to user.email, user_path(user)
       td= user.created_at
       td= user.updated_at
-
-ul
-  li= link_to 'ユーザー登録', new_user_registration_path
-  li= link_to 'ログイン', new_user_session_path
-  li= link_to 'ログアウト', destroy_user_session_path, method: :delete
-  li= link_to 'ユーザー編集', edit_user_registration_path
