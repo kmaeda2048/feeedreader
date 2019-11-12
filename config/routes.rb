@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static_pages#welcome'
   resources :feeds, except: :show do
     get 'unread', on: :member
