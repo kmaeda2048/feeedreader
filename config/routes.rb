@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
+  get 'users/index', to: 'users#index'
+  get 'users/show/:id', to: 'users#show', as: 'user'
   devise_for :users
   root 'static_pages#welcome'
   resources :feeds, except: :show do
