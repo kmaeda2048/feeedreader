@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
 
-  has_many :feeds
+  has_many :feeds, dependent: :destroy
   has_many :articles, through: :feeds
 end
