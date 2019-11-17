@@ -2,7 +2,7 @@ class Feed < ApplicationRecord
   belongs_to :user
   has_many :articles, dependent: :delete_all
   
-  validates :feed_url, uniqueness: true
+  validates :feed_url, uniqueness: { scope: :user_id }
   validate :validate_feed_url
 
   before_create :set_attributes, on: :create

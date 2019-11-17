@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_074151) do
+ActiveRecord::Schema.define(version: 2019_11_17_133103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_074151) do
     t.string "favicon_url", null: false
     t.datetime "last_modified"
     t.bigint "user_id"
-    t.index ["feed_url"], name: "index_feeds_on_feed_url", unique: true
+    t.index ["user_id", "feed_url"], name: "index_feeds_on_user_id_and_feed_url", unique: true
     t.index ["user_id"], name: "index_feeds_on_user_id"
   end
 
