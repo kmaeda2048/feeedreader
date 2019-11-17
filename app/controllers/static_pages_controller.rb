@@ -6,6 +6,6 @@ class StaticPagesController < ApplicationController
   end
 
   def shortcuts
-    @side_feeds = Feed.all.recently
+    @side_feeds = current_user.feeds.recently
   end
 end
