@@ -1,5 +1,6 @@
 class Feed < ApplicationRecord
-  has_many :article, dependent: :delete_all
+  belongs_to :user
+  has_many :articles, dependent: :delete_all
   
   validates :feed_url, uniqueness: true
   validate :validate_feed_url
@@ -26,7 +27,7 @@ class Feed < ApplicationRecord
   end
 
   def fetch
-    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch開始(記事数: #{self.article.size})")
+    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch開始(記事数: #{self.articles.size})")
 
     response = HTTParty.get(self.feed_url)
     parse_result = Feedjira.parse(response.body)
@@ -39,13 +40,13 @@ class Feed < ApplicationRecord
   
       articles.each do |article|
         # first_or_initializeは同じ記事がなければ作成、あれば呼び出しという処理をする
-        local_article = self.article.where(title: article.title).first_or_initialize
+        local_article = self.articles.where(title: article.title).first_or_initialize
         thumbnail = decide_thumbnail(article)
         local_article.update_attributes(url: article.url, published: article.published, feed_id: self.id, thumbnail_url: thumbnail)
       end
     end
 
-    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch終了(記事数: #{self.article.size})")
+    Rails.application.config.feed_fetch_logger.debug("id=#{self.id}「#{self.name}」の#fetch終了(記事数: #{self.articles.size})")
   end
 
   def decide_thumbnail(article)
