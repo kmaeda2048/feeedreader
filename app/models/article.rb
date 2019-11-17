@@ -19,8 +19,10 @@ class Article < ApplicationRecord
   end
 
   def self.destroy_overflowing_articles(max)
-    (Article.all.size - max).times do
-      Article.where(starred: false).formerly.first.destroy
+    User.all.each do |user|
+      (user.articles.size - max).times do
+        user.articles.where(starred: false).formerly.first.destroy
+      end
     end
   end
 
