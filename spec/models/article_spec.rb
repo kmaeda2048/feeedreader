@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe '.destroy_read_articles' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let(:user_a) { FactoryBot.create(:user) }
+    let(:feed) { FactoryBot.create(:feed, user: user_a) }
     let!(:unread_article) { FactoryBot.create(:article, feed: feed) }
     let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
     let!(:starred_article) { FactoryBot.create(:article, :starred, feed: feed) }
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it '既読かつスター付きでない記事のみ削除される' do
@@ -20,7 +21,8 @@ RSpec.describe Article, type: :model do
   end
 
   describe '.destroy_overflowing_articles' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let(:user_a) { FactoryBot.create(:user) }
+    let(:feed) { FactoryBot.create(:feed, user: user_a) }
     let(:create_size) { 10 }
     let(:max) { 5 }
 
@@ -29,7 +31,7 @@ RSpec.describe Article, type: :model do
     end
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it '記事数がmaxになるように削除される' do
@@ -39,15 +41,16 @@ RSpec.describe Article, type: :model do
   end
 
   describe '#read' do
-    let!(:feed) { FactoryBot.create(:feed) }
-    let!(:article) { FactoryBot.create(:article, feed: feed) }
+    let(:user_a) { FactoryBot.create(:user) }
+    let(:feed) { FactoryBot.create(:feed, user: user_a) }
+    let(:article) { FactoryBot.create(:article, feed: feed) }
 
     before do
       article.read
     end
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it '既読になる' do
@@ -56,9 +59,10 @@ RSpec.describe Article, type: :model do
   end
 
   describe '#toggle_star' do
-    let!(:feed) { FactoryBot.create(:feed) }
-    let!(:unstarrd_article) { FactoryBot.create(:article, feed: feed) }
-    let!(:starrd_article) { FactoryBot.create(:article, :starred, feed: feed) }
+    let(:user_a) { FactoryBot.create(:user) }
+    let(:feed) { FactoryBot.create(:feed, user: user_a) }
+    let(:unstarrd_article) { FactoryBot.create(:article, feed: feed) }
+    let(:starrd_article) { FactoryBot.create(:article, :starred, feed: feed) }
 
     before do
       unstarrd_article.toggle_star
@@ -66,7 +70,7 @@ RSpec.describe Article, type: :model do
     end
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it 'スターの状態がトグルされる' do
