@@ -3,19 +3,25 @@ require 'rails_helper'
 RSpec.describe Feed, type: :model do
   describe 'バリデーション' do
     context '入力された値が有効な場合' do
-      let!(:valid_feed) { FactoryBot.create(:feed) }
+      let(:user_a) { FactoryBot.create(:user) }
+      let!(:valid_feed) { FactoryBot.create(:feed, user: user_a) }
 
       after do
-        valid_feed.destroy
+        user_a.destroy
       end
       
       it 'バリデーションにかからない' do
         expect(valid_feed).to be_valid
-      end      
+      end
     end
   
     context '入力された値が有効でない場合' do
-      let!(:invalid_feed) { FactoryBot.build(:feed) }
+      let(:user_a) { FactoryBot.create(:user) }
+      let!(:invalid_feed) { FactoryBot.build(:feed, user: user_a) }
+
+      after do
+        user_a.destroy
+      end
   
       context 'feed_urlが未入力の場合' do
         it '登録に失敗する' do
@@ -42,12 +48,8 @@ RSpec.describe Feed, type: :model do
       end
       
       context '既に存在するフィードの場合' do
-        let!(:valid_feed) { FactoryBot.create(:feed) }
-        let!(:invalid_feed) { FactoryBot.build(:feed) }
-
-        after do
-          valid_feed.destroy
-        end
+        let!(:valid_feed) { FactoryBot.create(:feed, user: user_a) }
+        let!(:invalid_feed) { FactoryBot.build(:feed, user: user_a) }
   
         it '登録に失敗する' do
           invalid_feed.valid?
@@ -58,10 +60,11 @@ RSpec.describe Feed, type: :model do
   end
 
   describe '#set_attributes' do
-    let!(:feed) { FactoryBot.create(:feed, name: '') }
+    let(:user_a) { FactoryBot.create(:user) }
+    let!(:feed) { FactoryBot.create(:feed, name: '', user: user_a) }
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     describe '#set_name' do
@@ -84,10 +87,11 @@ RSpec.describe Feed, type: :model do
   end
 
   describe '#create_articles' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let(:user_a) { FactoryBot.create(:user) }
+    let!(:feed) { FactoryBot.create(:feed, user: user_a) }
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it '登録したフィードの記事が追加される' do
@@ -96,8 +100,9 @@ RSpec.describe Feed, type: :model do
   end
   
   describe '#fetch' do
-    let!(:feed) { FactoryBot.create(:feed) }
-    let(:article) { feed.article.last }
+    let(:user_a) { FactoryBot.create(:user) }
+    let!(:feed) { FactoryBot.create(:feed, user: user_a) }
+    let(:article) { feed.articles.last }
 
     before do
       article.destroy
@@ -105,7 +110,7 @@ RSpec.describe Feed, type: :model do
     end
 
     after do
-      feed.destroy
+      user_a.destroy
     end
 
     it '削除した記事が再度追加される' do

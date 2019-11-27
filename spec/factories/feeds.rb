@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :feed do
     feed_url { 'https://github.com/kmaeda2048/feeedreader/commits/master.atom' }
     name { 'Recent Commits to feeedreader:master' }
+    user
 
     trait :github do
       feed_url { 'https://github.blog/feed/' }
