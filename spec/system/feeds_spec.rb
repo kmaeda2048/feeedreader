@@ -1,9 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe 'フィード管理機能', type: :system do
+  let(:user_a) { FactoryBot.create(:user) }
+
+  before do
+    visit new_user_session_path
+    fill_in 'メールアドレス', with: user_a.email
+    fill_in 'パスワード', with: user_a.password
+    click_button 'ログイン'
+  end
+
+  after do
+    user_a.destroy
+  end
+
   describe 'フィードの一覧表示' do
-    let!(:old_feed) { FactoryBot.create(:feed) }
-    let!(:new_feed) { FactoryBot.create(:feed, :github) }
+    let!(:old_feed) { FactoryBot.create(:feed, user: user_a) }
+    let!(:new_feed) { FactoryBot.create(:feed, :github, user: user_a) }
 
     after do
       old_feed.destroy
@@ -22,7 +35,7 @@ RSpec.describe 'フィード管理機能', type: :system do
   end
 
   describe 'フィードの未読記事一覧表示' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let!(:feed) { FactoryBot.create(:feed, user: user_a) }
     let!(:read_article) { FactoryBot.create(:article, :read, feed: feed) }
 
     after do
@@ -57,7 +70,7 @@ RSpec.describe 'フィード管理機能', type: :system do
       end
 
       it '表示記事数が表示される' do
-        expect(find('#articles-count').text).to eq "(#{feed.article.where(unread: true).size})"
+        expect(find('#articles-count').text).to eq "(#{feed.articles.where(unread: true).size})"
       end
     end
   end
@@ -85,7 +98,7 @@ RSpec.describe 'フィード管理機能', type: :system do
   end
 
   describe 'フィードの編集' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let!(:feed) { FactoryBot.create(:feed, user: user_a) }
     let(:new_name) { '新しいフィード名' }
 
     before do
@@ -108,7 +121,7 @@ RSpec.describe 'フィード管理機能', type: :system do
   end
 
   describe 'フィードの削除' do
-    let!(:feed) { FactoryBot.create(:feed) }
+    let!(:feed) { FactoryBot.create(:feed, user: user_a) }
 
     before do
       visit feeds_path
