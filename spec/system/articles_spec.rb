@@ -1,10 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe '記事表示機能', type: :system do
-  let!(:feed) { FactoryBot.create(:feed) }
+  let(:user_a) { FactoryBot.create(:user) }
+  let!(:feed) { FactoryBot.create(:feed, user: user_a) }
+
+  before do
+    visit new_user_session_path
+    fill_in 'メールアドレス', with: user_a.email
+    fill_in 'パスワード', with: user_a.password
+    click_button 'ログイン'
+  end
 
   after do
-    feed.destroy
+    user_a.destroy
   end
 
   describe '未読記事一覧表示' do
