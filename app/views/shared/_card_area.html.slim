@@ -8,7 +8,7 @@
           = image_tag("data:image/gif;base64,R0lGODlhAQABAGAAACH5BAEKAP8ALAAAAAABAAEAAAgEAP8FBAA7", size: '75x75', class: 'lazyload', data: { src: article.thumbnail_url })
       .another-col
         .card-link-row.omitted
-          = link_to article.title, article.url, class: 'card-link', rel: 'noopener'
+          = link_to article.title, article.url, class: 'card-link', rel: 'noopener', target: :_blank
         .another-row.flex
           .star-col
             - if article.starred
