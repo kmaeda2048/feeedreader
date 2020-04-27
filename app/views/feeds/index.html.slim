@@ -14,7 +14,7 @@
           td
             = link_to feed.name, unread_feed_path(feed), class: 'feed-name'
           td
-            = link_to feed.feed_url, feed.feed_url
+            = link_to feed.feed_url, feed.feed_url, target: :_blank
           td= l(feed.created_at, format: :short)
           td.edit_and_delete
             = link_to icon('far', 'edit', class: 'fa-fw'), edit_feed_path(feed)
