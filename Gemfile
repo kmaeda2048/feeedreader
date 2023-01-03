@@ -48,7 +48,7 @@ gem 'devise-i18n', '~> 1.8.0'
 gem 'ransack', '~> 2.1.1'
 
 gem 'feedjira', '~> 3.0.0'
-gem 'httparty', '~> 0.17.0'
+gem 'httparty', '~> 0.21.0'
 
 gem 'font-awesome-sass', '~> 5.9.0'
 
